@@ -8,7 +8,8 @@
     <title>Student Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/timeline.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/timelines.css') }}" rel="stylesheet">
+
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
     <style>
@@ -185,34 +186,71 @@
 
                         <div class="welcome">
 
-                                <div>
-                                    <h2>Chapter 1 submission</h2>
-                                    <div class="countdown-container">
-                                        <div class="cont-el days-c">
-                                            <p class="big-text" id="days">0</p>
-                                            <span>days</span>
-                                        </div>
-                                        <div class="cont-el hours-c">
-                                            <p class="big-text" id="hours">0</p>
-                                            <span>hours</span>
-                                        </div>
-                                        <div class="cont-el mins-c">
-                                            <p class="big-text" id="mins">0</p>
-                                            <span>mins</span>
-                                        </div>
-                                        <div class="cont-el secondss-c">
-                                            <p class="big-text" id="seconds">0</p>
-                                            <span>seconds</span>
-                                        </div>
+                            <div>
+                                <h2>Chapter 1 submission</h2>
+                                <div class="countdown-container">
+                                    <div class="cont-el days-c">
+                                        <p class="big-text" id="days">0</p>
+                                        <span>days</span>
+                                    </div>
+                                    <div class="cont-el hours-c">
+                                        <p class="big-text" id="hours">0</p>
+                                        <span>hours</span>
+                                    </div>
+                                    <div class="cont-el mins-c">
+                                        <p class="big-text" id="mins">0</p>
+                                        <span>mins</span>
+                                    </div>
+                                    <div class="cont-el secondss-c">
+                                        <p class="big-text" id="seconds">0</p>
+                                        <span>seconds</span>
                                     </div>
                                 </div>
-                                <div style="visibility: hidden;">
-                                    <input type="date" class="date" id="date">
-                                </div>
+                            </div>
+                            <div style="visibility: hidden;">
+                                <input type="date" class="date" id="date">
+                            </div>
                         </div>
                     </div>
                     <div class="item2">
+                        <ul class="timeline">
 
+                            <!-- Item 1 -->
+                            <li>
+                                <div class="direction-r">
+                                    <div class="flag-wrapper">
+                                        <span class="flag">Freelancer</span>
+                                        <span class="time-wrapper"><span class="time">2013 - present</span></span>
+                                    </div>
+                                    <div class="desc">My current employment. Way better than the position before!</div>
+                                </div>
+                            </li>
+
+                            <!-- Item 2 -->
+                            <li>
+                                <div class="direction-l">
+                                    <div class="flag-wrapper">
+                                        <span class="flag">Apple Inc.</span>
+                                        <span class="time-wrapper"><span class="time">2011 - 2013</span></span>
+                                    </div>
+                                    <div class="desc">My first employer. All the stuff I've learned and projects I've
+                                        been working on.</div>
+                                </div>
+                            </li>
+
+                            <!-- Item 3 -->
+                            <li>
+                                <div class="direction-r">
+                                    <div class="flag-wrapper">
+                                        <span class="flag">Harvard University</span>
+                                        <span class="time-wrapper"><span class="time">2008 - 2011</span></span>
+                                    </div>
+                                    <div class="desc">A description of all the lectures and courses I have taken and my
+                                        final degree?</div>
+                                </div>
+                            </li>
+
+                        </ul>
                     </div>
 
 
@@ -229,11 +267,13 @@
 
     <!-- partial -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
-    <script src="{{ asset('js/timeline.js') }}" defer></script>
+
+
+
 
     <script>
         //for the countdown
-        var newYears = '1 Jan 2022'
+        var newYears = '2 Jan 2022'
         const dayEl = document.getElementById('days')
         const hourEl = document.getElementById('hours')
         const minsEl = document.getElementById('mins')
