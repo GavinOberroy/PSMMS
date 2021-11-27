@@ -21,6 +21,7 @@
 
         h3{
             font-family: otr;
+            color: #d2e5ff;
         }
 
         .title{

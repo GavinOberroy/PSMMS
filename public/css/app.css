@@ -1458,6 +1458,7 @@ select {
 .bg-white {
 	--tw-bg-opacity: 0.6;
 	background-color: rgba(55,69,84, var(--tw-bg-opacity));
+	border: solid 1px white;
 }
 .bg-gray-100 {
 	background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
@@ -1682,11 +1683,11 @@ select {
 }
 .text-gray-700 {
 	--tw-text-opacity: 1;
-	color: rgba(55, 65, 81, var(--tw-text-opacity));
+	color: white;
 }
 .text-gray-600 {
 	--tw-text-opacity: 1;
-	color: rgba(75, 85, 99, var(--tw-text-opacity));
+	color: white;
 }
 .text-white {
 	--tw-text-opacity: 1;

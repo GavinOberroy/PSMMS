@@ -17,7 +17,7 @@ use App\Http\Controllers\SupervisorController;
 //Auth::routes();
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -36,4 +36,6 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('projectTitleList','SupervisorController@title');
 });
 
-
+Route::get('studentDashboard', function () {
+    return view('studentDashboard');
+});
