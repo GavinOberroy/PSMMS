@@ -39,3 +39,8 @@ Route::group(['middleware' => ['web']], function () {
 Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
+
+
+Route::get('lolodashboard', function () {
+    return view('studentDashboard');
+});
