@@ -15,7 +15,7 @@ class SupervisorController extends Controller
     {
         $supervisors = Supervisor::all();
         return view('supervisorList', compact('supervisors'));
-
+    }
     function edit($id)
     {
         $data = DB::table('supervisors')->where('id', $id)->first();
@@ -28,5 +28,5 @@ class SupervisorController extends Controller
         return view('projectTitleList',['supervisors'=>$data]);
     }
 
-}
+
 }
