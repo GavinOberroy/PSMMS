@@ -24,6 +24,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::group(['middleware' => ['auth']], function() {
+ 
+    Route::get('/logout', [HomeController::class,'logout']);
+ });
+
 route::get('/redirects',[HomeController::class,"index"]);
 
 Route::GET('Supervisor.edit/{id}', [SupervisorController::class,'edit']);
@@ -31,7 +36,9 @@ Route::GET('Supervisor.edit/{id}', [SupervisorController::class,'edit']);
 Route::group(['middleware' => ['web']], function () {
     Route::resource('/supervisor','SupervisorController');
 
-    Route::get('oi',[SupervisorController::class,'show']);
+    Route::get('supervisorList',[SupervisorController::class,'show']);
+
+    Route::get('mana2',[SupervisorController::class,'edit']);
 
     Route::get('projectTitleList','SupervisorController@title');
 });
@@ -39,3 +46,9 @@ Route::group(['middleware' => ['web']], function () {
 Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
+
+Route::get('abc', function () {
+    return view('ManageTitle.AddTitle');
+});
+
+
