@@ -134,6 +134,7 @@
                         <path d="M13.73 21a2 2 0 0 1-3.46 0" />
                     </svg>
                 </button>
+                <!-- Profile Button -->
                 <button class="profile-btn">
                     <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
