@@ -9,7 +9,14 @@ class ProposalController extends Controller
 {
     public function showAllSubmittedProposal()
     {
-        $proposals=Proposal::all();
-        return view('ManageProposal.LectureProposal',compact('proposals'));
+        $proposals=Proposal::orderBy('id','DESC')->get();
+        return view('ManageProposal.LecturerProposal',compact('proposals'));
+    }
+
+    public function changeStatus(Request $request,$id)
+    {
+        $proposal = Proposal::find($id);
+        Proposal::where('id',$id)->update(['status'=> $request->status]);
+        return back();
     }
 }

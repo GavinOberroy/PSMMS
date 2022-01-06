@@ -14,6 +14,7 @@ class CreateProposalsTable extends Migration
     public function up()
     {
         Schema::create('proposals', function (Blueprint $table) {
+            $table->id();
             $table->integer('Proposal_ID');
             $table->integer('Student_ID');
             $table->integer('Lecturer_ID');
