@@ -7,73 +7,42 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <!-- Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/dashboard.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
         @livewireStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script src="{{ mix('js/dashboard.js') }}" defer></script>
     </head>
-    <body class="c-app font-sans antialiased">
-        <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
-            <div class="c-sidebar-brand">
-                <a href="/">
-                    <x-jet-application-mark class="c-sidebar-brand-minimized" width="36" />
-                    <x-jet-application-mark class="c-sidebar-brand-full" width="36" />
-                </a>
-            </div>
+    <body class="font-sans antialiased">
+        <x-jet-banner />
 
-            <ul class="c-sidebar-nav">
-                {{ $sidebar ?? '' }}
-            </ul>
+        <div class="min-h-screen bg-gray-100">
+            @livewire('navigation-menu')
 
-            <button class="c-sidebar-minimizer c-class-toggler" type="button" data-bs-target="_parent" data-class="c-sidebar-minimized"></button>
-        </div>
-        <div class="c-wrapper">
-            <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
-                <button class="c-header-toggler c-class-toggler d-lg-none me-auto" type="button" data-bs-target="#sidebar" data-class="c-sidebar-show">
-                    <span class="c-header-toggler-icon"></span>
-                </button>
+            <!-- Page Heading -->
+            @if (isset($header))
+                <header class="bg-white shadow">
+                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        {{ $header }}
+                    </div>
+                </header>
+            @endif
 
-                <button class="c-header-toggler c-class-toggler ms-3 d-md-down-none" type="button" data-bs-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
-                    <span class="c-header-toggler-icon"></span>
-                </button>
+            <!-- Page Content -->
+            <main class="py-4">
+                @yield('content')
+            </main>
 
-                <ul class="c-header-nav d-md-down-none">
-                    <li class="c-header-nav-item px-3">
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-jet-nav-link>
-                    </li>
-
-                    <li class="c-header-nav-item px-3">
-                        <x-jet-nav-link href="{{ route('ManageProposal.LecturerProposal') }}" :active="request()->routeIs('ManageProposal.LecturerProposal')">
-                            {{ __('List Propoal Submitted ') }}
-                        </x-jet-nav-link>
-                    </li>
-
-                </ul>
-
-                @livewire('navigation-menu')
-
-                
-            </header>
-
-            @yield('content')
             
-            <footer class="c-footer">
-              <div>
-                  <a href="https://jetstream.laravel.com/1.x/introduction.html">Jetstream</a> © 2020 Laravel.
-              </div>
-              <div class="ms-auto">Powered by&nbsp;<a href="https://coreui.io/">CoreUI</a></div>
-            </footer>
-          </div>
         </div>
 
         @stack('modals')
+
         @livewireScripts
-        @stack('scripts')
     </body>
 </html>
