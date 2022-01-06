@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SupervisorController;
+use App\Http\Controllers\ProposalController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +19,10 @@ use App\Http\Controllers\SupervisorController;
 
 Route::get('/', function () {
     return view('auth.login');
+});
+
+Route::get('/welcome', function () {
+    return view('welcome');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -52,3 +57,4 @@ Route::get('abc', function () {
 });
 
 
+Route::get('LecturerProposal',[ ProposalController::class,'showList'])->name('LecturerProposal');
