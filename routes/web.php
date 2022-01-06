@@ -57,4 +57,4 @@ Route::get('abc', function () {
 });
 
 
-Route::get('LecturerProposal',[ ProposalController::class,'showList'])->name('LecturerProposal');
+Route::get('LecturerProposal',[ ProposalController::class,'showAllSubmittedProposal'])->name('ManageProposal.LecturerProposal');

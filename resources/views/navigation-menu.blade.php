@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('LecturerProposal') }}" :active="request()->routeIs('LecturerProposal')">
+                    <x-jet-nav-link href="{{ route('ManageProposal.LecturerProposal') }}" :active="request()->routeIs('LecturerProposal')">
                         {{ __('List Submitted Proposal') }}
                     </x-jet-nav-link>
                 </div>

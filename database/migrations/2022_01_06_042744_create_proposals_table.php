@@ -14,7 +14,14 @@ class CreateProposalsTable extends Migration
     public function up()
     {
         Schema::create('proposals', function (Blueprint $table) {
-            $table->id();
+            $table->integer('Proposal_ID');
+            $table->integer('Student_ID');
+            $table->integer('Lecturer_ID');
+            $table->string('Proposal_Title');
+            $table->string('Proposal_Type');
+            $table->string('SV_Name');
+            $table->string('Proposal_Status')->default('pending');
+            $table->string('Proposal_Doc');
             $table->timestamps();
         });
     }
