@@ -16,7 +16,7 @@ class ProposalController extends Controller
     public function changeStatus(Request $request,$id)
     {
         $proposal = Proposal::find($id);
-        Proposal::where('id',$id)->update(['status'=> $request->status]);
+        Proposal::where('id',$id)->update(['Proposal_Status'=> $request->status]);
         return back();
     }
 }
