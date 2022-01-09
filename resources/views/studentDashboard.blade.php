@@ -134,7 +134,7 @@
                     </svg>
                 </button>
                 <!-- Profile Button -->
-                <button class="profile-btn">
+                <button class="profile-btn" onclick='/studentProfile/{{ Auth::user()->id}}'>
                     <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
                 </button>
@@ -147,7 +147,7 @@
                 <a href="studentDashboard" class="app-sidebar-link active">
                     <img src="assets/home.png" alt="" height="25" width="25">
                 </a>
-                <a href="main" class="app-sidebar-link">
+                <a href="supervisorList" class="app-sidebar-link">
                     <img src="assets/supervisor.png" alt="" height="30" width="30">
                 </a>
                 <a href="viewTitle" class="app-sidebar-link">

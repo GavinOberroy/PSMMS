@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SupervisorController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,3 +40,16 @@ Route::group(['middleware' => ['web']], function () {
 Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
+
+
+//Manage Profile
+
+//Route::get('/studentProfile','ProfileController@viewStudent'); - version lama x jadi -_-
+
+Route::get('studentProfile',[ProfileController::class, 'viewStudent']);
+
+/*
+Route::get('/studentProfile', function () {
+    return view('ManageProfile.studentProfile');
+}); */
+
