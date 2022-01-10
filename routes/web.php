@@ -48,6 +48,8 @@ Route::get('studentDashboard', function () {
 
 Route::get('studentProfile',[ProfileController::class, 'viewStudent']);
 
+Route::get('test',[ProfileController::class, 'index']);
+
 /*
 Route::get('/studentProfile', function () {
     return view('ManageProfile.studentProfile');
