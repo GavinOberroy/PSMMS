@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Supervisor;
+use App\Models\User;
 use DB;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class SupervisorController extends Controller
@@ -16,10 +18,12 @@ class SupervisorController extends Controller
         $supervisors = Supervisor::all();
         return view('supervisorList', compact('supervisors'));
     }
-    function edit($id)
+
+    function edit()
     {
-        $data = DB::table('supervisors')->where('id', $id)->first();
-        return view('Supervisor.edit',['supervisors' => $data]);
+        $data = DB::table('supervisors')->where('id', Auth::user()->id)->first();
+        dd($data);
+        return view('mana2',['supervisors' => $data]);
     }
 
     function title()

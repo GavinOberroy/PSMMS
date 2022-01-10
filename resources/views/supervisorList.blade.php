@@ -155,9 +155,9 @@
                                 </div>
                                 <div class="menu effect-12">
                                     <ul>
-                                        <li><a href="#">Book</a></li>
+                                        <li><a href="{{url('mana2')}}">Book</a></li>
                                         &nbsp;
-                                        <li><a href="/logout">Detail</a></li>
+                                        <li><a href="{{url('abc')}}">Detail</a></li>
 
                                     </ul>
                                 </div>
