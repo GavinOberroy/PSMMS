@@ -19,6 +19,10 @@ class HomeController extends Controller
 
         else if($role=='2')
         {
+            //buat sini
+            //$data = DB::table('supervisors')->where('id', Auth::user()->id)->first();
+            //dd($data);
+            //return view('mana2',['supervisors' => $data]);
             return view('studentDashboard');
         }
 
@@ -42,5 +46,12 @@ class HomeController extends Controller
 
         return redirect()->back();
 
+    }
+
+    public function logout()
+    {        
+        Auth::logout();
+
+        return redirect('/');
     }
 }
