@@ -4,20 +4,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Profile;
+use App\Models\User;
 use DB;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
     //
-    public function viewStudent()
+    public function index()
     {
-        
-        return view('ManageProfile.studentProfile');
+        $students = DB::select('select * from student where User_ID = :id', ['id' => Auth::user()->id]);
+        return view('ManageProfile.test',['students'=>$students]);
+        /*$results = DB::select('select * from student where User_ID = :id', ['id' => Auth::user()->id]);
+        return view('ManageProfile.test')->with('ManageProfile.test', $results);*/
     }
 
-    public function show()
+    public function viewStudent()
+    {
+        $students = DB::select('select * from student where User_ID = :id', ['id' => Auth::user()->id]);
+        return view('ManageProfile.studentProfile',['students'=>$students]);
+    }
+
+    public function showStudent()
     {
         
     }

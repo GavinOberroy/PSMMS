@@ -135,7 +135,7 @@
                     </svg>
                 </button>
                 <!-- Profile Button -->
-                <button class="profile-btn" onclick='/studentProfile/{{ Auth::user()->id}}'>
+                <button class="profile-btn" onclick="location.href='{{ url('studentProfile') }}'">
                     <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
                 </button>

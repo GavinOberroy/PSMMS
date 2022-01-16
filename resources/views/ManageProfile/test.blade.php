@@ -221,7 +221,7 @@
                         <div class="item-status">
                             <img width="120"src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
                         </div>
-                        @foreach($students as $student)
+
                         <div class="item-status">
                             <span class="status-number">{{$student->Student_Name}}</span>
                             <br>
@@ -230,12 +230,11 @@
                     </div>
                 </div>
                 <br>
-                <br><br>
                 <div class="grid-container">
 
                     <div class="item2">
                         <form>
-                            
+                            @foreach($students as $student)
                             <table>
                                 <tr>
                                     <td>Name</td>
@@ -257,23 +256,14 @@
                                     <td>Phone Number</td>
                                     <td>{{$student->Student_PhoneNo}}</td>
                                 </tr>
-                                <tr>
-                                    <td>PSM Level</td>
-                                    <td>{{$student->PSM_Level}}</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
                             </table>
                             @endforeach 
                         </form>
                     </div>
+
                     <div class="item2">
                         
                     </div>
-
-                    
 
 
                 </div>
