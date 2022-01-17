@@ -27,8 +27,9 @@ class ProfileController extends Controller
         return view('ManageProfile.studentProfile',['students'=>$students]);
     }
 
-    public function showStudent()
+    public function viewLecturer()
     {
-        
+        $lecturers = DB::select('select * from lecturer where User_ID = :id', ['id' => Auth::user()->id]);
+        return view('ManageProfile.lecturerProfile',['lecturers'=>$lecturers]);
     }
 }

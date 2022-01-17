@@ -40,6 +40,8 @@ Route::group(['middleware' => ['auth']], function() {
 
 route::get('/redirects',[HomeController::class,"index"]);
 
+//Manage Profile ------------------------------------------------------------------------------
+
 Route::GET('Supervisor.edit/{id}', [SupervisorController::class,'edit']);
 
 Route::group(['middleware' => ['web']], function () {
@@ -51,14 +53,19 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('projectTitleList','SupervisorController@title');
 });
+//---------------------------------------------------------------------------------------------
 
 Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
 
+Route::get('lecturerDashboard', function () {
+    return view('lecturerDashboard');
+});
 
 
-//Manage Profile
+
+//Manage Profile ------------------------------------------------------------------------------
 
 //Route::get('/studentProfile','ProfileController@viewStudent'); - version lama x jadi -_-
 
@@ -66,12 +73,18 @@ Route::get('studentProfile',[ProfileController::class, 'viewStudent']);
 
 Route::get('test',[ProfileController::class, 'index']);
 
+
+Route::get('lecturerProfile',[ProfileController::class, 'viewLecturer']);
+
+
 /*
 Route::get('/studentProfile', function () {
     return view('ManageProfile.studentProfile');
 }); */
 
-=======
+//---------------------------------------------------------------------------------------------
+
+
 Route::get('abc', function () {
     return view('ManageTitle.AddTitle');
 });
