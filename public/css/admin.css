@@ -480,7 +480,7 @@ button, a {
   display: none;
 }
 .project-boxes.jsGridView .project-box-wrapper {
-  width: 20%;
+
 }
 .project-boxes.jsListView .project-box {
   display: flex;

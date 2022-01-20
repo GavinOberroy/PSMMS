@@ -135,7 +135,7 @@
                     </svg>
                 </button>
                 <!-- Profile Button -->
-                <button class="profile-btn" onclick="location.href='{{ url('studentProfile') }}'">
+                <button class="profile-btn" onclick="location.href='{{ url('/studentProfile')}}'">
                     <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
                 </button>
@@ -148,7 +148,7 @@
                 <a href="studentDashboard" class="app-sidebar-link active">
                     <img src="assets/home.png" alt="" height="25" width="25">
                 </a>
-                <a href="supervisorList" class="app-sidebar-link">
+                <a href="{{ url('supervisorList') }}" class="app-sidebar-link">
                     <img src="assets/supervisor.png" alt="" height="30" width="30">
                 </a>
                 <a href="viewTitle" class="app-sidebar-link">
@@ -275,7 +275,7 @@
 
     <script>
         //for the countdown
-        var newYears = '2 Jan 2022'
+        var newYears = '2 Jan 2023'
         const dayEl = document.getElementById('days')
         const hourEl = document.getElementById('hours')
         const minsEl = document.getElementById('mins')

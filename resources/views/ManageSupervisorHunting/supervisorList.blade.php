@@ -5,6 +5,22 @@
     <meta charset="UTF-8">
     <title>Supervisor Hunting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+    crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' type='text/javascript'></script>
+
+<!-- Font Awesome JS -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"> </script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"> </script>
+
+<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 
 </head>
@@ -18,7 +34,9 @@
                 <img src="https://www.ump.edu.my/download/logo-ump-jawi-2021.png" alt=""
                     style="width:180px;height:101.25px;">
                 <div class="search-wrapper">
-                    <input class="search-input" type="text" placeholder="Search">
+                    <form type="get" action="{{ url('/search') }}">
+                    <input class="search-input" name="query" type="search" placeholder="Search">
+                    <button type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
                         viewBox="0 0 24 24">
@@ -26,6 +44,9 @@
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="M21 21l-4.35-4.35"></path>
                     </svg>
+                    </button>
+                    </form>
+                    
                 </div>
             </div>
             <div class="app-header-right">
@@ -124,7 +145,6 @@
                         </div>
                     </div>
 
-
                     <div class="view-actions">
                         <button class="view-btn grid-view active" title="Grid View">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
@@ -155,9 +175,9 @@
                                 </div>
                                 <div class="menu effect-12">
                                     <ul>
-                                        <li><a href="{{url('mana2')}}">Book</a></li>
+                                        <li><button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#bookModal">Book</button> </li>
                                         &nbsp;
-                                        <li><a href="{{url('abc')}}">Detail</a></li>
+                                        <li><button type="button" class="btn btn-primary m-2" onclick="location.href='{{"supervisorDetail/".$supervisor['id'] }}'">Detail</button></li>
 
                                     </ul>
                                 </div>
@@ -173,9 +193,37 @@
     </div>
     </div>
 
+    <!-- Modal Example Start-->
+			<div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria- 
+            labelledby="demoModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="demoModalLabel">Modal Example - 
+                             Websolutionstuff</h5>
+								<button type="button" class="close" data-dismiss="modal" aria- 
+                                label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
+						<div class="modal-body">
+								Welcome, Websolutionstuff !!
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+	 <!-- Modal Example End-->
+
 
     <!-- partial -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 </body>
 

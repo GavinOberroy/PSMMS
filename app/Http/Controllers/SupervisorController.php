@@ -16,7 +16,7 @@ class SupervisorController extends Controller
     function show()
     {
         $supervisors = Supervisor::all();
-        return view('supervisorList', compact('supervisors'));
+        return view('ManageSupervisorHunting.supervisorList', compact('supervisors'));
     }
 
     function edit()
@@ -26,10 +26,24 @@ class SupervisorController extends Controller
         return view('mana2',['supervisors' => $data]);
     }
 
+    function detail($id)
+    {
+        $data=Supervisor::find($id);
+        //$data=Supervisor::where('id',"=", $id)->first();
+        dd($data);
+    }
+
     function title()
     {
         $data = Supervisor::all();
         return view('projectTitleList',['supervisors'=>$data]);
+    }
+
+    public function search()
+    {
+        $search_text = $_GET['query'];
+        $supervisors = Supervisor::where('name','LIKE','%'.$search_text."%")->get();
+        return view('ManageSupervisorHunting.search',compact('supervisors'));
     }
 
 

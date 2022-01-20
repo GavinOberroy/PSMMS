@@ -47,15 +47,15 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('supervisorList',[SupervisorController::class,'show']);
 
-    Route::get('mana2',[SupervisorController::class,'edit']);
+    Route::get('supervisorDetail/{id}',[SupervisorController::class,'detail']);//akan masuk ke profile lecturer (alia punya module)
 
-    Route::get('projectTitleList','SupervisorController@title');
 });
 
 Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
 
+Route::get('/search',[SupervisorController::class,'search']);
 
 
 //Manage Profile
@@ -71,7 +71,6 @@ Route::get('/studentProfile', function () {
     return view('ManageProfile.studentProfile');
 }); */
 
-=======
 Route::get('abc', function () {
     return view('ManageTitle.AddTitle');
 });
