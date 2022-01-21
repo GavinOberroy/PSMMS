@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 route::get('/redirects',[HomeController::class,"index"]);
 
-//Manage Profile ------------------------------------------------------------------------------
+//Manage Supervisor Hunting ------------------------------------------------------------------------------
 
 Route::GET('Supervisor.edit/{id}', [SupervisorController::class,'edit']);
 
@@ -73,8 +73,11 @@ Route::get('studentProfile',[ProfileController::class, 'viewStudent']);
 
 Route::get('test',[ProfileController::class, 'index']);
 
-
 Route::get('lecturerProfile',[ProfileController::class, 'viewLecturer']);
+
+Route::post('editProfile',[ProfileController::class, 'editProfile'])->name('editProfile');
+
+
 
 
 /*

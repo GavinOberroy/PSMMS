@@ -56,6 +56,12 @@
             gap: 20px;
         }
 
+        .grid-content {
+            grid-template-columns: 800px 800px;
+            gap: 20px;
+        }
+
+
 
         /*For the count down*/
         .countdown-container {
@@ -109,7 +115,8 @@
             overflow: hidden;
             background-color: #beeffb;
             border-radius: 10px;
-            width: auto;
+            width: 100%;
+            float:left;
         }
 
         .tab button {
@@ -134,13 +141,135 @@
         }
 
         .edit-icon{
-            background-color: #DBF6fd;
+            background-color: #c5f0fb;
             border: none;
             border-radius: 10px;
             padding: 7px;
             font-size: 15px;
             text-align: center;
+            float: right;
         }
+        .item4{
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            height: auto;
+            width: 100%;
+            background-color: #DBF6fd;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 10px;
+            padding-top: 1px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .column-supervision{
+            background-color: hsla(0, 0%, 98%, 0.548);
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            margin-right: 10px;
+            text-align: center;
+            margin-top: 20px;
+
+        }
+
+        .button-select{
+            background-color: #b1ebfa;
+            border: none;
+        }
+
+        .button-add{
+            background-color: #d3f3fb;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .button-edit{
+            background-color: #4ea6ee;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .button-delete{
+            background-color: #ee4e83;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .button-add:hover,
+        .button-add:focus,
+        .button-delete:hover,
+        .button-delete:focus,
+        .button-edit:hover,
+        .button-edit:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal{
+            display: none; 
+            position: fixed; 
+            z-index: 1; 
+            padding-top: 100px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgb(0,0,0); 
+            background-color: rgba(0,0,0,0.4); 
+            align-content: center;
+        }
+
+        .modal-editProfile{
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 60%;
+            align-content: center;
+            border-radius: 30px;
+        }
+
+        /* Modal Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        input[type=text]{
+            width: 100%;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border: none;
+        }
+        textarea{
+            width: 100%;
+            height: 85px;
+            box-sizing: border-box;
+            border: none;
+            line-height: 1.5;
+            padding: 12px 20px;
+        }
+
+        .item2 textarea{
+            background-color: #ffffff77;
+            border-radius: 10px;
+        }
+
 
         @media screen and (max-width: 767px) {
             h1 {
@@ -151,6 +280,7 @@
             .countdown-container {
                 flex-wrap: wrap;
             }
+
         }
     </style>
 
@@ -273,21 +403,25 @@
                         </div>
                     </div>
 
-                    <div class="view-actions-edit">
-                        <button class="edit-icon" title="Edit Profile">
-                            <img src="assets/edit.png" alt="" height="15" width="15"> Edit Profile
-                        </button>
+                    
+                </div>
+                <br><br>
+                <div class="projects-section-line">
+                    
+                    <div class="tab">
+                        <button class="tablinks active" onclick="openTab(event, 'profile')">Profile</button>
+                        <button class="tablinks" onclick="openTab(event, 'supervision')">Supervision</button>
                     </div>
                 </div>
-                <br>
-                <br><br>
-                <div class="tab">
-                    <button class="tablinks active" onclick="openTab(event, 'profile')">Profile</button>
-                    <button class="tablinks" onclick="openTab(event, 'expertise')">Expertise</button>
-                    <button class="tablinks" onclick="openTab(event, 'supervision')">Supervision</button>
-                </div>
-                <div class="grid-container" id="profile">
+               
+                <div style="" class="grid-content" id="profile">
+                    
                     <div class="item2">
+                        <div class="view-actions-edit" id="lecturerEdit">
+                            <button class="edit-icon" title="Edit Profile" id="btnEditLec">
+                                <img src="assets/edit.png" alt="" height="15" width="15"> Edit Profile
+                            </button>
+                        </div>
                         <form>
                             
                             <table>
@@ -310,6 +444,27 @@
                         </form>
                     </div>
                     <div class="item2">
+                        <div class="view-actions-edit" id="lecturerEdit">
+                            <button class="edit-icon" title="Edit Education" id="editEdu" onclick="editEducation()">
+                                <img src="assets/edit.png" alt="" height="15" width="15"> Edit Education
+                            </button>
+                        </div>
+                        
+                            <div>
+                                <p class="biography">Education</p>
+                            </div>
+                            @foreach ($educations as $education)
+                            <div>
+                                
+                                <ul>
+                                    <li class="biography">{{$education->Education_Info}} </li>  
+                                </ul>
+                            </div>
+                            @endforeach
+                            
+  
+                    </div>
+                    <div class="item2">
                         <form>
                             <div>
                                 <p class="biography">Biography</p>
@@ -321,39 +476,90 @@
                             @endforeach 
                         </form> 
                     </div>
+
+                    <!-- Edit Education -->
+                    <div style="display: none;" class="item2" id="education">
+                        @foreach ($educations as $education)
+                        <form>
+                            <table>
+                                <tr>
+                                    <td><textarea class="education-field">{{$education->Education_Info}}</textarea></td>
+                                    <td><input class="button-edit" type="submit" value="Edit">
+                                        <input class="button-delete" type="submit" value="Delete">
+                                    </td>
+                                </tr>
+                            </table>    
+                        </form>
+                        @endforeach
+                    </div>
+                    <br>
+                    <br>
                 </div>
 
-                <!-- Expertise Tab -->
-                <div style="display: none;" class="grid-container" id="expertise">
-                    <div class="item2">
-                        test je
-                    </div>
-                    <div class="item2">
-                        test
-                    </div>
-                </div>
-                <!-- End of Expertise Tab -->
+                
 
                 <!-- Supervision Tab -->
-                <div style="display: none;" class="grid-container" id="supervision">
+                <div style="display: none; grid-template-columns: auto;" class="grid-content" id="supervision">
                     <div class="item4">
-                        <form>
-                            <div>
-                                <p class="biography">Biography</p>
-                            </div>
-                            <div>
-                                <p class="biography">{{$lecturer->Lecturer_Biography}}</p>
-                            </div>
-                            
-                            @endforeach 
-                        </form> 
+                        @foreach($supervisions as $supervision)
+                        <div class="column-supervision">
+                            <span><img style="border-radius: 50%;" width="120" height="120" src="{{ asset('/assets/img/avatars/'.$supervision->Student_Image) }}"></span>
+                            <br>
+                            <span class="box-content-header">{{$supervision->Student_Name}}</span>
+                            <span class="box-content-subheader">{{$supervision->Student_ID}}</span>
+                            <span class="box-content-subheader">{{$supervision->Student_Email}}</span>
+                            <span>
+                                <a style="text-decoration: none; font-size: 18px; color:#5f9ef0" href=""><b>view profile</b></a>
+                            </span>
+                        </div>
+                        
+                        @endforeach
                     </div>
+                    
+                    
                 </div>
 
                 <!-- End of Supervision Tab -->
-
             </div>
-           
+
+
+            <!-- Edit Profile Details Modal -->
+            <div class="modal" id="editModal">
+                <div class="modal-editProfile">
+                    <span class="close">&times;</span>
+                    <!--<img style="border-radius: 50%; align: center;" width="170" height="170" src="{{ asset('/assets/img/avatars/'.$lecturer->Lecturer_Image) }}" /> -->
+                    <form action="{{ route('editProfile') }}" method="POST">@csrf
+                    <table style="width: 100%;">
+                        <tr>
+                            <td><b>Profile Details</b></td>
+                            <td><input type="hidden" name="lecturerID" value="{{$lecturer->Lecturer_ID}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td><input name="lecturerName" type="text" value="{{$lecturer->Lecturer_Name}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input name="lecturerEmail" type="text" value="{{$lecturer->Lecturer_Email}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Office Number</td>
+                            <td><input name="lecturerOfficeNo" type="text" value="{{$lecturer->Lecturer_OfficeNo}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Biography</td>
+                            <td><textarea name="lecturerBiography">{{$lecturer->Lecturer_Biography}}</textarea></td>
+                        </tr>
+                        <tr>
+                            <td><input class="button-add" name="editLecturerprofile" type="submit" value="Update Profile"></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    </form>
+                   
+                </div>
+            </div> 
+             
         </div>
     </div>
 
@@ -366,9 +572,20 @@
     <!-- partial -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
     <script>
+        document.getElementById("profile").style.display = "grid";
+        document.getElementById("lecturerEdit").style.display = "none";
+
+        var role;
+        role = {{ Auth::user()->role }};
+
+        if(role==1){
+            document.getElementById("lecturerEdit").style.display = "block";
+        }
+
+        // Function open tab in the profile
         function openTab(evt, tabName) {
           var i, tabcontent, tablinks;
-          tabcontent = document.getElementsByClassName("grid-container");
+          tabcontent = document.getElementsByClassName("grid-content");
           for (i = 0; i < tabcontent.length; i++) {
             tabcontent[i].style.display = "none";
           }
@@ -379,9 +596,45 @@
           document.getElementById(tabName).style.display = "grid";
           evt.currentTarget.className += " active";
         }
-        </script>
+
+        // Function to open tab edit education
+        function editEducation(){
+           var q = document.getElementById("education");
+             if (q.style.display == "none"){
+                 q.style.display = "grid";
+            } else {
+                 q.style.display = "none";
+            }
+        }
+
+        // Get the modal
+        var modalEdit = document.getElementById("editModal");
+
+        // Get the button that opens the modal
+        var editBtn = document.getElementById("btnEditLec");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        editBtn.onclick = function() {
+            modalEdit.style.display = "block";
+        }
+
+        //close the modal
+        span.onclick = function() {
+            modalEdit.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modalEdit) {
+                modalEdit.style.display = "none";
+            }
+        }
+
+    </script>
            
 
 </body>
-
 </html>
