@@ -151,7 +151,7 @@
                 <a href="supervisorList" class="app-sidebar-link">
                     <img src="assets/supervisor.png" alt="" height="30" width="30">
                 </a>
-                <a href="viewTitle" class="app-sidebar-link">
+                <a href="TitleList" class="app-sidebar-link">
                     <img src="assets/proposal.png" alt="" height="25" width="25">
                 </a>
                 <a href="logbook" class="app-sidebar-link">
