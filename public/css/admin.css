@@ -206,6 +206,7 @@ button, a {
   align-items: center;
   padding-left: 12px;
   border-left: 2px solid #ddd;
+  text-decoration: none;
 }
 .profile-btn img {
   width: 32px;
@@ -319,6 +320,20 @@ button, a {
   color: var(--main-color);
 }
 
+.status-email {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 450;
+  color: var(--main-color);
+}
+
+.status-faculty {
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: 400;
+  color: var(--main-color);
+}
+
 .status-type {
   position: relative;
   padding-right: 24px;
@@ -329,6 +344,7 @@ button, a {
   display: flex;
   align-items: center;
 }
+
 
 .view-btn {
   width: 36px;
