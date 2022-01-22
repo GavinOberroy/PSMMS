@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Stroage;
 use App\Models\Proposal;
 
 class ProposalController extends Controller
@@ -46,7 +47,7 @@ class ProposalController extends Controller
         $data->Proposal_Title=$request->Proposal_Title;
         $data->Proposal_Type=$request->Proposal_Type;
         $data->save();
-        return redirect()->route('ManageProposal.ProposalForm')->with('message',"contact has bee added sucessfully");
+        return redirect()->route('ManageProposal.ProposalForm')->with('message',"Your Proposal has bee added sucessfully");
  
     }
 
@@ -56,4 +57,28 @@ class ProposalController extends Controller
         return view('ManageProposal.Memo',compact('proposal'));
     }
 
+    public function destroy($id)
+        {
+            $proposal=Proposal::findOrFail($id);
+            $proposal->delete();
+
+            return back()->with('message','Proposal has bee delete sucessfully');
+        }
+
+    public function download(Request $request,$file)
+        {   
+            return response()->download(public_path('assets.file/'.$file));
+        }
+
+     public function view($id)
+        {
+            $data=Proposal::find($id);
+     
+            return view('ManageProposal.ViewDocProposal',compact('data'));
+     
+     
+        }
+
 }
+
+

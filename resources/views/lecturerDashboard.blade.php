@@ -159,7 +159,7 @@
                 </a>
 
                 <!-- Proposal Lecturer -->
-                <a href="{{ route('ManageProposal.LecturerProposal') }}" class="app-sidebar-link" title="List Submitted Proposal">
+                <a href="{{ route('ManageProposal.LecturerProposal') }}" class="app-sidebar-link" title="List Submitted Proposal For Lecturer">
                     <img src="assets/book.png" alt="" height="25" width="25">
                 </a>
 
@@ -168,10 +168,7 @@
                     <img src="assets/book.png" alt="" height="25" width="25">
                 </a>
 
-                <!-- Memo Student -->
-                <a href="{{ route('ManageProposal.Memo') }}" class="app-sidebar-link" title="Memo For Student">
-                    <img src="assets/book.png" alt="" height="25" width="25">
-                </a>
+               
             </div>
 
 

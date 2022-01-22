@@ -6,9 +6,12 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+                    @if ($message =session('message'))
+                    <div class="alest alert-success"><h5>{{ $message }}</h5></div>
+                  @endif
                     <div class="card-header">Proposal Form<br>
                         </div>
-
+                    
                     <form action="{{ route('proposal.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
@@ -37,8 +40,8 @@
                                 <label for="description">PSM Category</label>
                                 <select class="form-control" name="Proposal_Type">
                                     <option value=""></option>
-                                    <option value="projectbased">Project-Based</option>
-                                    <option value="researchbased">Research-Based</option>
+                                    <option value="Project-Based">Project-Based</option>
+                                    <option value="Research-Based">Research-Based</option>
                                 </select>
                             </div>
 
@@ -50,10 +53,35 @@
                             <div class="form-group text-center">
                                 <button class="btn btn-primary" type="submit">Submit</button>
                             </div>
+                            <hr>
+                            <div class="form-group text-center">
+                                <div class="col-md-12 text-center">
+                                    <a href="{{ url('/redirects') }}" class="btn btn-info">Back Home</a>
+                                </div>
+                              </div>
                         </div>
-                </div>
+                      
 
+                </div>
+                <br><br>
             </div>
         </div>
     </div>
+    <style>
+        a.list-group-item {
+            font-size: 18px;
+        }
+
+        a.list-group-item:hover {
+            background-color: rgb(0, 238, 255);
+            color: #fff;
+        }
+
+        .card-header {
+            background-color: rgb(0, 204, 255);
+            color: #fff;
+            font-size: 20px;
+        }
+
+    </style>
 @endsection

@@ -89,3 +89,8 @@ Route::post('/proposal/store', [ProposalController::class, 'store'])->name('prop
 
 Route::get('/proposal/Memo', [ProposalController::class, 'index'])->name('ManageProposal.Memo');
 
+Route::delete('/contacts/{id}', [ProposalController::class,'destroy'])->name("proposal.destroy");
+
+Route::get('/download/{file}',[ProposalController::class,'download'])->name("proposalDoc.download");
+
+Route::get('/view/{id}',[ProposalController::class,'view'])->name("proposalDoc.view");

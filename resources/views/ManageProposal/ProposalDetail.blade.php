@@ -48,7 +48,18 @@
                       <p class="form-control-plaintext text-muted">{{ $proposal->SV_Name}}</p>
                     </div>
                   </div>
+
+                  <div class="form-group row">
+                    <label for="SV_name" class="col-md-4 col-form-label">Doc</label>
+                    <div class="col-md-9">
+              
+                      <a href="{{route('proposalDoc.download',$proposal->file)}}">
+                        <button class="btn btn-info mb-1">Download Document</button>
+                    </a>
+                    </div>
+                  </div>
                   
+
                   <hr>
                   <div class="form-group row mb-0">
                     <div class="col-md-12 text-center">
@@ -63,4 +74,21 @@
       </div>
     </div>
   </main>
+  <style>
+    a.list-group-item {
+        font-size: 18px;
+    }
+
+    a.list-group-item:hover {
+        background-color: rgb(0, 238, 255);
+        color: #fff;
+    }
+
+    .card-header {
+        background-color: rgb(0, 204, 255);
+        color: #fff;
+        font-size: 20px;
+    }
+
+</style>
 @endsection
