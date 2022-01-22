@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Lecturer Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/timelines.css') }}" rel="stylesheet">
@@ -135,17 +135,20 @@
                     </svg>
                 </button>
                 <!-- Profile Button -->
-                <button class="profile-btn">
-                    <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
+                @foreach($lecturers as $d)
+                <a style="text-decoration:none;" class="profile-btn" href="/lecturerProfile/{{$d->Lecturer_ID}}">
+                    <img src="{{ asset('/assets/img/avatars/'.$d->Lecturer_Image) }}" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
-                </button>
+                </a>
+                @endforeach
+               
             </div>
         </div>
 
         <!-- SIDE BAR -->
         <div class="app-content">
             <div class="app-sidebar">
-                <a href="studentDashboard" class="app-sidebar-link active">
+                <a href="lecturerDashboard" class="app-sidebar-link active">
                     <img src="assets/home.png" alt="" height="25" width="25">
                 </a>
                 <a href="supervisorList" class="app-sidebar-link">
@@ -275,7 +278,7 @@
 
     <script>
         //for the countdown
-        var newYears = '2 Jan 2022'
+        var newYears = '2 Jan 2023'
         const dayEl = document.getElementById('days')
         const hourEl = document.getElementById('hours')
         const minsEl = document.getElementById('mins')

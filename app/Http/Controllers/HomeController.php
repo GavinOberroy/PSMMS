@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use DB;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,10 @@ class HomeController extends Controller
 
         if($role=='1')
         {
-            return view('lecturerDashboard');
+            $lecturers = DB::table('lecturer')->where('User_ID', Auth::user()->id)->get();
+            
+            return view('lecturerDashboard',compact('lecturers'));
+            
         }
 
         else if($role=='2')
@@ -23,7 +27,9 @@ class HomeController extends Controller
             //$data = DB::table('supervisors')->where('id', Auth::user()->id)->first();
             //dd($data);
             //return view('mana2',['supervisors' => $data]);
-            return view('studentDashboard');
+
+            $students = DB::table('student')->where('User_ID', Auth::user()->id)->get();
+            return view('studentDashboard', compact('students'));
         }
 
         else
@@ -31,6 +37,8 @@ class HomeController extends Controller
             return view('welcome');
         }
     }
+
+   
 
     public function studentRegistration(Request $request)
     {

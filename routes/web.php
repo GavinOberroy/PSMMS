@@ -38,7 +38,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/logout', [HomeController::class,'logout']);
  });
 
-route::get('/redirects',[HomeController::class,"index"]);
+Route::get('/redirects',[HomeController::class,"index"]);
+
+//Manage Supervisor Hunting ------------------------------------------------------------------------------
 
 Route::GET('Supervisor.edit/{id}', [SupervisorController::class,'edit']);
 
@@ -51,27 +53,51 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('projectTitleList','SupervisorController@title');
 });
+//---------------------------------------------------------------------------------------------
 
 Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
 
+Route::get('lecturerDashboard', function () {
+    return view('lecturerDashboard');
+
+});
 
 
-//Manage Profile
+//Manage Profile ------------------------------------------------------------------------------
 
 //Route::get('/studentProfile','ProfileController@viewStudent'); - version lama x jadi -_-
 
-Route::get('studentProfile',[ProfileController::class, 'viewStudent']);
+Route::get('/studentProfile/{Student_ID}',[ProfileController::class, 'viewStudent']);
 
 Route::get('test',[ProfileController::class, 'index']);
+
+Route::get('/lecturerProfile/{Lecturer_ID}',[ProfileController::class, 'viewLecturer']);
+
+//edit profile route
+Route::post('editProfile',[ProfileController::class, 'editProfile'])->name('editProfile');
+
+//delete education route
+Route::get('deleteEducation/{id}',[ProfileController::class, 'deleteEducation']);
+
+//edit lecturer education route
+Route::post('editEducation',[ProfileController::class, 'editEducation'])->name('editEducation');
+
+//add new lecturer education route
+Route::post('addEducation',[ProfileController::class, 'addEducation'])->name('addEducation');
+
+
+
 
 /*
 Route::get('/studentProfile', function () {
     return view('ManageProfile.studentProfile');
 }); */
 
-=======
+//---------------------------------------------------------------------------------------------
+
+
 Route::get('abc', function () {
     return view('ManageTitle.AddTitle');
 });
