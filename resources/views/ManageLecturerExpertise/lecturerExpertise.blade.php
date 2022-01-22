@@ -262,7 +262,7 @@
         <li><a href="{{url('add')}}">+</a></li>
         </ul>
     </div>
-
+    
     <br>
     @foreach($expertises as $expertise)
     <div class="project-box-content-header">

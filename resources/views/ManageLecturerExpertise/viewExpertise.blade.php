@@ -223,7 +223,7 @@
                
             </div>
             <div class="item-status">
-            <br> <br>  <br>
+            <br> <br>
             @foreach($lecturers as $lecturer)
                 <span class="status-number">{{$lecturer->Lecturer_Name}}</span>
                 <span class="status-number">{{$lecturer->Lecturer_Email}}</span>
@@ -242,7 +242,7 @@
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <li><a href="">EXPERTISE</a></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li><a href="{{url('lecturerExpertise')}}">ARCHIEVEMENT</a></li>
+                    <li><a href="">ARCHIEVEMENT</a></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <li><a href="">Data</a></li>
                 </ul>
@@ -266,12 +266,13 @@
 </div>
 
 <div class="grid-child">
+<div class="project-box" style="background-color: #dbf6fd;">
+<h1>Expertise</h1>
     @foreach($expertises as $expertise)
-
             <a style="text-decoration:none; color: black;">
                 <div class="project-box-wrapper">
-                    <div class="project-box" style="background-color: #dbf6fd;">
-                        <div class="project-box-content-header">
+                    <div class="project-box" style="background-color: #ABC3C9;">
+                    <div class="project-box-content-header">
                             <p class="box-content-header">{{$expertise->expertise_name}}</p> 
                             <div class="project-box-wrapper">
                             <a style="text-decoration:none; color: white;">
@@ -291,7 +292,7 @@
             </a>
 
     @endforeach
-
+    </div>
     </div>
             </div>
     

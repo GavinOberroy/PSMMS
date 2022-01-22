@@ -245,7 +245,7 @@
                         <div class="box-content-subheader">
                             <label for="expertise_level" class="col-sm-3 col-form-label"><b>EXPERTISE LEVEL</b></label>
                             <div class="input--style-5">
-                            <select name="expertise_level" class="form-control" style="height: 50px; width:50%;" id="expertise_level">
+                            <select name="expertise_level" class="form-control" style="height: 50px; width:50%;" id="expertise_level" required>
                             <option value="VERY HIGH">VERY HIGH</option>
                             <option value="HIGH">HIGH</option>
                             <option value="MODERATE">MODERATE</option>
