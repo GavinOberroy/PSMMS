@@ -134,11 +134,13 @@
                         <path d="M13.73 21a2 2 0 0 1-3.46 0" />
                     </svg>
                 </button>
-                <!-- Profile Button -->
-                <button class="profile-btn" onclick="location.href='{{ url('studentProfile') }}'">
-                    <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
+                <!-- Profile Button  -->
+                @foreach ($students as $std)
+                <a class="profile-btn"  href="/studentProfile/{{$std->Student_ID}}">
+                    <img  src="{{ asset('/assets/img/avatars/'.$std->Student_Image) }}"/> &nbsp
                     <span>{{ Auth::user()->name }}</span>
-                </button>
+                </a>
+                @endforeach
             </div>
         </div>
 

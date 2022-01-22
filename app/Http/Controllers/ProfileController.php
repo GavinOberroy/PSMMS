@@ -22,23 +22,24 @@ class ProfileController extends Controller
     }
 
     //view student profile data
-    public function viewStudent()
+    public function viewStudent($Student_ID)
     {
-        $students = DB::select('select * from student where User_ID = :id', ['id' => Auth::user()->id]);
+        $students = DB::select('select * from student where Student_ID = :id', ['id' => $Student_ID]);
         return view('ManageProfile.studentProfile',['students'=>$students]);
     }
 
     //view lecturer profile and supervision data
-    public function viewLecturer()
+    public function viewLecturer($Lecturer_ID)
     {
-        $lecturers = DB::select('select * from lecturer where User_ID = :id', ['id' => Auth::user()->id]);
-        $educations = DB::select('select * from lecturer_education where Lecturer_ID = :id', ['id' => '0159']);
-        $supervisions = DB::select('select * from student where Lecturer_ID = :id', ['id' => '0159']);//masalah dia kat sini sbb id paggil yg user, kene panggil id dlm table lecturer! cari solution ni kekgi!
+        //$lecturers=DB::table('lecturer')->where('Lecturer_ID',$Lecturer_ID)->get();
+        $lecturers = DB::select('select * from lecturer where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
+        $educations = DB::select('select * from lecturer_education where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
+        $supervisions = DB::select('select * from student where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
         return view('ManageProfile.lecturerProfile',['lecturers'=>$lecturers, 'educations'=>$educations, 'supervisions'=>$supervisions]);
     }
 
     public function viewSupervision(){
-        $supervisions = DB::select('select * from student where Lecturer_ID = :id', ['id' => Auth::user()->id]);
+        $supervisions = DB::select('select * from student where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
         return view('ManageProfile.lecturerProfile',['supervisions'=>$supervisions]);
     }
 
@@ -62,5 +63,34 @@ class ProfileController extends Controller
 
         return back();
         //redirect()->route('lecturerProfile')->with('editLecturer');
+    }
+
+    public function deleteEducation($id){
+        $delete = DB::table('lecturer_education')->where('Education_ID', $id)->delete();
+
+        return back();
+    }
+
+    public function editEducation(Request $eduLecturer){
+        $eduID = $eduLecturer->eduID;
+        $eduInfo = $eduLecturer->eduInfo;
+
+        DB::table('lecturer_education')->where('Education_ID', $eduLecturer->eduID)->update(['Education_Info' => $eduInfo]);
+
+        return back();
+    }
+
+    public function addEducation(Request $newEducation){
+        $lectID = $newEducation->lectID;
+        $newEdu = $newEducation->newEdu;
+
+        $addEducation = [
+            'Lecturer_ID' => $lectID,
+            'Education_Info' => $newEdu,
+        ];
+
+        DB::table('lecturer_education')->insert($addEducation);
+
+        return back();
     }
 }

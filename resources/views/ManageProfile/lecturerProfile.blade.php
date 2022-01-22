@@ -119,7 +119,8 @@
             float:left;
         }
 
-        .tab button {
+        .tab button,
+        .tab a {
             background-color: inherit;
             float: left;
             border: none;
@@ -128,10 +129,13 @@
             padding: 14px 35px;
             transition: 0.3s;
             font-size: 17px;
+            text-decoration: none;
+            color: #000;
         }
 
         /* Change background color of buttons on hover */
-        .tab button:hover {
+        .tab button:hover,
+        .tab a:hover {
             background-color: rgb(117, 189, 238);
         }
         
@@ -186,6 +190,8 @@
             padding: 12px 20px;
             border-radius: 10px;
             margin-bottom: 10px;
+            text-decoration: none;
+            color: #000;
         }
         .button-edit{
             background-color: #4ea6ee;
@@ -193,6 +199,8 @@
             padding: 12px 20px;
             border-radius: 10px;
             margin-bottom: 10px;
+            text-decoration: none;
+            color: #000;
         }
         .button-delete{
             background-color: #ee4e83;
@@ -200,6 +208,8 @@
             padding: 12px 20px;
             border-radius: 10px;
             margin-bottom: 10px;
+            text-decoration: none;
+            color: #000;
         }
         .button-add:hover,
         .button-add:focus,
@@ -330,10 +340,10 @@
                     </svg>
                 </button>
                 @foreach($lecturers as $lecturer)
-                <button class="profile-btn">
+                <a class="profile-btn" href="/lecturerProfile/{{$lecturer->Lecturer_ID}}">
                     <img src="{{ asset('/assets/img/avatars/'.$lecturer->Lecturer_Image) }}" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
-                </button>
+                </a>
                 @endforeach
             </div>
             <button class="messages-btn">
@@ -411,6 +421,7 @@
                     <div class="tab">
                         <button class="tablinks active" onclick="openTab(event, 'profile')">Profile</button>
                         <button class="tablinks" onclick="openTab(event, 'supervision')">Supervision</button>
+                        <a class="tablinks" href="#link for expertise route page">Expertise</a>
                     </div>
                 </div>
                
@@ -419,7 +430,7 @@
                     <div class="item2">
                         <div class="view-actions-edit" id="lecturerEdit">
                             <button class="edit-icon" title="Edit Profile" id="btnEditLec">
-                                <img src="assets/edit.png" alt="" height="15" width="15"> Edit Profile
+                                <img src="{{ asset('/assets/edit.png') }}" alt="" height="15" width="15"> Edit Profile
                             </button>
                         </div>
                         <form>
@@ -446,7 +457,7 @@
                     <div class="item2">
                         <div class="view-actions-edit" id="lecturerEdit">
                             <button class="edit-icon" title="Edit Education" id="editEdu" onclick="editEducation()">
-                                <img src="assets/edit.png" alt="" height="15" width="15"> Edit Education
+                                <img src="{{ asset('/assets/edit.png') }}" alt="" height="15" width="15"> Edit Education
                             </button>
                         </div>
                         
@@ -479,18 +490,33 @@
 
                     <!-- Edit Education -->
                     <div style="display: none;" class="item2" id="education">
-                        @foreach ($educations as $education)
-                        <form>
+                        
+                        
                             <table>
+                                @foreach ($educations as $education)
+                                <form method="POST" action="{{ route('editEducation') }}">@csrf
                                 <tr>
-                                    <td><textarea class="education-field">{{$education->Education_Info}}</textarea></td>
-                                    <td><input class="button-edit" type="submit" value="Edit">
-                                        <input class="button-delete" type="submit" value="Delete">
+                                    <td><textarea class="education-field" name="eduInfo">{{$education->Education_Info}}</textarea></td>
+                                    <td><input type="hidden" name="eduID" value="{{$education->Education_ID}}">
+                                        <input class="button-edit" type="submit" value="Update">
+                                        <a href="{{ url('deleteEducation/'.$education->Education_ID) }}" class="button-delete">Delete</a>
                                     </td>
                                 </tr>
+                                </form>
+                                @endforeach
+                                <!-- Add Lecturer Education -->
+                                <form action="{{ route('addEducation') }}" method="POST">@csrf
+                                <tr>
+                                    <td>
+                                        <textarea name="newEdu" class="education-field" placeholder="Add Education Here..."></textarea>
+                                        <input name="lectID" type="hidden" value="{{$lecturer->Lecturer_ID}}">
+                                    </td>
+                                    <td><input class="button-edit" type="submit" value="Add Education"></td>
+                                </tr>
+                                </form>
                             </table>    
-                        </form>
-                        @endforeach
+                        
+                        
                     </div>
                     <br>
                     <br>
@@ -509,7 +535,7 @@
                             <span class="box-content-subheader">{{$supervision->Student_ID}}</span>
                             <span class="box-content-subheader">{{$supervision->Student_Email}}</span>
                             <span>
-                                <a style="text-decoration: none; font-size: 18px; color:#5f9ef0" href=""><b>view profile</b></a>
+                                <a style="text-decoration: none; font-size: 18px; color:#5f9ef0" href="/studentProfile/{{$supervision->Student_ID}}"><b>view profile</b></a>
                             </span>
                         </div>
                         
@@ -574,12 +600,14 @@
     <script>
         document.getElementById("profile").style.display = "grid";
         document.getElementById("lecturerEdit").style.display = "none";
+        document.getElementById("editEdu").style.display = "none";
 
         var role;
         role = {{ Auth::user()->role }};
 
         if(role==1){
             document.getElementById("lecturerEdit").style.display = "block";
+            document.getElementById("editEdu").style.display = "block";
         }
 
         // Function open tab in the profile

@@ -206,6 +206,7 @@ button, a {
   align-items: center;
   padding-left: 12px;
   border-left: 2px solid #ddd;
+  text-decoration: none;
 }
 .profile-btn img {
   width: 32px;

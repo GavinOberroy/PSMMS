@@ -135,10 +135,13 @@
                     </svg>
                 </button>
                 <!-- Profile Button -->
-                <button class="profile-btn" onclick="location.href='{{ url('lecturerProfile') }}'">
-                    <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
+                @foreach($lecturers as $d)
+                <a style="text-decoration:none;" class="profile-btn" href="/lecturerProfile/{{$d->Lecturer_ID}}">
+                    <img src="{{ asset('/assets/img/avatars/'.$d->Lecturer_Image) }}" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
-                </button>
+                </a>
+                @endforeach
+               
             </div>
         </div>
 
@@ -275,7 +278,7 @@
 
     <script>
         //for the countdown
-        var newYears = '2 Jan 2022'
+        var newYears = '2 Jan 2023'
         const dayEl = document.getElementById('days')
         const hourEl = document.getElementById('hours')
         const minsEl = document.getElementById('mins')

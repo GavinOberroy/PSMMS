@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/logout', [HomeController::class,'logout']);
  });
 
-route::get('/redirects',[HomeController::class,"index"]);
+Route::get('/redirects',[HomeController::class,"index"]);
 
 //Manage Supervisor Hunting ------------------------------------------------------------------------------
 
@@ -61,21 +61,31 @@ Route::get('studentDashboard', function () {
 
 Route::get('lecturerDashboard', function () {
     return view('lecturerDashboard');
-});
 
+});
 
 
 //Manage Profile ------------------------------------------------------------------------------
 
 //Route::get('/studentProfile','ProfileController@viewStudent'); - version lama x jadi -_-
 
-Route::get('studentProfile',[ProfileController::class, 'viewStudent']);
+Route::get('/studentProfile/{Student_ID}',[ProfileController::class, 'viewStudent']);
 
 Route::get('test',[ProfileController::class, 'index']);
 
-Route::get('lecturerProfile',[ProfileController::class, 'viewLecturer']);
+Route::get('/lecturerProfile/{Lecturer_ID}',[ProfileController::class, 'viewLecturer']);
 
+//edit profile route
 Route::post('editProfile',[ProfileController::class, 'editProfile'])->name('editProfile');
+
+//delete education route
+Route::get('deleteEducation/{id}',[ProfileController::class, 'deleteEducation']);
+
+//edit lecturer education route
+Route::post('editEducation',[ProfileController::class, 'editEducation'])->name('editEducation');
+
+//add new lecturer education route
+Route::post('addEducation',[ProfileController::class, 'addEducation'])->name('addEducation');
 
 
 
