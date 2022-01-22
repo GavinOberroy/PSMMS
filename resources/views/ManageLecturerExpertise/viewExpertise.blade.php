@@ -106,6 +106,13 @@
                 flex-wrap: wrap;
             }
         }
+
+        .grid-container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-gap: 20px;
+        height: 80px;
+        }
     </style>
 </head>
 
@@ -265,13 +272,15 @@
                 <div class="project-box-wrapper">
                     <div class="project-box" style="background-color: #dbf6fd;">
                         <div class="project-box-content-header">
-                            <p class="box-content-header"><?php echo $expertise->expertise_name; ?></p> 
+                            <p class="box-content-header">{{$expertise->expertise_name}}</p> 
                             <div class="project-box-wrapper">
+                            <a style="text-decoration:none; color: white;">
                                <div class="project-box" style="background-color: #1A7B95;">
                                     <div class="project-box-content-header">
                                         <p class="box-content-subheader">{{$expertise->expertise_level}}</p>
                                     </div>
                                  </div>
+                            </a>
                              </div>
                         </div>
                     </div>

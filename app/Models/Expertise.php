@@ -9,4 +9,5 @@ class Expertise extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $primaryKey = 'expertise_id';
 }

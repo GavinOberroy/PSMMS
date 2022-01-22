@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -232,31 +231,36 @@
 <a style="text-decoration:none; color: black;">
 <div class="project-box-wrapper">
     <div class="project-box" style="background-color: #dbf6fd;">
+
 <!-- ADD FORM -->
 <br>
-<form method="post" action="" enctype="multipart/form-data">
-                    {{ csrf_field() }}
+<form method="post" action="/updateExpertise/{{$expertises->expertise_id}}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+
                         <div class="box-content-subheader">
                              <label for="expertise_name" class="col-sm-3 col-form-label"><b>EXPERTISE NAME</b></label>
+                             
                              <div class="input--style-5">
-                                 <input name="expertise_name" type="text" class="form-control" style="height: 50px; width:50%;" id="expertise_name" placeholder="Expertise Name" required>
+                                 <input name="expertise_name" type="text" class="form-control" style="height: 50px; width:50%;" value="{{$expertises->expertise_name}}" required>
                              </div>
                         </div>
                         <br>
                         <div class="box-content-subheader">
                             <label for="expertise_level" class="col-sm-3 col-form-label"><b>EXPERTISE LEVEL</b></label>
                             <div class="input--style-5">
-                            <select name="expertise_level" class="form-control" style="height: 50px; width:50%;" id="expertise_level">
-                            <option value="research">HIGH</option>
-                            <option value="project">MODERATE</option>
-                            <option value="project">LOW</option>
+                                
+                            <select name="expertise_level" class="form-control" style="height: 50px; width:50%;" required>
+                            <option value="VERY HIGH">VERY HIGH</option>
+                            <option value="HIGH">HIGH</option>
+                            <option value="MODERATE">MODERATE</option>
                             </select>
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
                             <div class="offset-sm-3 col-sm-9">
-                            <button type="button" class="btn btn-primary m-2" onclicklocation.href="">Add</button>
+                            <button type="submit" class="btn btn-primary m-2">Update</button>
 
                             </div>
                         </div>

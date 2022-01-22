@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lecturer Expertise</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
        <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <style>
@@ -46,12 +45,6 @@
         h3 {
             padding-left: 20px;
             font-family: dmsanR;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: 800px 800px;
-            gap: 20px;
         }
 
 
@@ -111,7 +104,7 @@
 
         .grid-container {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 2fr 1fr;
         grid-gap: 20px;
         height: 80px;
         }
@@ -264,35 +257,45 @@
 <div class="project-box-wrapper">
     <div class="project-box" style="background-color: #dbf6fd;">
 
-    <div class="menu effect-12">
+    <div class="menu effect-12" style="height: 50px; width:100px;">
         <ul>
-        <li><a href="{{url('edit')}}">Edit</a></li>
-        &nbsp;
-        <li><a href="{{url('add')}}">Add</a></li>
+        <li><a href="{{url('add')}}">+</a></li>
         </ul>
     </div>
 
     <br>
+    @foreach($expertises as $expertise)
     <div class="project-box-content-header">
-            <div class="project-box-wrapper">
-                <div class="project-box" style="background-color: #ABC3C9;">
+        <div class="project-box-wrapper">
+            <div class="project-box" style="background-color: #ABC3C9;">
                 <div class="grid-container">
                 <div class="grid-child">
-                    <p class="box-content-header">hai</p> 
+                    <p class="box-content-header">{{$expertise->expertise_name}}</p> 
+                    <br>
+                    <div class="menu effect-12" style="height: 10px; width:100px;">        
+                        <ul>
+                            <li><a href="/editExpertise/{{$expertise->expertise_id}}">Edit</a></li>
+                        </ul>
+                    </div>
                 </div>
+
                 <div class="project-box" style="background-color: #1A7B95;">
                 <div class="grid-child">
                     <a style="text-decoration:none; color: white;">
                         <div class="project-box-content-header">
-                            <p class="box-content-subheader">huu</p>
+                            <p class="box-content-subheader">{{$expertise->expertise_level}}</p>
                         </div>
                     </a>
                 </div>
                 </div>
+
             </div>
-            </div>
+        </div>
+
     </div>
+
     </div>
+    @endforeach
     </div>
 </div>
 </a>
@@ -312,24 +315,16 @@
                                     <th><b>Subject</th>
                                 </tr>
                                 <tr>
-                                    <td>Subject code</td>
-                                    <td>Subject Name</td>
+                                    <td>BCI2023</td>
+                                    <td>DATABASE SYSTEMS</td>
                                 </tr>
                                 <tr>
-                                    <td>Subject code</td>
-                                    <td>Subject Name</td>
+                                    <td>MCT1063</td>
+                                    <td>STRATEGIC DATA MANAGEMENT</td>
                                 </tr>
                                 <tr>
-                                    <td>Subject code</td>
-                                    <td>Subject Name</td>
-                                </tr>
-                                <tr>
-                                    <td>Subject code</td>
-                                    <td>Subject Name</td>
-                                </tr>
-                                <tr>
-                                    <td>Subject code</td>
-                                    <td>Subject Name</td>
+                                    <td>MCT1023</td>
+                                    <td>DATA MANAGEMENT</td>
                                 </tr>
                             </table>
                         </form>

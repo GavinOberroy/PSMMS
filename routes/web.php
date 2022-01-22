@@ -48,33 +48,34 @@ Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
 
+Route::get('lecturerDashboard', function () {
+    return view('lecturerDashboard');
+});
+
 //Manage Lecturer Expertise//
 
+//VIEW
 Route::group(['middleware' => ['web']], function () {
-    Route::resource('/expertise','LecturerExpertiseController');
-    Route::get('lecturerExpertise',[LecturerExpertiseController::class,'index']);
-    Route::get('viewExpertise',[LecturerExpertiseController::class,'show']);
+    Route::resource('/expertise','lecturerExpertiseController');
+
+    Route::get('lecturerExpertise',[LecturerExpertiseController::class,'show']); 
+    Route::get('viewExpertise/{Lecturer_ID}',[LecturerExpertiseController::class,'detail']); 
 });
 
-Route::get('lecturerExpertise', function () {
-    return view('ManageLecturerExpertise.lecturerExpertise');
-});
-
-Route::post('/addExpertise',[LecturerExpertiseController::class,'store']);
-
+//ADD
 Route::get('add', function () {
     return view('ManageLecturerExpertise.add');
 });
 
-Route::get('edit', function () {
-    return view('ManageLecturerExpertise.edit');
-});
+Route::post('/addExpertise',[LecturerExpertiseController::class,'store']);
+
+//EDIT
+Route::put('/updateExpertise/{expertise_id}', [LecturerExpertiseController::class,'update']); 
+
+Route::get('/editExpertise/{expertise_id}', [LecturerExpertiseController::class,'edit']); 
 
 
-Route::get('viewExpertise/{Lecturer_ID}',[LecturerExpertiseController::class,'detail']); 
 
-Route::post('/addTitle', [titleController::class,'store']);
-Route::get('/insert', [titleController::class,'insert']);
 
 
 

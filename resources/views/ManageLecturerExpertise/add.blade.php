@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -247,9 +246,9 @@
                             <label for="expertise_level" class="col-sm-3 col-form-label"><b>EXPERTISE LEVEL</b></label>
                             <div class="input--style-5">
                             <select name="expertise_level" class="form-control" style="height: 50px; width:50%;" id="expertise_level">
-                            <option value="veryhigh">VERY HIGH</option>
-                            <option value="high">HIGH</option>
-                            <option value="moderate">MODERATE</option>
+                            <option value="VERY HIGH">VERY HIGH</option>
+                            <option value="HIGH">HIGH</option>
+                            <option value="MODERATE">MODERATE</option>
                             </select>
                             </div>
                         </div>
