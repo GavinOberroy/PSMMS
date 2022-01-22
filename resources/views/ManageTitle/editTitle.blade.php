@@ -88,33 +88,36 @@
                 </a>
             </div>
 
-             @foreach($titles as $title)
+            @foreach($titles as $title)
             <div class="projects-section">
                 <br>
                 <div class="projects-section-line">
                     <div class="projects-status">
                     
                         <div class="item-status">
-                            <span class="status-number">View Title</span>
+                            <span class="status-number">Edit Title</span>
                             
                         <br>
                         <a style="text-decoration:none; color: black;">
                          <div class="project-box-wrapper">
                          <div class="project-box" style="background-color: #dbf6fd;">
 
-                         <form method="get" action="" enctype="multipart/form-data">
-                         {{ csrf_field() }}
+                         <form method="post" action="/updateTitle/{{$titles->Title_ID}}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <div class="box-content-subheader">
                              <label for="Title_Name" class="col-sm-3 col-form-label"><b>PROJECT TITLE :</b></label>
                              <div class="input--style-5">
-                                <p class="box-content-header"><?php echo $title->Title_Name; ?></p>    
+                                <input  name="Title_Name" type="text" class="form-control" style="height: 30px; width:1000px;" value="{{$titles->Title_Name}}">   
                              </div>
                         </div>
                         <br>
                         <div class="box-content-subheader">
                             <label for="Title_Type" class="col-sm-3 col-form-label"><b>PROJECT TYPE :</b></label>
                             <div class="input--style-5">
-                            <p class="box-content-header"><?php echo $title->Title_Type; ?></p>  
+                            <input name="Title_Type" type="text" class="form-control" style="height: 30px; width:1000px;"  value="{{$titles->Title_Type}}">
+                        
+                        
                             </select>
                             </div>
                         </div>
@@ -122,34 +125,30 @@
                         <div class="box-content-subheader">
                             <label for="Title_Description" class="col-sm-3 col-form-label"><b>PROJECT DESCRIPTION :</b></label>
                             <div class="input--style-5">
-                            <p class="box-content-header"><?php echo $title->Title_Description; ?></p>  
+                            <input name="Title_Description" type="text" class="dropdown-item" style="height: 100px; width:100%;" value="{{$titles->Title_Description}}"></p>  
+                                <i class="fa fa-edit"></i>
                         </div>
                         <br>
                         </div>
                         <div class="box-content-subheader">
                             <label for="Required_Skill" class="col-sm-3 col-form-label"><b>SKILLS REQUIRED (SPECIFIC TO THE PROJECT) :</b></label>
                             <div class="input--style-5">
-                            <p class="box-content-header"><?php echo $title->Required_Skill; ?></p> 
+                            <input name="Required_Skill" type="text" class="form-control" style="height: 30px; width:100%;" value="{{$titles->Required_Skill}}"></p>  
                         </div>
-                        <div class="menu effect-12" style="height: 10px; width:100px;">        
-                        <ul>
-                            <li><a href="/editTitle/{{$title->Title_ID}}">Edit</a></li>
-                        </ul>
-                        </div>
-
                         <br>
                         </div>
-
-                        
-
+                        <div class="form-group row">
+                            <div class="offset-sm-3 col-sm-9">
+                            <button type="submit" class="btn btn-primary m-2">Save Title</button>
+        
+                            </div>
+                        </div>
                     </form>
-                    
+
                          </div>
                          </div>
-                         
                          </a>
                         </div>
-
                     </div>
 
 
@@ -157,12 +156,12 @@
                 </div>
 
 
-                <div id=viewTitle class="project-boxes jsGridView">
+                <div id=editTitle class="project-boxes jsGridView">
 
                     
                 
             </div>
-            @endforeach  
+            @endforeach 
            
         </div>
     </div>

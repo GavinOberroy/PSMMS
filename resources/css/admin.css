@@ -35,6 +35,7 @@
   --link-color-active-bg: rgba(221, 221, 221, 0.2);
   --button-bg: #1f2937;
   --search-area-bg: #1f2937;
+  --text-area-bg: #1f2937;
   --message-box-hover: #243244;
   --message-box-border: rgba(255,255,255,.1);
   --star: #ffd92c;
@@ -157,6 +158,17 @@ button, a {
 }
 .dark .search-wrapper {
   box-shadow: none;
+}
+
+.input--style-5 {
+  background: #e5e5e5;
+  line-height: 100px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 0 100px;
+  font-size: 16px;
+  color: #555;
 }
 
 .search-input {

@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class titleModel extends Model
+class Title extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+
+    protected $primaryKey = 'Title_ID';
 }
