@@ -261,6 +261,7 @@
                         <div class="form-group row">
                             <div class="offset-sm-3 col-sm-9">
                             <button type="submit" class="btn btn-primary m-2">Update</button>
+                            <button type="reset" class="btn btn-primary m-2">Cancel</button>
 
                             </div>
                         </div>
