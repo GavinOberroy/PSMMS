@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SupervisorController;
 use App\Http\Controllers\titleController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProposalController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +24,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -30,7 +37,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/logout', [HomeController::class,'logout']);
  });
 
-route::get('/redirects',[HomeController::class,"index"]);
+Route::get('/redirects',[HomeController::class,"index"]);
+
+//Manage Supervisor Hunting ------------------------------------------------------------------------------
 
 Route::GET('Supervisor.edit/{id}', [SupervisorController::class,'edit']);
 
@@ -39,14 +48,15 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('supervisorList',[SupervisorController::class,'show']);
 
-    Route::get('mana2',[SupervisorController::class,'edit']);
+    Route::get('supervisorDetail/{id}',[SupervisorController::class,'detail']);//akan masuk ke profile lecturer (alia punya module)
 
-    Route::get('projectTitleList','SupervisorController@title');
 });
+//---------------------------------------------------------------------------------------------
 
 Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
+
 
 Route::get('lecturerDashboard', function () {
     return view('lecturerDashboard');
@@ -83,4 +93,49 @@ Route::put('/updateTitle/{Title_ID}', [titleController::class,'update']);
 // Route::get('/insert', [titleController::class,'insert']);
 // Route::get('ManageTitle.lecturerProjectTitle',[ titleController::class,'showAllSubmittedTitle'])->name('ManageTitle.lecturerProjectTitle');
 // Route::get('/title/{id}/detail', [titleController::class,'show'])->name("ManageTitle.show");
+
+Route::get('/search',[SupervisorController::class,'search']);
+
+Route::get('lecturerDashboard', function () {
+    return view('lecturerDashboard');
+
+
+
+//Manage Profile ------------------------------------------------------------------------------
+
+//Route::get('/studentProfile','ProfileController@viewStudent'); - version lama x jadi -_-
+
+Route::get('/studentProfile/{Student_ID}',[ProfileController::class, 'viewStudent']);
+
+Route::get('test',[ProfileController::class, 'index']);
+
+Route::get('/lecturerProfile/{Lecturer_ID}',[ProfileController::class, 'viewLecturer']);
+
+//edit profile route
+Route::post('editProfile',[ProfileController::class, 'editProfile'])->name('editProfile');
+
+//delete education route
+Route::get('deleteEducation/{id}',[ProfileController::class, 'deleteEducation']);
+
+//edit lecturer education route
+Route::post('editEducation',[ProfileController::class, 'editEducation'])->name('editEducation');
+
+//add new lecturer education route
+Route::post('addEducation',[ProfileController::class, 'addEducation'])->name('addEducation');
+
+
+
+
+/*
+Route::get('/studentProfile', function () {
+    return view('ManageProfile.studentProfile');
+}); */
+
+Route::get('abc', function () {
+    return view('ManageTitle.AddTitle');
+});
+
+
+Route::get('ManageProposal.LecturerProposal',[ ProposalController::class,'showAllSubmittedProposal'])->name('ManageProposal.LecturerProposal');
+Route::post('/proposal/{id}/status', [ProposalController::class, 'changeStatus'])->name('ManageProposal.status');
 

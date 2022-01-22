@@ -206,6 +206,7 @@ button, a {
   align-items: center;
   padding-left: 12px;
   border-left: 2px solid #ddd;
+  text-decoration: none;
 }
 .profile-btn img {
   width: 32px;
@@ -260,7 +261,8 @@ button, a {
   background-color: var(--projects-section);
   border-radius: 32px;
   padding: 32px 32px 0 32px;
-  overflow-x: scroll;
+  overflow-x:hidden;
+  overflow-y: hidden;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -318,6 +320,20 @@ button, a {
   color: var(--main-color);
 }
 
+.status-email {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 450;
+  color: var(--main-color);
+}
+
+.status-faculty {
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: 400;
+  color: var(--main-color);
+}
+
 .status-type {
   position: relative;
   padding-right: 24px;
@@ -328,6 +344,7 @@ button, a {
   display: flex;
   align-items: center;
 }
+
 
 .view-btn {
   width: 36px;
@@ -481,6 +498,7 @@ button, a {
 }
 .project-boxes.jsGridView .project-box-wrapper {
   width: 20%;
+  height: 60%;
 }
 .project-boxes.jsListView .project-box {
   display: flex;

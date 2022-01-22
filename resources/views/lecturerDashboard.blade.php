@@ -144,10 +144,16 @@
                     </svg>
                 </button>
                 <!-- Profile Button -->
-                <button class="profile-btn">
-                    <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
+                @foreach($lecturers as $d)
+                <a style="text-decoration:none;" class="profile-btn" href="/lecturerProfile/{{$d->Lecturer_ID}}">
+                    <img src="{{ asset('/assets/img/avatars/'.$d->Lecturer_Image) }}" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
+
                 </button>
+
+                </a>
+                @endforeach
+
                
             </div>
         </div>
@@ -155,7 +161,7 @@
         <!-- SIDE BAR -->
         <div class="app-content">
             <div class="app-sidebar">
-                <a href="studentDashboard" class="app-sidebar-link active">
+                <a href="lecturerDashboard" class="app-sidebar-link active">
                     <img src="assets/home.png" alt="" height="25" width="25">
                 </a>
                 <a href="supervisorList" class="app-sidebar-link">
@@ -283,7 +289,7 @@
 
     <script>
         //for the countdown
-        var newYears = '2 Jan 2022'
+        var newYears = '2 Jan 2023'
         const dayEl = document.getElementById('days')
         const hourEl = document.getElementById('hours')
         const minsEl = document.getElementById('mins')
