@@ -3,10 +3,110 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Supervisor Hunting</title>
+    <title>View Expertise</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: dmsanR;
+            src: url('font/dmsansRegular.ttf');
+        }
 
+        .welcome {
+            height: 200px;
+            width: 100%;
+            background-color: #DBF6fd;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 10px;
+            padding-top: 1px;
+        }
+
+        .item2 {
+            height: auto;
+            width: 100%;
+            background-color: #DBF6fd;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 10px;
+            padding-top: 1px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+
+        .item2 h1 {
+            padding-left: 20px;
+            font-family: dmsanR;
+        }
+
+
+        .welcome h1,
+        h2,
+        h3 {
+            padding-left: 20px;
+            font-family: dmsanR;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 800px 800px;
+            gap: 20px;
+        }
+
+
+        /*For the count down*/
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .big-text {
+            font-weight: bold;
+            font-size: 4rem;
+            line-height: 1;
+            margin: 0 2rem;
+        }
+
+        .cont-el {
+            text-align: center;
+            width: 140px;
+            margin: 0 15px;
+        }
+
+        .cont-el span {
+            font-size: 1.3rem;
+        }
+
+        .date {
+            margin: 85px 0 0 0;
+            padding: 10px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 5px;
+        }
+        table{
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td{
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        @media screen and (max-width: 767px) {
+            h1 {
+                font-size: 3rem;
+                padding: 20px;
+            }
+
+            .countdown-container {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -108,76 +208,86 @@
                 </a>
             </div>
 
-
-            <div class="projects-section">
-                <br>
-                <div class="projects-section-line">
-                    <div class="projects-status">
-                        <div class="item-status">
-                            <span class="status-number">{{$count = DB::table('supervisors')->count();}}</span>
-                            <span class="status-type">Supervisor</span>
-                        </div>
-
-                        <div class="item-status">
-                            <span class="status-number">62</span>
-                            <span class="status-type">Total Projects</span>
-                        </div>
-                    </div>
-
-
-                    <div class="view-actions">
-                        <button class="view-btn grid-view active" title="Grid View">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="feather feather-grid">
-                                <rect x="3" y="3" width="7" height="7" />
-                                <rect x="14" y="3" width="7" height="7" />
-                                <rect x="14" y="14" width="7" height="7" />
-                                <rect x="3" y="14" width="7" height="7" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
-
-                <div id=supervisorList class="project-boxes jsGridView">
-
-
-                    @foreach($lecturers as $lecturer)
-                    <a style="text-decoration:none; color: black;">
-                        <div class="project-box-wrapper">
-                            <div class="project-box" style="background-color: #dbf6fd;">
-                                <div class="project-box-content-header">
-                                    <img src="data:image/jpg;base64,{{ chunk_split(base64_encode($lecturer->Lecturer_Image)) }}"
-                                        style="border-radius: 40px; object-fit: cover;" height="200px" width="200px" />
-                                    <p class="box-content-header">{{$lecturer->Lecturer_Name}}</p>
-                                    <p class="box-content-subheader">{{$lecturer->Lecturer_Email}}</p>
-                                </div>
-                                <div class="menu effect-12">
-                                    <ul>
-                                        <li><a href="{{url('mana2')}}">Book</a></li>
-                                        &nbsp;
-                                        <li><a href="viewExpertise/{{$lecturer->Lecturer_ID}}">Detail</a></li>
-                                        <!--<li><a href="{{url('viewExpertise')}}">Detail</a></li>-->
-
-                                    </ul>
-                                </div>
-                    </a>
-                </div>
+<div class="projects-section">
+<br> 
+    <div class="projects-section-line">
+        <div class="projects-status">
+            <div class="item-status">
+               
             </div>
-            @endforeach
+            <div class="item-status">
+            <br> <br>  <br>
+            @foreach($lecturers as $lecturer)
+                <span class="status-number">{{$lecturer->Lecturer_Name}}</span>
+                <span class="status-number">{{$lecturer->Lecturer_Email}}</span>
+                <span class="status-number">{{$lecturer->Lecturer_OfficeNo}}</span>
+            </div>
         </div>
     </div>
+<br>
+
+<a style="text-decoration:none; color: black;">
+    <div class="project-box-wrapper">
+        <div class="project-box" style="background-color: #AFE9F9;">
+            <div class="expertise effect-12">
+                <ul>
+                    <li><a href="">PROFILE</a></li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li><a href="">EXPERTISE</a></li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li><a href="{{url('lecturerExpertise')}}">ARCHIEVEMENT</a></li>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li><a href="">Data</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</a>
+
+<div class="grid-container">
+
+<div class="grid-child">
+<a style="text-decoration:none; color: black;">
+    <div class="project-box-wrapper">
+        <div class="project-box" style="background-color: #dbf6fd;">
+        <p class="box-content-header">Biography</p>
+        <p class="box-content-subheader">{{$lecturer->Lecturer_Biography}} </p>
+        </div>
+    </div>
+</a>
+@endforeach
+</div>
+
+<div class="grid-child">
+    @foreach($expertises as $expertise)
+
+            <a style="text-decoration:none; color: black;">
+                <div class="project-box-wrapper">
+                    <div class="project-box" style="background-color: #dbf6fd;">
+                        <div class="project-box-content-header">
+                            <p class="box-content-header"><?php echo $expertise->expertise_name; ?></p> 
+                            <div class="project-box-wrapper">
+                               <div class="project-box" style="background-color: #1A7B95;">
+                                    <div class="project-box-content-header">
+                                        <p class="box-content-subheader">{{$expertise->expertise_level}}</p>
+                                    </div>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                </tr>
+
+
+            </a>
+
+    @endforeach
 
     </div>
-
-    </div>
-    </div>
-
-
-    <!-- partial -->
-    <script src="{{ asset('js/admin.js') }}" defer></script>
-
+            </div>
+    
+</div>
+                </td>
+    </table>
 </body>
-
 </html>

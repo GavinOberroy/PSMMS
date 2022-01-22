@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SupervisorController;
+use App\Http\Controllers\LecturerExpertiseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,8 +48,35 @@ Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
 
-Route::get('abc', function () {
-    return view('ManageTitle.AddTitle');
+//Manage Lecturer Expertise//
+
+Route::group(['middleware' => ['web']], function () {
+    Route::resource('/expertise','LecturerExpertiseController');
+    Route::get('lecturerExpertise',[LecturerExpertiseController::class,'index']);
+    Route::get('viewExpertise',[LecturerExpertiseController::class,'show']);
 });
+
+Route::get('lecturerExpertise', function () {
+    return view('ManageLecturerExpertise.lecturerExpertise');
+});
+
+Route::post('/addExpertise',[LecturerExpertiseController::class,'store']);
+
+Route::get('add', function () {
+    return view('ManageLecturerExpertise.add');
+});
+
+Route::get('edit', function () {
+    return view('ManageLecturerExpertise.edit');
+});
+
+
+Route::get('viewExpertise/{Lecturer_ID}',[LecturerExpertiseController::class,'detail']); 
+
+Route::post('/addTitle', [titleController::class,'store']);
+Route::get('/insert', [titleController::class,'insert']);
+
+
+
 
 
