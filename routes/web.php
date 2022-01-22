@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SupervisorController;
+use App\Http\Controllers\LecturerExpertiseController;
 use App\Http\Controllers\titleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProposalController;
@@ -57,7 +58,9 @@ Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
 
-
+Route::get('lecturerDashboard', function () {
+    return view('lecturerDashboard');
+});
 Route::get('lecturerDashboard', function () {
     return view('lecturerDashboard');
 });
@@ -98,7 +101,7 @@ Route::get('/search',[SupervisorController::class,'search']);
 
 Route::get('lecturerDashboard', function () {
     return view('lecturerDashboard');
-
+});
 
 
 //Manage Profile ------------------------------------------------------------------------------
@@ -134,6 +137,34 @@ Route::get('/studentProfile', function () {
 Route::get('abc', function () {
     return view('ManageTitle.AddTitle');
 });
+
+//Manage Lecturer Expertise//
+
+//VIEW
+Route::group(['middleware' => ['web']], function () {
+    Route::resource('/expertise','lecturerExpertiseController');
+
+    Route::get('lecturerExpertise',[LecturerExpertiseController::class,'show']); 
+    Route::get('viewExpertise/{Lecturer_ID}',[LecturerExpertiseController::class,'detail']); 
+});
+
+//ADD
+Route::get('add', function () {
+    return view('ManageLecturerExpertise.add');
+});
+
+Route::post('/addExpertise',[LecturerExpertiseController::class,'store']);
+
+//EDIT
+Route::put('/updateExpertise/{expertise_id}', [LecturerExpertiseController::class,'update']); 
+
+Route::get('/editExpertise/{expertise_id}', [LecturerExpertiseController::class,'edit']); 
+
+
+
+
+
+
 
 
 Route::get('ManageProposal.LecturerProposal',[ ProposalController::class,'showAllSubmittedProposal'])->name('ManageProposal.LecturerProposal');

@@ -929,3 +929,53 @@ button, a {
     0 8px 8px rgba(0,0,0,.1),
     0 16px 16px rgba(0,0,0,.1);
 }
+
+/*expertise*/
+.header-expertise{
+  width: 100%;
+  height: 20%;
+  background: #AFE9F9;
+  box-shadow: 2px 3px 10px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
+  transform: rotate(0.01deg);
+}
+
+.expertise,
+.expertise .expertise_title,
+.expertise ul li a,
+.expertise ul li a:after,
+.expertise ul li a:before {
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.expertise ul {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.expertise ul li {
+  display: inline-block;
+}
+.expertise ul li a {
+  color: #555;
+  display: block;
+  line-height: 55px;
+  padding: 0 30px;
+  text-decoration: none;
+}
+
+/* ----- EFFECT 12 - Hover Reveals Shadow */
+.expertise.effect-12 ul li a {
+  border-radius: 10px;
+  background-color: #AFE9F9;
+}
+.expertise.effect-12 ul li a:hover {
+  box-shadow: 
+    0 2px 2px rgba(0,0,0,.1),
+    0 4px 4px rgba(0,0,0,.1),
+    0 8px 8px rgba(0,0,0,.1),
+    0 16px 16px rgba(0,0,0,.1);
+}

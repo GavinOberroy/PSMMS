@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>View Expertise</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Lecturer Expertise</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+
     <style>
         @font-face {
             font-family: dmsanR;
@@ -109,7 +111,7 @@
 
         .grid-container {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 1fr 1fr;
         grid-gap: 20px;
         height: 80px;
         }
@@ -218,86 +220,61 @@
 <div class="projects-section">
 <br> 
     <div class="projects-section-line">
-        <div class="projects-status">
+        <div class="projects-status">                       
             <div class="item-status">
-               
-            </div>
-            <div class="item-status">
-            <br> <br>
-            @foreach($lecturers as $lecturer)
-                <span class="status-number">{{$lecturer->Lecturer_Name}}</span>
-                <span class="status-number">{{$lecturer->Lecturer_Email}}</span>
-                <span class="status-number">{{$lecturer->Lecturer_OfficeNo}}</span>
+                <span class="status-number">Edit Expertise</span>
             </div>
         </div>
     </div>
 <br>
 
 <a style="text-decoration:none; color: black;">
-    <div class="project-box-wrapper">
-        <div class="project-box" style="background-color: #AFE9F9;">
-            <div class="expertise effect-12">
-                <ul>
-                    <li><a href="">PROFILE</a></li>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li><a href="">EXPERTISE</a></li>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li><a href="">ARCHIEVEMENT</a></li>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li><a href="">Data</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</a>
+<div class="project-box-wrapper">
+    <div class="project-box" style="background-color: #dbf6fd;">
 
-<div class="grid-container">
+<!-- ADD FORM -->
+<br>
+<form method="post" action="/updateExpertise/{{$expertises->expertise_id}}" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
 
-<div class="grid-child">
-<a style="text-decoration:none; color: black;">
-    <div class="project-box-wrapper">
-        <div class="project-box" style="background-color: #dbf6fd;">
-        <p class="box-content-header">Biography</p>
-        <p class="box-content-subheader">{{$lecturer->Lecturer_Biography}} </p>
-        </div>
-    </div>
-</a>
-@endforeach
-</div>
-
-<div class="grid-child">
-<div class="project-box" style="background-color: #dbf6fd;">
-<h1>Expertise</h1>
-    @foreach($expertises as $expertise)
-            <a style="text-decoration:none; color: black;">
-                <div class="project-box-wrapper">
-                    <div class="project-box" style="background-color: #ABC3C9;">
-                    <div class="project-box-content-header">
-                            <p class="box-content-header">{{$expertise->expertise_name}}</p> 
-                            <div class="project-box-wrapper">
-                            <a style="text-decoration:none; color: white;">
-                               <div class="project-box" style="background-color: #1A7B95;">
-                                    <div class="project-box-content-header">
-                                        <p class="box-content-subheader">{{$expertise->expertise_level}}</p>
-                                    </div>
-                                 </div>
-                            </a>
+                        <div class="box-content-subheader">
+                             <label for="expertise_name" class="col-sm-3 col-form-label"><b>EXPERTISE NAME</b></label>
+                             
+                             <div class="input--style-5">
+                                 <input name="expertise_name" type="text" class="form-control" style="height: 50px; width:50%;" value="{{$expertises->expertise_name}}" required>
                              </div>
                         </div>
-                    </div>
-                </div>
-                </tr>
+                        <br>
+                        <div class="box-content-subheader">
+                            <label for="expertise_level" class="col-sm-3 col-form-label"><b>EXPERTISE LEVEL</b></label>
+                            <div class="input--style-5">
+                                
+                            <select name="expertise_level" class="form-control" style="height: 50px; width:50%;" required>
+                            <option value="VERY HIGH">VERY HIGH</option>
+                            <option value="HIGH">HIGH</option>
+                            <option value="MODERATE">MODERATE</option>
+                            </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <div class="offset-sm-3 col-sm-9">
+                            <button type="submit" class="btn btn-primary m-2">Update</button>
+                            <button type="reset" class="btn btn-primary m-2">Cancel</button>
 
+                            </div>
+                        </div>
+                    </form>
+                    <br>
 
-            </a>
-
-    @endforeach
     </div>
-    </div>
-            </div>
-    
 </div>
-                </td>
-    </table>
+</a>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
+
 </html>

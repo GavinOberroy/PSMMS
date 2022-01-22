@@ -15,8 +15,8 @@ class SupervisorController extends Controller
     //
     function show()
     {
-        $supervisors = DB::table('lecturer')->get();
-        return view('ManageSupervisorHunting.supervisorList', compact('supervisors'));
+        $lecturers = DB::table('lecturer')->get();
+        return view('supervisorList', compact('lecturers'));
     }
 
     function edit()

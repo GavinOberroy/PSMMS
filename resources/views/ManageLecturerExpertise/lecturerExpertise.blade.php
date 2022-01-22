@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>View Expertise</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecturer Expertise</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+       <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <style>
         @font-face {
             font-family: dmsanR;
@@ -44,12 +45,6 @@
         h3 {
             padding-left: 20px;
             font-family: dmsanR;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: 800px 800px;
-            gap: 20px;
         }
 
 
@@ -109,7 +104,7 @@
 
         .grid-container {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 2fr 1fr;
         grid-gap: 20px;
         height: 80px;
         }
@@ -220,18 +215,21 @@
     <div class="projects-section-line">
         <div class="projects-status">
             <div class="item-status">
-               
+                <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" 
+                style="border-radius: 40px; object-fit: cover;" height="170px" width="170px"/>
             </div>
+                       
             <div class="item-status">
-            <br> <br>
-            @foreach($lecturers as $lecturer)
-                <span class="status-number">{{$lecturer->Lecturer_Name}}</span>
-                <span class="status-number">{{$lecturer->Lecturer_Email}}</span>
-                <span class="status-number">{{$lecturer->Lecturer_OfficeNo}}</span>
+            <br> 
+                <span class="status-number">{{ Auth::user()->name }}</span>
+                <span class="status-number">{{ Auth::user()->email }}</span>
             </div>
         </div>
     </div>
 <br>
+
+
+
 
 <a style="text-decoration:none; color: black;">
     <div class="project-box-wrapper">
@@ -240,11 +238,11 @@
                 <ul>
                     <li><a href="">PROFILE</a></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li><a href="">EXPERTISE</a></li>
+                    <li><a href="{{url('lecturerExpertise')}}">EXPERTISE</a></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li><a href="">ARCHIEVEMENT</a></li>
+                    <li><a href="{{url('viewExpertise')}}">ARCHIEVEMENT</a></li>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <li><a href="">Data</a></li>
+                    <li><a href="">SUPERVISION</a></li>
                 </ul>
             </div>
         </div>
@@ -254,50 +252,94 @@
 <div class="grid-container">
 
 <div class="grid-child">
+
 <a style="text-decoration:none; color: black;">
-    <div class="project-box-wrapper">
-        <div class="project-box" style="background-color: #dbf6fd;">
-        <p class="box-content-header">Biography</p>
-        <p class="box-content-subheader">{{$lecturer->Lecturer_Biography}} </p>
-        </div>
+<div class="project-box-wrapper">
+    <div class="project-box" style="background-color: #dbf6fd;">
+
+    <div class="menu effect-12" style="height: 50px; width:100px;">
+        <ul>
+        <li><a href="{{url('add')}}">+</a></li>
+        </ul>
     </div>
+    
+    <br>
+    @foreach($expertises as $expertise)
+    <div class="project-box-content-header">
+        <div class="project-box-wrapper">
+            <div class="project-box" style="background-color: #ABC3C9;">
+                <div class="grid-container">
+                <div class="grid-child">
+                    <p class="box-content-header">{{$expertise->expertise_name}}</p> 
+                    <br>
+                    <div class="menu effect-12" style="height: 10px; width:100px;">        
+                        <ul>
+                            <li><a href="/editExpertise/{{$expertise->expertise_id}}">Edit</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-box" style="background-color: #1A7B95;">
+                <div class="grid-child">
+                    <a style="text-decoration:none; color: white;">
+                        <div class="project-box-content-header">
+                            <p class="box-content-subheader">{{$expertise->expertise_level}}</p>
+                        </div>
+                    </a>
+                </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    @endforeach
+    </div>
+</div>
 </a>
-@endforeach
+
 </div>
 
-<div class="grid-child">
-<div class="project-box" style="background-color: #dbf6fd;">
-<h1>Expertise</h1>
-    @foreach($expertises as $expertise)
+    <div class="grid-child">
             <a style="text-decoration:none; color: black;">
                 <div class="project-box-wrapper">
-                    <div class="project-box" style="background-color: #ABC3C9;">
-                    <div class="project-box-content-header">
-                            <p class="box-content-header">{{$expertise->expertise_name}}</p> 
-                            <div class="project-box-wrapper">
-                            <a style="text-decoration:none; color: white;">
-                               <div class="project-box" style="background-color: #1A7B95;">
-                                    <div class="project-box-content-header">
-                                        <p class="box-content-subheader">{{$expertise->expertise_level}}</p>
-                                    </div>
-                                 </div>
-                            </a>
-                             </div>
+                    <div class="project-box" style="background-color: #dbf6fd;">
+                        <div class="project-box-content-header">
+                            <p class="box-content-header">Teaching</p><br>
+                        <form>
+                            <table>
+                                <tr>
+                                    <th><b>Code</th>
+                                    <th><b>Subject</th>
+                                </tr>
+                                <tr>
+                                    <td>BCI2023</td>
+                                    <td>DATABASE SYSTEMS</td>
+                                </tr>
+                                <tr>
+                                    <td>MCT1063</td>
+                                    <td>STRATEGIC DATA MANAGEMENT</td>
+                                </tr>
+                                <tr>
+                                    <td>MCT1023</td>
+                                    <td>DATA MANAGEMENT</td>
+                                </tr>
+                            </table>
+                        </form>
                         </div>
                     </div>
                 </div>
-                </tr>
-
-
             </a>
-
-    @endforeach
-    </div>
-    </div>
-            </div>
-    
+            
 </div>
-                </td>
-    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
+
 </html>
