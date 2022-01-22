@@ -157,6 +157,21 @@
                 <a href="logbook" class="app-sidebar-link">
                     <img src="assets/book.png" alt="" height="25" width="25">
                 </a>
+
+                <!-- Proposal Lecturer -->
+                <a href="{{ route('ManageProposal.LecturerProposal') }}" class="app-sidebar-link" title="List Submitted Proposal">
+                    <img src="assets/book.png" alt="" height="25" width="25">
+                </a>
+
+                <!-- Proposal Student -->
+                <a href="{{ route('ManageProposal.ProposalForm') }}" class="app-sidebar-link" title="Create Proposal For Student">
+                    <img src="assets/book.png" alt="" height="25" width="25">
+                </a>
+
+                <!-- Memo Student -->
+                <a href="{{ route('ManageProposal.Memo') }}" class="app-sidebar-link" title="Memo For Student">
+                    <img src="assets/book.png" alt="" height="25" width="25">
+                </a>
             </div>
 
 

@@ -71,12 +71,21 @@ Route::get('/studentProfile', function () {
     return view('ManageProfile.studentProfile');
 }); */
 
-=======
+
 Route::get('abc', function () {
     return view('ManageTitle.AddTitle');
 });
 
 
-Route::get('ManageProposal.LecturerProposal',[ ProposalController::class,'showAllSubmittedProposal'])->name('ManageProposal.LecturerProposal');
+Route::get('/proposal/lecturer',[ ProposalController::class,'showAllSubmittedProposal'])->name('ManageProposal.LecturerProposal');
+
 Route::post('/proposal/{id}/status', [ProposalController::class, 'changeStatus'])->name('ManageProposal.status');
+
+Route::get('/proposal/{id}/detail', [ProposalController::class,'showDetail'])->name("ManageProposal.showDetail");
+
+Route::get('/proposal/create', [ProposalController::class, 'create'])->name('ManageProposal.ProposalForm');
+
+Route::post('/proposal/store', [ProposalController::class, 'store'])->name('proposal.store');
+
+Route::get('/proposal/Memo', [ProposalController::class, 'index'])->name('ManageProposal.Memo');
 
