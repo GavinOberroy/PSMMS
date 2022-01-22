@@ -266,6 +266,29 @@
                     </div>
 
 
+                <div id=supervisorList class="project-boxes jsGridView">
+
+
+                    @foreach($lecturers as $lecturer)
+                    <a style="text-decoration:none; color: black;">
+                        <div class="project-box-wrapper">
+                            <div class="project-box" style="background-color: #dbf6fd;">
+                                <div class="project-box-content-header">
+                                    <img src="data:image/jpg;base64,{{ chunk_split(base64_encode($lecturer->Lecturer_Image)) }}"
+                                        style="border-radius: 40px; object-fit: cover;" height="200px" width="200px" />
+                                    <p class="box-content-header">{{$lecturer->Lecturer_Name}}</p>
+                                    <p class="box-content-subheader">{{$lecturer->Lecturer_Email}}</p>
+                                </div>
+                                <div class="menu effect-12">
+                                    <ul>
+                                        <li><a href="{{url('mana2')}}">Book</a></li>
+                                        &nbsp;
+                                        <li><a href="viewExpertise/{{$lecturer->Lecturer_ID}}">Detail</a></li>
+                                        <!--<li><a href="{{url('viewExpertise')}}">Detail</a></li>-->
+
+                                    </ul>
+                                </div>
+                    </a>
                 </div>
 
             </div>

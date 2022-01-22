@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SupervisorController;
-
+use App\Http\Controllers\LecturerExpertiseController;
+use App\Http\Controllers\titleController;
 use App\Http\Controllers\ProfileController;
-
 use App\Http\Controllers\ProposalController;
 
 /*
@@ -38,7 +38,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/logout', [HomeController::class,'logout']);
  });
 
-route::get('/redirects',[HomeController::class,"index"]);
+Route::get('/redirects',[HomeController::class,"index"]);
+
+//Manage Supervisor Hunting ------------------------------------------------------------------------------
 
 Route::GET('Supervisor.edit/{id}', [SupervisorController::class,'edit']);
 
@@ -47,24 +49,85 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('supervisorList',[SupervisorController::class,'show']);
 
-    Route::get('mana2',[SupervisorController::class,'edit']);
+    Route::get('supervisorDetail/{id}',[SupervisorController::class,'detail']);//akan masuk ke profile lecturer (alia punya module)
 
-    Route::get('projectTitleList','SupervisorController@title');
 });
+//---------------------------------------------------------------------------------------------
 
 Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
 
+Route::get('lecturerDashboard', function () {
+    return view('lecturerDashboard');
+});
+Route::get('lecturerDashboard', function () {
+    return view('lecturerDashboard');
+});
 
 
-//Manage Profile
+
+//Title List
+Route::get('titleList',[titleController::class,'show']);
+
+//add Title
+Route::get('addTitle', function () {
+    return view('ManageTitle.addTitle');
+});
+
+Route::get('/insert', [titleController::class,'insert']);
+
+//Insert title
+Route::post('/addTitle', [titleController::class,'store']);
+Route::get('/insert', [titleController::class,'insert']);
+
+//display lecturer project title
+Route::get('/lecturerProjectTitle', [titleController::class,'title']);
+
+//display Title by ID
+Route::get('/viewTitle/{Title_ID}', [titleController::class,'view']);
+
+//edit Title by ID
+Route::get('/editTitle/{Title_ID}', [titleController::class,'edit']);
+Route::put('/updateTitle/{Title_ID}', [titleController::class,'update']); 
+
+//Route::delete('/lecturerProjectTitle/{Title_ID}', [titleController::class,'delete']);
+
+// Route::get('/insert', [titleController::class,'insert']);
+// Route::get('ManageTitle.lecturerProjectTitle',[ titleController::class,'showAllSubmittedTitle'])->name('ManageTitle.lecturerProjectTitle');
+// Route::get('/title/{id}/detail', [titleController::class,'show'])->name("ManageTitle.show");
+
+Route::get('/search',[SupervisorController::class,'search']);
+
+Route::get('lecturerDashboard', function () {
+    return view('lecturerDashboard');
+});
+
+
+//Manage Profile ------------------------------------------------------------------------------
 
 //Route::get('/studentProfile','ProfileController@viewStudent'); - version lama x jadi -_-
 
-Route::get('studentProfile',[ProfileController::class, 'viewStudent']);
+Route::get('/studentProfile/{Student_ID}',[ProfileController::class, 'viewStudent']);
 
 Route::get('test',[ProfileController::class, 'index']);
+
+Route::get('/lecturerProfile/{Lecturer_ID}',[ProfileController::class, 'viewLecturer']);
+
+//edit profile route
+Route::post('editProfile',[ProfileController::class, 'editProfile'])->name('editProfile');
+
+//delete education route
+Route::get('deleteEducation/{id}',[ProfileController::class, 'deleteEducation']);
+
+//edit lecturer education route
+Route::post('editEducation',[ProfileController::class, 'editEducation'])->name('editEducation');
+
+//add new lecturer education route
+Route::post('addEducation',[ProfileController::class, 'addEducation'])->name('addEducation');
+
+
+
 
 /*
 Route::get('/studentProfile', function () {
@@ -75,6 +138,34 @@ Route::get('/studentProfile', function () {
 Route::get('abc', function () {
     return view('ManageTitle.AddTitle');
 });
+
+//Manage Lecturer Expertise//
+
+//VIEW
+Route::group(['middleware' => ['web']], function () {
+    Route::resource('/expertise','lecturerExpertiseController');
+
+    Route::get('lecturerExpertise',[LecturerExpertiseController::class,'show']); 
+    Route::get('viewExpertise/{Lecturer_ID}',[LecturerExpertiseController::class,'detail']); 
+});
+
+//ADD
+Route::get('add', function () {
+    return view('ManageLecturerExpertise.add');
+});
+
+Route::post('/addExpertise',[LecturerExpertiseController::class,'store']);
+
+//EDIT
+Route::put('/updateExpertise/{expertise_id}', [LecturerExpertiseController::class,'update']); 
+
+Route::get('/editExpertise/{expertise_id}', [LecturerExpertiseController::class,'edit']); 
+
+
+
+
+
+
 
 
 Route::get('/proposal/lecturer',[ ProposalController::class,'showAllSubmittedProposal'])->name('ManageProposal.LecturerProposal');

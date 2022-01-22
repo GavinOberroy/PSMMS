@@ -206,6 +206,7 @@ button, a {
   align-items: center;
   padding-left: 12px;
   border-left: 2px solid #ddd;
+  text-decoration: none;
 }
 .profile-btn img {
   width: 32px;
@@ -260,7 +261,8 @@ button, a {
   background-color: var(--projects-section);
   border-radius: 32px;
   padding: 32px 32px 0 32px;
-  overflow-x: scroll;
+  overflow-x:hidden;
+  overflow-y: hidden;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -318,6 +320,20 @@ button, a {
   color: var(--main-color);
 }
 
+.status-email {
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 450;
+  color: var(--main-color);
+}
+
+.status-faculty {
+  font-size: 18px;
+  line-height: 32px;
+  font-weight: 400;
+  color: var(--main-color);
+}
+
 .status-type {
   position: relative;
   padding-right: 24px;
@@ -328,6 +344,7 @@ button, a {
   display: flex;
   align-items: center;
 }
+
 
 .view-btn {
   width: 36px;
@@ -481,6 +498,7 @@ button, a {
 }
 .project-boxes.jsGridView .project-box-wrapper {
   width: 20%;
+  height: 60%;
 }
 .project-boxes.jsListView .project-box {
   display: flex;
@@ -905,6 +923,56 @@ button, a {
   background-color: lightskyblue;
 }
 .menu.effect-12 ul li a:hover {
+  box-shadow: 
+    0 2px 2px rgba(0,0,0,.1),
+    0 4px 4px rgba(0,0,0,.1),
+    0 8px 8px rgba(0,0,0,.1),
+    0 16px 16px rgba(0,0,0,.1);
+}
+
+/*expertise*/
+.header-expertise{
+  width: 100%;
+  height: 20%;
+  background: #AFE9F9;
+  box-shadow: 2px 3px 10px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 25px;
+  transform: rotate(0.01deg);
+}
+
+.expertise,
+.expertise .expertise_title,
+.expertise ul li a,
+.expertise ul li a:after,
+.expertise ul li a:before {
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.expertise ul {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.expertise ul li {
+  display: inline-block;
+}
+.expertise ul li a {
+  color: #555;
+  display: block;
+  line-height: 55px;
+  padding: 0 30px;
+  text-decoration: none;
+}
+
+/* ----- EFFECT 12 - Hover Reveals Shadow */
+.expertise.effect-12 ul li a {
+  border-radius: 10px;
+  background-color: #AFE9F9;
+}
+.expertise.effect-12 ul li a:hover {
   box-shadow: 
     0 2px 2px rgba(0,0,0,.1),
     0 4px 4px rgba(0,0,0,.1),
