@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Add Title</title>
+    <title>View Title</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
  
@@ -88,36 +88,36 @@
                 </a>
             </div>
 
-
+            @foreach($titles as $title)
             <div class="projects-section">
                 <br>
                 <div class="projects-section-line">
                     <div class="projects-status">
                     
-           
                         <div class="item-status">
-                            <span class="status-number">Add New Title</span>
+                            <span class="status-number">Edit Title</span>
                             
                         <br>
                         <a style="text-decoration:none; color: black;">
                          <div class="project-box-wrapper">
                          <div class="project-box" style="background-color: #dbf6fd;">
 
-                         <form method="post" action="/addTitle" enctype="multipart/form-data">
-                         {{ csrf_field() }}
+                         <form method="post" action="/updateTitle/{{$titles->Title_ID}}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
                         <div class="box-content-subheader">
                              <label for="Title_Name" class="col-sm-3 col-form-label"><b>PROJECT TITLE :</b></label>
                              <div class="input--style-5">
-                                 <input name="Title_Name" type="text" class="form-control" style="height: 30px; width:1000px;" id="Title_Name" placeholder="Project Title">
+                                <input  name="Title_Name" type="text" class="form-control" style="height: 30px; width:1000px;" value="{{$titles->Title_Name}}">   
                              </div>
                         </div>
                         <br>
                         <div class="box-content-subheader">
                             <label for="Title_Type" class="col-sm-3 col-form-label"><b>PROJECT TYPE :</b></label>
                             <div class="input--style-5">
-                            <select name="Title_Type" class="form-control" style="height: 30px; width:100%;" id="Title_Type">
-                            <option value="Research Based">Research-based</option>
-                            <option value="Project Based">Project-based</option>
+                            <input name="Title_Type" type="text" class="form-control" style="height: 30px; width:1000px;"  value="{{$titles->Title_Type}}">
+                        
+                        
                             </select>
                             </div>
                         </div>
@@ -125,22 +125,22 @@
                         <div class="box-content-subheader">
                             <label for="Title_Description" class="col-sm-3 col-form-label"><b>PROJECT DESCRIPTION :</b></label>
                             <div class="input--style-5">
-                            <input name="Title_Description" type="text" class="form-control" style="height: 100px; width:100%;" id="Title_Description" placeholder="Project Description">
+                            <input name="Title_Description" type="text" class="dropdown-item" style="height: 100px; width:100%;" value="{{$titles->Title_Description}}"></p>  
+                                <i class="fa fa-edit"></i>
                         </div>
                         <br>
                         </div>
                         <div class="box-content-subheader">
                             <label for="Required_Skill" class="col-sm-3 col-form-label"><b>SKILLS REQUIRED (SPECIFIC TO THE PROJECT) :</b></label>
                             <div class="input--style-5">
-                            <input name="Required_Skill" type="text" class="form-control" style="height: 30px; width:100%;"  id="Required_Skill" placeholder="Skills Required">
+                            <input name="Required_Skill" type="text" class="form-control" style="height: 30px; width:100%;" value="{{$titles->Required_Skill}}"></p>  
                         </div>
                         <br>
                         </div>
                         <div class="form-group row">
                             <div class="offset-sm-3 col-sm-9">
-                            <button type="submit" class="btn btn-primary m-2">Add</button>
-                            <button type="submit" class="btn btn-primary m-2"a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
-                        
+                            <button type="submit" class="btn btn-primary m-2">Save Title</button>
+        
                             </div>
                         </div>
                     </form>
@@ -156,11 +156,12 @@
                 </div>
 
 
-                <div id=addTitle class="project-boxes jsGridView">
+                <div id=editTitle class="project-boxes jsGridView">
 
                     
                 
             </div>
+            @endforeach 
            
         </div>
     </div>
