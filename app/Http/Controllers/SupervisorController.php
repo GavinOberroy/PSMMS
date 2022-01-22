@@ -15,7 +15,7 @@ class SupervisorController extends Controller
     //
     function show()
     {
-        $supervisors = Supervisor::all();
+        $supervisors = DB::table('lecturer')->get();
         return view('ManageSupervisorHunting.supervisorList', compact('supervisors'));
     }
 
@@ -42,7 +42,7 @@ class SupervisorController extends Controller
     public function search()
     {
         $search_text = $_GET['query'];
-        $supervisors = Supervisor::where('name','LIKE','%'.$search_text."%")->get();
+        $supervisors = DB::table('lecturer')->where('Lecturer_Name','LIKE','%'.$search_text."%")->get();
         return view('ManageSupervisorHunting.search',compact('supervisors'));
     }
 
