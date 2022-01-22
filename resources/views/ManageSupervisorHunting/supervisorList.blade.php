@@ -5,6 +5,22 @@
     <meta charset="UTF-8">
     <title>Supervisor Hunting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+    crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' type='text/javascript'></script>
+
+<!-- Font Awesome JS -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"> </script>
+<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"> </script>
+
+<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 
 </head>
@@ -18,45 +34,25 @@
                 <img src="https://www.ump.edu.my/download/logo-ump-jawi-2021.png" alt=""
                     style="width:180px;height:101.25px;">
                 <div class="search-wrapper">
-                    <input class="search-input" type="text" placeholder="Search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search"
-                        viewBox="0 0 24 24">
-                        <defs></defs>
-                        <circle cx="11" cy="11" r="8"></circle>
-                        <path d="M21 21l-4.35-4.35"></path>
-                    </svg>
+                    <form type="get" action="{{ url('/search') }}">
+                    <input class="search-input" name="query" type="search" placeholder="Search">
+                    <button class="btn" style="display: none;"><i class="fa fa-home"></i></button>
+                    </form>
+                    
                 </div>
             </div>
-            <div class="app-header-right">
-                <button class="mode-switch" title="Switch Theme">
-                    <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
-                        <defs></defs>
-                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
-                </button>
-                <button class="add-btn" title="Add New Project">
-                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-plus">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                </button>
-                <button class="notification-btn" onclick="window.location.href='/logout'">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-bell">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                    </svg>
-                </button>
-                <button class="profile-btn">
-                    <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
-                    <span>{{ Auth::user()->name }}</span>
-                </button>
-            </div>
+                <div class="app-header-right">
+                    <button class="notification-btn">
+                        <a style="text-decoration: none;" href="{{ url('logout') }}">Logout</a>
+                        <img src="assets/logout.png" height="30" width="30">
+                    </button>
+                    <!-- Profile Button -->
+                    <button class="profile-btn" onclick="location.href='{{ url('/studentProfile')}}'">
+                        <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
+                        <span>{{ Auth::user()->name }}</span>
+                    </button>
+                </div>
+
             <button class="messages-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -70,7 +66,7 @@
         <!-- SIDE BAR -->
         <div class="app-content">
             <div class="app-sidebar">
-                <a href="dashboard" class="app-sidebar-link">
+                <a href="studentDashboard" class="app-sidebar-link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="feather feather-home">
@@ -78,7 +74,7 @@
                         <polyline points="9 22 9 12 15 12 15 22" />
                     </svg>
                 </a>
-                <a href="main" class="app-sidebar-link active">
+                <a href="supervisorList" class="app-sidebar-link active">
                     <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                         stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         class="feather feather-pie-chart" viewBox="0 0 24 24">
@@ -114,16 +110,11 @@
                 <div class="projects-section-line">
                     <div class="projects-status">
                         <div class="item-status">
-                            <span class="status-number">{{$count = DB::table('supervisors')->count();}}</span>
+                            <span class="status-number">{{$count = DB::table('lecturer')->count();}}</span>
                             <span class="status-type">Supervisor</span>
                         </div>
 
-                        <div class="item-status">
-                            <span class="status-number">62</span>
-                            <span class="status-type">Total Projects</span>
-                        </div>
                     </div>
-
 
                     <div class="view-actions">
                         <button class="view-btn grid-view active" title="Grid View">
@@ -148,16 +139,16 @@
                         <div class="project-box-wrapper">
                             <div class="project-box" style="background-color: #dbf6fd;">
                                 <div class="project-box-content-header">
-                                    <img src="data:image/jpg;base64,{{ chunk_split(base64_encode($supervisor->img)) }}"
+                                    <img src="data:image/jpg;base64,{{ chunk_split(base64_encode($supervisor->Lecturer_Image)) }}"
                                         style="border-radius: 40px; object-fit: cover;" height="200px" width="200px" />
-                                    <p class="box-content-header">{{$supervisor['name']}}</p>
-                                    <p class="box-content-subheader">{{$supervisor['email']}}</p>
+                                    <p class="box-content-header">{{$supervisor->Lecturer_Name}}</p>
+                                    <p class="box-content-subheader">{{$supervisor->Lecturer_Email}}</p>
                                 </div>
                                 <div class="menu effect-12">
                                     <ul>
-                                        <li><a href="{{url('mana2')}}">Book</a></li>
+                                        <li><button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#bookModal">Book</button> </li>
                                         &nbsp;
-                                        <li><a href="{{url('abc')}}">Detail</a></li>
+                                        <li><button type="button" class="btn btn-primary m-2" onclick="location.href='{{"supervisorDetail/".$supervisor->Lecturer_ID }}'">Detail</button></li>
 
                                     </ul>
                                 </div>
@@ -173,10 +164,40 @@
     </div>
     </div>
 
+    {{-- <!-- Modal Example Start-->
+			<div class="modal fade" id="bookModal" tabindex="-1" role="dialog" aria- 
+            labelledby="demoModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="demoModalLabel">Modal Example - 
+                             Websolutionstuff</h5>
+								<button type="button" class="close" data-dismiss="modal" aria- 
+                                label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+						</div>
+						<div class="modal-body">
+								Welcome, Websolutionstuff !!
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+	 <!-- Modal Example End--> --}}
+
 
     <!-- partial -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+
+        
 </body>
 
 </html>

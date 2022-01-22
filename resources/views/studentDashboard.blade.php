@@ -126,21 +126,14 @@
             </div>
             <div class="app-header-right">
                 <button class="notification-btn">
-                    <a href="{{ url('logout') }}">Logout</a>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-bell">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                    </svg>
+                    <a style="text-decoration: none;" href="{{ url('logout') }}">Logout</a>
+                    <img src="assets/logout.png" height="30" width="30">
                 </button>
-                <!-- Profile Button  -->
-                @foreach ($students as $std)
-                <a class="profile-btn"  href="/studentProfile/{{$std->Student_ID}}">
-                    <img  src="{{ asset('/assets/img/avatars/'.$std->Student_Image) }}"/> &nbsp
+                <!-- Profile Button -->
+                <button class="profile-btn" onclick="location.href='{{ url('/studentProfile')}}'">
+                    <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
-                </a>
-                @endforeach
+                </button>
             </div>
         </div>
 
@@ -150,7 +143,7 @@
                 <a href="studentDashboard" class="app-sidebar-link active">
                     <img src="assets/home.png" alt="" height="25" width="25">
                 </a>
-                <a href="supervisorList" class="app-sidebar-link">
+                <a href="{{ url('supervisorList') }}" class="app-sidebar-link">
                     <img src="assets/supervisor.png" alt="" height="30" width="30">
                 </a>
                 <a href="viewTitle" class="app-sidebar-link">
@@ -277,7 +270,7 @@
 
     <script>
         //for the countdown
-        var newYears = '2 Jan 2022'
+        var newYears = '2 Jan 2023'
         const dayEl = document.getElementById('days')
         const hourEl = document.getElementById('hours')
         const minsEl = document.getElementById('mins')

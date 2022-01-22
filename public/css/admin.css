@@ -261,7 +261,8 @@ button, a {
   background-color: var(--projects-section);
   border-radius: 32px;
   padding: 32px 32px 0 32px;
-  overflow-x: scroll;
+  overflow-x:hidden;
+  overflow-y: hidden;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -497,6 +498,7 @@ button, a {
 }
 .project-boxes.jsGridView .project-box-wrapper {
   width: 20%;
+  height: 60%;
 }
 .project-boxes.jsListView .project-box {
   display: flex;
