@@ -51,7 +51,7 @@
                             </div>
                          
                             <div class="form-group text-center">
-                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-success" type="submit">Submit</button>
                             </div>
                             <hr>
                             <div class="form-group text-center">
