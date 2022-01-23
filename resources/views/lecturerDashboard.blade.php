@@ -173,9 +173,7 @@
                 <a href="{{url('editTitle')}}" class="app-sidebar-link">
                     <img src="assets/book.png" alt="" height="25" width="25">
                 </a>
-                <a href="{{url('lecturerExpertise')}}" class="app-sidebar-link">
-                    <img src="assets/expertise.png" alt="" height="25" width="25">
-                </a>
+
             </div>
 
 

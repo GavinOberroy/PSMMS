@@ -15,14 +15,17 @@ class CreateProposalsTable extends Migration
     {
         Schema::create('proposals', function (Blueprint $table) {
             $table->id();
-            $table->integer('Proposal_ID');
-            $table->integer('Student_ID');
-            $table->integer('Lecturer_ID');
+            $table->String('Student_Name');
+            $table->String('Student_ID');
             $table->string('Proposal_Title');
             $table->string('Proposal_Type');
             $table->string('SV_Name');
             $table->string('Proposal_Status')->default('pending');
-            $table->string('Proposal_Doc');
+            $table->string('file');
+           // $table->foreignId('Student_ID');
+           //  $table->foreign('Student_ID')->references('Student_ID')->on('student');
+           // $table->foreign('Student_ID')->references('Student_ID')->on('student')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
