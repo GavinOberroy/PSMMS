@@ -53,6 +53,10 @@
                     <label for="SV_name" class="col-md-4 col-form-label">Doc</label>
                     <div class="col-md-9">
               
+                      <a href="{{route('proposalDoc.view',$proposal->id)}}">
+                        <button class="btn btn-info mb-1">View Document</button>
+                    </a>
+
                       <a href="{{route('proposalDoc.download',$proposal->file)}}">
                         <button class="btn btn-info mb-1">Download Document</button>
                     </a>

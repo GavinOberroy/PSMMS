@@ -19,7 +19,7 @@
                                     <th scope="col">Accept</th>
                                     <th scope="col">Reject</th>
                                     <th scope="col">View Details</th>
-                                    <th scope="col">Delete Proposal</th>
+                                    <th scope="col">Delete</th>
   
                                 </tr>
                             </thead>
@@ -30,8 +30,8 @@
                                 @foreach ($proposals as $no => $proposal)
                                     <tr>
                                         <th>{{$no+1}}</th>
-                                        <td width="350">{{$proposal->Student_Name }}</td>
-                                        <td width="200">{{$proposal->Student_ID }}</td>
+                                        <td width="300">{{$proposal->Student_Name }}</td>
+                                        <td width="150">{{$proposal->Student_ID }}</td>
                                         <td>{{ $proposal->Proposal_Title }}</td>
                                         <td>{{ $proposal->Proposal_Type}}</td>
                                         <td  width="150">{{ $proposal->Proposal_Status}}</td>
