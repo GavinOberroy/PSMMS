@@ -274,7 +274,6 @@
                                         <li><a href="/editProgress/{{$row->Logbook_ID}}">Edit</a></li>
                                         </ul>
                                         </div></td>
-                                        
                                     </tr>
                    
                     </div>

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>My Project</title>
+    <title>My Project-Lecturer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <style>

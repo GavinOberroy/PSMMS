@@ -133,58 +133,45 @@
                         <div class="box-content-subheader">
                             <label for="Current_Progress" class="col-sm-3 col-form-label"><b>CURRENT PROGRESS :</b></label>
                             <div class="input--style-5">
-                            <input name="Current_Progress" type="text" class="form-control" style="height: 100px; width:100%;" id="Current_Progress" placeholder="State your current progress(before meeting your SV):">
+                            <input name="Current_Progress" type="text" class="form-control" style="height: 100px; width:100%;" id="Current_Progress" placeholder="State your current progress(before meeting your SV :">
                         </div>
                         <br>
                         <div class="box-content-subheader">
                             <label for="Upcoming_Progress" class="col-sm-3 col-form-label"><b>UPCOMING PROGRESS :</b></label>
                             <div class="input--style-5">
-                            <input name="Upcoming_Progress" type="text" class="form-control" style="height: 100px; width:100%;" id="Upcoming_Progress" placeholder="State your upcoming progress(after meeting your SV):">
+                            <input name="Upcoming_Progress" type="text" class="form-control" style="height: 100px; width:100%;" id="Upcoming_Progress" placeholder="State your upcoming progress(after meeting your SV :">
                         </div>
                         <br>
                         <div class="box-content-subheader">
                              <label for="Student_Name" class="col-sm-3 col-form-label"><b>STUDENT NAME :</b></label>
                              <div class="input--style-5">
-                                 <input name="Student_Name" type="text" class="form-control" style="height: 30px; width:1000px;" id="Student_Name" placeholder="Enter Meeting Date with your SV" >
+                                 <input name="Student_Name" type="text" class="form-control" style="height: 30px; width:1000px;" id="Student_Name" placeholder="Enter Student Name" >
                              </div>
                         </div>
                         <br>
                         <div class="box-content-subheader">
                              <label for="Student_ID" class="col-sm-3 col-form-label"><b>STUDENT ID :</b></label>
                              <div class="input--style-5">
-                                 <input name="Student_ID" type="text" class="form-control" style="height: 30px; width:1000px;" id="Student_ID" placeholder="Enter Meeting Date with your SV" >
+                                 <input name="Student_ID" type="text" class="form-control" style="height: 30px; width:1000px;" id="Student_ID" placeholder="Enter Student ID" >
                              </div>
                         </div>
+                        <br>
                         <div class="box-content-subheader">
                              <label for="Lecturer_Email" class="col-sm-3 col-form-label"><b>LECTURER EMAIL :</b></label>
                              <div class="input--style-5">
-                                 <input name="Lecturer_Email" type="text" class="form-control" style="height: 30px; width:1000px;" id="Lecturer_Email" placeholder="Enter Meeting Date with your SV" >
+                                 <input name="Lecturer_Email" type="text" class="form-control" style="height: 30px; width:1000px;" id="Lecturer_Email" placeholder="Enter Lecturer Email" >
                              </div>
                         </div>
-                        <!-- <div class="box-content-subheader">
-                            <label for="Student_Name" class="col-sm-3 col-form-label"><b>STUDENT NAME :</b></label>
-                            <div class="input--style-5">
-                            <input name="Student_Name" type="text" class="form-control" style="height: 30px; width:100%;" id="Student_Name" placeholder="Insert Your Name:">
-                        </div>
-                        <br>
-                        <div class="box-content-subheader">
-                            <label for="Student_ID" class="col-sm-3 col-form-label"><b>STUDENT MATRIC NO :</b></label>
-                            <div class="input--style-5">
-                            <input name="Student_ID" type="text" class="form-control" style="height: 30px; width:100%;" id="Student_ID" placeholder="Insert Your Matric No:">
-                        </div>
-                        <br>
-                        <div class="box-content-subheader">
-                            <label for="Student_Email" class="col-sm-3 col-form-label"><b>STUDENT EMAIL :</b></label>
-                            <div class="input--style-5">
-                            <input name="Student_Email" type="text" class="form-control" style="height: 30px; width:100%;" id="Student_Email" placeholder="Insert Your Email:">
-                        </div> -->
+                        
 
                         <br>    
                         
                         <div class="form-group row">
                             <div class="offset-sm-3 col-sm-9">
-                            <button type="submit" class="btn btn-primary m-2" >ADD LOGBOOK</button>
+                            <button type="submit" class="btn btn-primary m-2" >ADD LOGBOOK</button> 
                             <button type="reset" class="btn btn-primary m-2" >CANCEL</button>
+                            <br><br>
+                            <button type="button" class="btn btn-primary m-2" >VIEW LOGBOOK</button>
                             </div>
                         </div>
                     </form>
@@ -195,17 +182,9 @@
                         </div>
                     </div>
 
-
-                    
                 </div>
-
-
                 <div id=AddProgress class="project-boxes jsGridView">
-
-                    
-                
             </div>
-           
         </div>
     </div>
 

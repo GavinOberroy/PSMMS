@@ -222,7 +222,7 @@
     <div class="projects-section-line">
         <div class="projects-status">                       
             <div class="item-status">
-                <span class="status-number">Edit Expertise</span>
+                <span class="status-number">Edit Logbook</span>
             </div>
         </div>
     </div>
