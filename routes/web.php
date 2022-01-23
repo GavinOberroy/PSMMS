@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SupervisorController;
-use App\Http\Controllers\LogbookController; // LogbookController is controller name
+use App\Http\Controllers\LogbookController;
 use App\Http\Controllers\LecturerExpertiseController;
 use App\Http\Controllers\titleController;
 use App\Http\Controllers\ProfileController;
@@ -50,17 +50,19 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('supervisorList',[SupervisorController::class,'show']);
 
-    Route::get('supervisorDetail/{id}',[SupervisorController::class,'detail']);//akan masuk ke profile lecturer (alia punya module)
+    Route::get('supervisorDetail/{Lecturer_ID}',[SupervisorController::class,'detail']);//akan masuk ke profile lecturer (alia punya module)
 
     Route::get('projectTitleList','SupervisorController@title');
 
 
+    Route::get('ProposalForm', function () {
+        return view('ManageProposal.ProposalForm');
+    });
 });
 //---------------------------------------------------------------------------------------------
 
-Route::get('studentDashboard', function () {
-    return view('studentDashboard');
-});
+//GET STUDENT PROFILE IMAGE ON DASHBOARD
+Route::get('studentDashboard',[ProfileController::class,'showStudent']);
 
 Route::get('lecturerDashboard', function () {
     return view('lecturerDashboard');
@@ -93,10 +95,11 @@ Route::get('/viewAdded',  [LogbookController::class, 'showUpdatedLog']);
 // Route::put('/AddProgress', 'LogbookController@store');
 
 //Display logbook based on lecturer_ID
-Route::get('logbook', [LogbookController::class,'displayLogbook']);
+Route::get('logbook', [LogbookController::class,'showUpdatedLog']);
 //display lecturer logbook
 Route::get('/ApproveLogbook/{Logbook_ID}', [LogbookController::class,'showLogbook']);
 
+Route::get('superviseeLogbook',  [LogbookController::class, 'displayLogbook']);
 // Route::get('/AddProgress', function () {
 //     return view('ManageLogbook.AddProgress');
 // });
@@ -105,10 +108,10 @@ Route::get('/ApproveLogbook/{Logbook_ID}', [LogbookController::class,'showLogboo
 Route::put('/updateProgress/{Logbook_ID}', [LogbookController::class,'update']);    
 Route::get('/editProgress/{Logbook_ID}', [LogbookController::class,'edit']); 
 
-});
 Route::get('lecturerDashboard', function () {
     return view('lecturerDashboard');
 });
+Route::get('lecturerDashboard',[ProfileController::class,'showLecturer']);
 
 
 
@@ -144,18 +147,11 @@ Route::put('/updateTitle/{Title_ID}', [titleController::class,'update']);
 
 Route::get('/search',[SupervisorController::class,'search']);
 
-Route::get('lecturerDashboard', function () {
-    return view('lecturerDashboard');
-});
-
-
 //Manage Profile ------------------------------------------------------------------------------
 
 //Route::get('/studentProfile','ProfileController@viewStudent'); - version lama x jadi -_-
 
 Route::get('/studentProfile/{Student_ID}',[ProfileController::class, 'viewStudent']);
-
-Route::get('test',[ProfileController::class, 'index']);
 
 Route::get('/lecturerProfile/{Lecturer_ID}',[ProfileController::class, 'viewLecturer']);
 
@@ -190,8 +186,12 @@ Route::get('abc', function () {
 Route::group(['middleware' => ['web']], function () {
     Route::resource('/expertise','lecturerExpertiseController');
 
-    Route::get('lecturerExpertise',[LecturerExpertiseController::class,'show']); 
+    Route::get('lecturerExpertise/{Lecturer_ID}',[LecturerExpertiseController::class,'show']); 
     Route::get('viewExpertise/{Lecturer_ID}',[LecturerExpertiseController::class,'detail']); 
+    Route::get('addedExpertise',[LecturerExpertiseController::class,'showAdded']);
+    Route::get('updatedExpertise',[LecturerExpertiseController::class,'showAdded']); 
+ 
+
 });
 
 //ADD
@@ -205,8 +205,6 @@ Route::post('/addExpertise',[LecturerExpertiseController::class,'store']);
 Route::put('/updateExpertise/{expertise_id}', [LecturerExpertiseController::class,'update']); 
 
 Route::get('/editExpertise/{expertise_id}', [LecturerExpertiseController::class,'edit']); 
-
-
 
 
 

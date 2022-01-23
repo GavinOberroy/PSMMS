@@ -35,7 +35,8 @@ class ProfileController extends Controller
         $lecturers = DB::select('select * from lecturer where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
         $educations = DB::select('select * from lecturer_education where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
         $supervisions = DB::select('select * from student where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
-        return view('ManageProfile.lecturerProfile',['lecturers'=>$lecturers, 'educations'=>$educations, 'supervisions'=>$supervisions]);
+        $expertises = DB::table('expertises')->where('lecturer_email',Auth::user()->email)->get();
+        return view('ManageProfile.lecturerProfile',['lecturers'=>$lecturers, 'educations'=>$educations, 'supervisions'=>$supervisions, 'expertises'=>$expertises]);
     }
 
     public function viewSupervision(){
@@ -92,5 +93,15 @@ class ProfileController extends Controller
         DB::table('lecturer_education')->insert($addEducation);
 
         return back();
+    }
+
+    function showStudent(){
+        $students = DB::table('student')->where('User_ID', Auth::user()->id)->get();
+        return view('studentDashboard', compact('students'));
+    }
+
+    function showLecturer(){
+        $lecturers = DB::table('lecturer')->where('User_ID', Auth::user()->id)->get();
+        return view('lecturerDashboard',compact('lecturers'));
     }
 }

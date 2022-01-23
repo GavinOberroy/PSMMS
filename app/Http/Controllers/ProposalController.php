@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Stroage;
 use App\Models\Proposal;
+use Illuminate\Support\Facades\Auth;
 
 class ProposalController extends Controller
 {
     public function showAllSubmittedProposal()
     {
-        $proposals=Proposal::orderBy('id','DESC')->get();
+        $proposals=Proposal::where('lecturer_email',Auth::user()->email)->get();
         return view('ManageProposal.LecturerProposal',compact('proposals'));
     }
 

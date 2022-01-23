@@ -27,10 +27,9 @@ class titleController extends Controller
         return view('ManageTitle.titleList',['titles'=>$titles]);
     }
 
-    function edit($id)
+    function edit($Title_ID)
     {
-        $titles = Title::where('Title_ID', $id)->first();
-         //dd($titles);
+        $titles = DB::table('titles')->where('Title_ID', $Title_ID)->first();
         return view('ManageTitle.editTitle', compact('titles'));
     }
 
