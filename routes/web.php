@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SupervisorController;
+use App\Http\Controllers\LogbookController; // LogbookController is controller name
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,14 +42,51 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('mana2',[SupervisorController::class,'edit']);
 
     Route::get('projectTitleList','SupervisorController@title');
+    
 });
 
 Route::get('studentDashboard', function () {
     return view('studentDashboard');
 });
 
-Route::get('abc', function () {
-    return view('ManageTitle.AddTitle');
+Route::get('lecturerDashboard', function () {
+    return view('lecturerDashboard');
 });
 
+//LOGBOOK-pergi ke page mana
 
+Route::get('/AddProgress', function () {
+    return view('ManageLogbook.AddProgress');
+});
+
+Route::post('/AddProgress', [LogbookController::class, 'store']);
+
+Route::get('ViewProgress',  [LogbookController::class, 'show']);
+
+
+// Route::get('ViewProgress', function () {
+//     return view('ManageLogbook.ViewProgress');
+// });
+
+Route::get('GenerateLogbook', function () {
+    return view('ManageLogbook.GenerateLogbook');
+});
+
+Route::get('/showUpdated',  [LogbookController::class, 'showUpdatedLog']);
+
+Route::get('/viewAdded',  [LogbookController::class, 'showUpdatedLog']);
+//Insert Logbook
+// Route::put('/AddProgress', 'LogbookController@store');
+
+//Display logbook based on lecturer_ID
+Route::get('logbook', [LogbookController::class,'displayLogbook']);
+//display lecturer logbook
+Route::get('/ApproveLogbook/{Logbook_ID}', [LogbookController::class,'showLogbook']);
+
+// Route::get('/AddProgress', function () {
+//     return view('ManageLogbook.AddProgress');
+// });
+
+// edit logbook
+Route::put('/updateProgress/{Logbook_ID}', [LogbookController::class,'update']);    
+Route::get('/editProgress/{Logbook_ID}', [LogbookController::class,'edit']); 
