@@ -42,6 +42,19 @@
             font-family: dmsanR;
         }
 
+        .item4{
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            height: auto;
+            width: 100%;
+            background-color: #DBF6fd;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            border-radius: 10px;
+            padding-top: 1px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
 
         .welcome h1,
         h2,
@@ -157,10 +170,15 @@
                         <path d="M13.73 21a2 2 0 0 1-3.46 0" />
                     </svg>
                 </button>
+                  
+                @foreach ($students as $std)
                 <button class="profile-btn">
-                    <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
+                    <img src="{{ asset('/assets/img/avatars/'.$std->Student_Image) }}" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
                 </button>
+                @endforeach
+
+
             </div>
             <button class="messages-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -218,10 +236,11 @@
                 <br>
                 <div class="projects-section-line">
                     <div class="projects-status">
-                        <div class="item-status">
-                            <img width="120"src="https://assets.codepen.io/3306515/IMG_2025.jpg" />
-                        </div>
                         @foreach($students as $student)
+                        <div class="item-status">
+                            <img width="120" src="{{ asset('/assets/img/avatars/'.$student->Student_Image) }}" />
+                        </div>
+                        
                         <div class="item-status">
                             <span class="status-number">{{$student->Student_Name}}</span>
                             <br>
@@ -231,11 +250,8 @@
                 </div>
                 <br>
                 <br><br>
-                <div class="grid-container">
-
-                    <div class="item2">
-                        <form>
-                            
+                <div class="grid-container" style="grid-template-columns: auto;">
+                    <div class="item4">
                             <table>
                                 <tr>
                                     <td>Name</td>
@@ -261,17 +277,11 @@
                                     <td>PSM Level</td>
                                     <td>{{$student->PSM_Level}}</td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                             @endforeach 
+                             
                             </table>
-                            @endforeach 
-                        </form>
                     </div>
-                    <div class="item2">
-                        
-                    </div>
+                    
 
                     
 

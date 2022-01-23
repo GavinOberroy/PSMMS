@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Lecturer Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/timelines.css') }}" rel="stylesheet">
@@ -124,9 +124,18 @@
                     </svg>
                 </div>
             </div>
+            
             <div class="app-header-right">
+            <a href="{{ url('logout') }}">Some Text</a>
+            <button class="add-btn" title="Add New Title" a href="{{url('addTitle')}}">
+                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" class="feather feather-plus">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                </button>
                 <button class="notification-btn">
-                    <a href="{{ url('logout') }}">Some Text</a>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                         class="feather feather-bell">
@@ -135,40 +144,36 @@
                     </svg>
                 </button>
                 <!-- Profile Button -->
-                <button class="profile-btn">
-                    <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
+                @foreach($lecturers as $d)
+                <a style="text-decoration:none;" class="profile-btn" href="/lecturerProfile/{{$d->Lecturer_ID}}">
+                    <img src="{{ asset('/assets/img/avatars/'.$d->Lecturer_Image) }}" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
+
                 </button>
+
+                </a>
+                @endforeach
+
+               
             </div>
         </div>
 
         <!-- SIDE BAR -->
         <div class="app-content">
             <div class="app-sidebar">
-                <a href="studentDashboard" class="app-sidebar-link active">
+                <a href="lecturerDashboard" class="app-sidebar-link active">
                     <img src="assets/home.png" alt="" height="25" width="25">
                 </a>
                 <a href="supervisorList" class="app-sidebar-link">
                     <img src="assets/supervisor.png" alt="" height="30" width="30">
                 </a>
-                <a href="viewTitle" class="app-sidebar-link">
-                    <img src="assets/proposal.png" alt="" height="25" width="25">
+                <a href="{{url('lecturerProjectTitle')}}" class="app-sidebar-link">
+                    <img src="assets/title.png" alt="" height="25" width="25">
                 </a>
-                <a href="logbook" class="app-sidebar-link">
+                <a href="{{url('editTitle')}}" class="app-sidebar-link">
                     <img src="assets/book.png" alt="" height="25" width="25">
                 </a>
 
-                <!-- Proposal Lecturer -->
-                <a href="{{ route('ManageProposal.LecturerProposal') }}" class="app-sidebar-link" title="List Submitted Proposal For Lecturer">
-                    <img src="assets/book.png" alt="" height="25" width="25">
-                </a>
-
-                <!-- Proposal Student -->
-                <a href="{{ route('ManageProposal.ProposalForm') }}" class="app-sidebar-link" title="Create Proposal For Student">
-                    <img src="assets/book.png" alt="" height="25" width="25">
-                </a>
-
-               
             </div>
 
 
@@ -186,9 +191,7 @@
                 <div class="grid-container">
                     <div class="item1">
                         <div class="welcome">
-                            <div class="greeting">
-                                <h3>Hi&nbsp;<span>{{ Auth::user()->name }}</span>,</h3>
-                            </div>
+                            
                             <h1>Welcome to PSMMS</h1>
                             <h3>Don't forget to do your homework</h3>
                             <div>
@@ -287,7 +290,7 @@
 
     <script>
         //for the countdown
-        var newYears = '2 Jan 2022'
+        var newYears = '2 Jan 2023'
         const dayEl = document.getElementById('days')
         const hourEl = document.getElementById('hours')
         const minsEl = document.getElementById('mins')

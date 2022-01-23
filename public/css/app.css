@@ -638,10 +638,10 @@ select {
 .prose :where(ol[type="a"]):not(:where([class~="not-prose"] *)) {
   list-style-type: lower-alpha;
 }
-.prose :where(ol[type="A" s]):not(:where([class~="not-prose"] *)) {
+.prose :where(ol[type="A" ]):not(:where([class~="not-prose"] *)) {
   list-style-type: upper-alpha;
 }
-.prose :where(ol[type="a" s]):not(:where([class~="not-prose"] *)) {
+.prose :where(ol[type="a" ]):not(:where([class~="not-prose"] *)) {
   list-style-type: lower-alpha;
 }
 .prose :where(ol[type="I"]):not(:where([class~="not-prose"] *)) {
@@ -650,10 +650,10 @@ select {
 .prose :where(ol[type="i"]):not(:where([class~="not-prose"] *)) {
   list-style-type: lower-roman;
 }
-.prose :where(ol[type="I" s]):not(:where([class~="not-prose"] *)) {
+.prose :where(ol[type="I" ]):not(:where([class~="not-prose"] *)) {
   list-style-type: upper-roman;
 }
-.prose :where(ol[type="i" s]):not(:where([class~="not-prose"] *)) {
+.prose :where(ol[type="i" ]):not(:where([class~="not-prose"] *)) {
   list-style-type: lower-roman;
 }
 .prose :where(ol[type="1"]):not(:where([class~="not-prose"] *)) {
