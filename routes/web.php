@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SupervisorController;
+use App\Http\Controllers\LogbookController; // LogbookController is controller name
 use App\Http\Controllers\LecturerExpertiseController;
 use App\Http\Controllers\titleController;
 use App\Http\Controllers\ProfileController;
@@ -51,6 +52,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('supervisorDetail/{id}',[SupervisorController::class,'detail']);//akan masuk ke profile lecturer (alia punya module)
 
+    Route::get('projectTitleList','SupervisorController@title');
+
+
 });
 //---------------------------------------------------------------------------------------------
 
@@ -60,6 +64,47 @@ Route::get('studentDashboard', function () {
 
 Route::get('lecturerDashboard', function () {
     return view('lecturerDashboard');
+
+});
+
+//LOGBOOK-pergi ke page mana
+
+Route::get('/AddProgress', function () {
+    return view('ManageLogbook.AddProgress');
+});
+
+Route::post('/AddProgress', [LogbookController::class, 'store']);
+
+Route::get('ViewProgress',  [LogbookController::class, 'show']);
+
+
+// Route::get('ViewProgress', function () {
+//     return view('ManageLogbook.ViewProgress');
+// });
+
+Route::get('GenerateLogbook', function () {
+    return view('ManageLogbook.GenerateLogbook');
+});
+
+Route::get('/showUpdated',  [LogbookController::class, 'showUpdatedLog']);
+
+Route::get('/viewAdded',  [LogbookController::class, 'showUpdatedLog']);
+//Insert Logbook
+// Route::put('/AddProgress', 'LogbookController@store');
+
+//Display logbook based on lecturer_ID
+Route::get('logbook', [LogbookController::class,'displayLogbook']);
+//display lecturer logbook
+Route::get('/ApproveLogbook/{Logbook_ID}', [LogbookController::class,'showLogbook']);
+
+// Route::get('/AddProgress', function () {
+//     return view('ManageLogbook.AddProgress');
+// });
+
+// edit logbook
+Route::put('/updateProgress/{Logbook_ID}', [LogbookController::class,'update']);    
+Route::get('/editProgress/{Logbook_ID}', [LogbookController::class,'edit']); 
+
 });
 Route::get('lecturerDashboard', function () {
     return view('lecturerDashboard');
@@ -185,3 +230,4 @@ Route::delete('/contacts/{id}', [ProposalController::class,'destroy'])->name("pr
 Route::get('/download/{file}',[ProposalController::class,'download'])->name("proposalDoc.download");
 
 Route::get('/view/{id}',[ProposalController::class,'view'])->name("proposalDoc.view");
+

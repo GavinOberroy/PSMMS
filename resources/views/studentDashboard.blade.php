@@ -149,6 +149,9 @@
                 <a href="{{url('titleList')}}" class="app-sidebar-link"> 
                     <img src="assets/proposal.png" alt="" height="25" width="25">
                 </a>
+
+                <a href="{{url('AddProgress')}}"  class="app-sidebar-link">
+
                 <a href="{{url('addTitle')}}" class="app-sidebar-link"> 
                     <img src="assets/book.png" alt="" height="25" width="25">
                 </a>
