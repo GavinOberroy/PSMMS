@@ -61,7 +61,7 @@
                             <hr>
                             <div class="form-group text-center">
                                 <div class="col-md-12 text-center">
-                                    <a href="{{ url('/redirects') }}" class="btn btn-info">Back Home</a>
+                                    <a href="{{url()->previous()}}" class="btn btn-info">Back Home</a>
                                 </div>
                               </div>
                         </div>

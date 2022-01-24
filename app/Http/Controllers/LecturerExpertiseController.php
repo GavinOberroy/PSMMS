@@ -16,11 +16,17 @@ class LecturerExpertiseController extends Controller
 {
     //
 
-    function show()
+    function show($Lecturer_ID)
     {
-        // $lecturers = DB::table('lecturer')->where('Lecturer_ID', $id)->get();
+        $lecturers = DB::select('select * from lecturer where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
         $expertises = Expertise::all()->where('lecturer_email',Auth::user()->email);
-        return view('ManageLecturerExpertise.lecturerExpertise', compact('expertises'));
+        return view('ManageLecturerExpertise.lecturerExpertise',['lecturers'=>$lecturers,'expertises'=>$expertises]);
+    }
+
+    function showAdded()
+    {
+        $expertises = Expertise::all()->where('lecturer_email',Auth::user()->email);
+        return view('ManageLecturerExpertise.lecturerExpertise',['expertises'=>$expertises]);
     }
 
     function edit($id)
@@ -43,27 +49,38 @@ class LecturerExpertiseController extends Controller
         return view('ManageLecturerExpertise.viewExpertise', compact('lecturers', 'expertises'));
     }
 
+    function updatedExpertise($Lecturer_ID)
+    {
+        $lecturers = DB::select('select * from lecturer where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
+        $educations = DB::select('select * from lecturer_education where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
+        $supervisions = DB::select('select * from student where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
+        $expertises = DB::table('expertises')->where('lecturer_email',Auth::user()->email)->get();
+        return view('ManageProfile.lecturerProfile',['lecturers'=>$lecturers, 'educations'=>$educations, 'supervisions'=>$supervisions, 'expertises'=>$expertises]);
+    }
+
     function store(Request $request)
     {
         $expertises = new expertise;
         $expertises->expertise_name = $request->expertise_name;
         $expertises->expertise_level = $request->expertise_level;
         $expertises->lecturer_email = Auth::user()->email;
+        $expertises->lecturer_id = Auth::user()->id;
         $expertises->save();
 
         $expertises = Expertise::all()->where('lecturer_email',Auth::user()->email);
-        return Redirect::to('/lecturerExpertise')->with(['expertises'=>$expertises])->with('status', 'Succefully Added');
+        return Redirect::to('addedExpertise')->with(['expertises'=>$expertises])->with('status', 'Succefully Added');
 
     }
 
     function update(Request $request, $id)
     {
         $expertises =  Expertise::where('expertise_id', $id)->first();
+        // $Lecturer_ID = DB::table('lecturer')->where('Lecturer_ID',$id)->get();
         // dd($expertises);
         $expertises->expertise_name = $request->input ('expertise_name');
         $expertises->expertise_level = $request->input ('expertise_level');
         $expertises->save();
-        return Redirect::to('/lecturerExpertise')->with('status', 'Succefully Updated');
+        return Redirect::to('updatedExpertise')->with('status', 'Succefully Updated');
 
     }
 

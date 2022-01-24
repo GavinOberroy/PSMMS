@@ -74,17 +74,17 @@
         <!-- SIDE BAR -->
         <div class="app-content">
             <div class="app-sidebar">
-                <a href="studentDashboard" class="app-sidebar-link">
-                    <img src="assets/home.png" alt="" height="25" width="25">
+                <a href="{{url('lecturerDashboard')}}" class="app-sidebar-link">
+                    <img src="/assets/home.png" alt="" height="25" width="25">
                 </a>
-                <a href="supervisorList" class="app-sidebar-link">
-                    <img src="assets/supervisor.png" alt="" height="30" width="30">
+                <a href="{{url('lecturerProjectTitle')}}" class="app-sidebar-link">
+                    <img src="/assets/title.png" alt="" height="25" width="25">
                 </a>
-                <a href="{{url('addTitle')}}" class="app-sidebar-link active">
-                    <img src="assets/title.png" alt="" height="25" width="25">
+                <a href="{{ route('ManageProposal.LecturerProposal') }}" class="app-sidebar-link" title="List Submitted Proposal For Lecturer">
+                    <img src="/assets/book.png" alt="" height="25" width="25">
                 </a>
-                <a href="{{url('viewTitle')}}" class="app-sidebar-link">
-                    <img src="assets/book.png" alt="" height="25" width="25">
+                <a href="{{url('superviseeLogbook')}}" class="app-sidebar-link"> 
+                    <img src="/assets/proposal.png" alt="" height="25" width="25">
                 </a>
             </div>
 
@@ -139,7 +139,7 @@
                         <div class="form-group row">
                             <div class="offset-sm-3 col-sm-9">
                             <button type="submit" class="btn btn-primary m-2">Add</button>
-                            <button type="submit" class="btn btn-primary m-2"a href="{{url()->previous()}}" class="btn btn-default">Cancel</a>
+                            <button class="btn btn-primary m-2"a href="ManageTitle.LecturerProjectTitle" class="btn btn-default">Cancel</a>
                         
                             </div>
                         </div>

@@ -29,33 +29,10 @@
                 </div>
             </div>
             <div class="app-header-right">
-                <button class="mode-switch" title="Switch Theme">
-                    <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
-                        <defs></defs>
-                        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
-                    </svg>
+                <button class="notification-btn">
+                    <a style="text-decoration: none;" href="{{ url('logout') }}">Logout</a>
+                    <img src="assets/logout.png" height="30" width="30">
                 </button>
-                <button class="add-btn" title="Add New Title">
-                    <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
-                        stroke-linejoin="round" class="feather feather-plus">
-                        <line x1="12" y1="5" x2="12" y2="19" />
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                </button>
-                <button class="notification-btn" onclick="window.location.href='/logout'">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-bell">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-                    </svg>
-                </button>
-                <!--<button class="profile-btn">
-                    <img src="https://assets.codepen.io/3306515/IMG_2025.jpg" /> &nbsp
-                    <span>{{ Auth::user()->name }}</span>
-                </button>-->
             </div>
             <button class="messages-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -74,20 +51,20 @@
         <!-- SIDE BAR -->
         <div class="app-content">
             <div class="app-sidebar">
-                <a href="studentDashboard" class="app-sidebar-link">
+                <a href="{{ url('studentDashboard') }}" class="app-sidebar-link">
                     <img src="assets/home.png" alt="" height="25" width="25">
                 </a>
-                <a href="supervisorList" class="app-sidebar-link">
+                <a href="{{ url('supervisorList') }}" class="app-sidebar-link">
                     <img src="assets/supervisor.png" alt="" height="30" width="30">
                 </a>
-                <a href="{{url('addTitle')}}" class="app-sidebar-link active">
-                    <img src="assets/title.png" alt="" height="25" width="25">
+                <a href="{{url('titleList')}}" class="app-sidebar-link"> 
+                    <img src="assets/proposal.png" alt="" height="25" width="25">
                 </a>
-                <a href="{{url('viewTitle')}}" class="app-sidebar-link">
+                <a href="{{url('/AddProgress')}}" class="app-sidebar-link"> 
                     <img src="assets/book.png" alt="" height="25" width="25">
                 </a>
-                <a href="{{url('AddProgress')}}" class="app-sidebar-link">
-                    <img src="assets/book.png" alt="" height="25" width="25">
+                <a href="{{ route('ManageProposal.ProposalForm') }}" class="app-sidebar-link" title="Create Proposal For Student">
+                    <img src="assets/logbook.png" alt="" height="25" width="25">
                 </a>
             </div>
 
@@ -169,9 +146,9 @@
                         <div class="form-group row">
                             <div class="offset-sm-3 col-sm-9">
                             <button type="submit" class="btn btn-primary m-2" >ADD LOGBOOK</button> 
-                            <button type="reset" class="btn btn-primary m-2" >CANCEL</button>
+                            <button type="reset" class="btn btn-primary m-2" onclick="location.href='{{url()->previous()}}'">CANCEL</button>
                             <br><br>
-                            <button type="button" class="btn btn-primary m-2" >VIEW LOGBOOK</button>
+                            <button type="button" class="btn btn-primary m-2" onclick="location.href='{{"/viewAdded"}}'">VIEW LOGBOOK</button>
                             </div>
                         </div>
                     </form>

@@ -74,23 +74,24 @@
         <!-- SIDE BAR -->
         <div class="app-content">
             <div class="app-sidebar">
-                <a href="studentDashboard" class="app-sidebar-link">
-                    <img src="assets/home.png" alt="" height="25" width="25">
+                <a href="{{url('lecturerDashboard')}}" class="app-sidebar-link">
+                    <img src="/assets/home.png" alt="" height="25" width="25">
                 </a>
-                <a href="supervisorList" class="app-sidebar-link">
-                    <img src="assets/supervisor.png" alt="" height="30" width="30">
+                <a href="{{url('lecturerProjectTitle')}}" class="app-sidebar-link">
+                    <img src="/assets/title.png" alt="" height="25" width="25">
                 </a>
-                <a href="{{url('addTitle')}}" class="app-sidebar-link active">
-                    <img src="assets/title.png" alt="" height="25" width="25">
+                <a href="{{ route('ManageProposal.LecturerProposal') }}" class="app-sidebar-link" title="List Submitted Proposal For Lecturer">
+                    <img src="/assets/book.png" alt="" height="25" width="25">
                 </a>
-                <a href="{{url('viewTitle')}}" class="app-sidebar-link">
-                    <img src="assets/book.png" alt="" height="25" width="25">
+                <a href="{{url('superviseeLogbook')}}" class="app-sidebar-link"> 
+                    <img src="/assets/proposal.png" alt="" height="25" width="25">
                 </a>
             </div>
 
-            @foreach($titles as $title)
+            
             <div class="projects-section">
                 <br>
+                
                 <div class="projects-section-line">
                     <div class="projects-status">
                     
@@ -101,21 +102,22 @@
                         <a style="text-decoration:none; color: black;">
                          <div class="project-box-wrapper">
                          <div class="project-box" style="background-color: #dbf6fd;">
-
-                         <form method="post" action="/updateTitle/{{$titles->Title_ID}}" enctype="multipart/form-data">
+                            @foreach($titles as $title)    
+                         <form method="post" action="/updateTitle/{{$title->Title_ID}}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+                        
                         <div class="box-content-subheader">
                              <label for="Title_Name" class="col-sm-3 col-form-label"><b>PROJECT TITLE :</b></label>
                              <div class="input--style-5">
-                                <input  name="Title_Name" type="text" class="form-control" style="height: 30px; width:1000px;" value="{{$titles->Title_Name}}">   
+                                <input  name="Title_Name" type="text" class="form-control" style="height: 30px; width:1000px;" value="{{$title->Title_Name}}">   
                              </div>
                         </div>
                         <br>
                         <div class="box-content-subheader">
                             <label for="Title_Type" class="col-sm-3 col-form-label"><b>PROJECT TYPE :</b></label>
                             <div class="input--style-5">
-                            <input name="Title_Type" type="text" class="form-control" style="height: 30px; width:1000px;"  value="{{$titles->Title_Type}}">
+                            <input name="Title_Type" type="text" class="form-control" style="height: 30px; width:1000px;"  value="{{$title->Title_Type}}">
                         
                         
                             </select>
@@ -125,7 +127,7 @@
                         <div class="box-content-subheader">
                             <label for="Title_Description" class="col-sm-3 col-form-label"><b>PROJECT DESCRIPTION :</b></label>
                             <div class="input--style-5">
-                            <input name="Title_Description" type="text" class="dropdown-item" style="height: 100px; width:100%;" value="{{$titles->Title_Description}}"></p>  
+                            <input name="Title_Description" type="text" class="dropdown-item" style="height: 100px; width:100%;" value="{{$title->Title_Description}}"></p>  
                                 <i class="fa fa-edit"></i>
                         </div>
                         <br>
@@ -133,10 +135,11 @@
                         <div class="box-content-subheader">
                             <label for="Required_Skill" class="col-sm-3 col-form-label"><b>SKILLS REQUIRED (SPECIFIC TO THE PROJECT) :</b></label>
                             <div class="input--style-5">
-                            <input name="Required_Skill" type="text" class="form-control" style="height: 30px; width:100%;" value="{{$titles->Required_Skill}}"></p>  
+                            <input name="Required_Skill" type="text" class="form-control" style="height: 30px; width:100%;" value="{{$title->Required_Skill}}"></p>  
                         </div>
                         <br>
                         </div>
+                        @endforeach
                         <div class="form-group row">
                             <div class="offset-sm-3 col-sm-9">
                             <button type="submit" class="btn btn-primary m-2">Save Title</button>
@@ -144,6 +147,8 @@
                             </div>
                         </div>
                     </form>
+                    
+                    
 
                          </div>
                          </div>
@@ -154,14 +159,14 @@
 
                     
                 </div>
-
+                
 
                 <div id=editTitle class="project-boxes jsGridView">
 
                     
                 
             </div>
-            @endforeach 
+             
            
         </div>
     </div>
