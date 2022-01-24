@@ -230,7 +230,7 @@
                     
            
                         <div class="item-status">
-                            <span class="status-number">Lecturer Project Title List</span>
+                            <span class="status-number">Title List</span>
                             
                         <br>    
                         <a style="text-decoration:none; color: black;">
@@ -254,19 +254,21 @@
         
 
                     @foreach($titles as $title)
-                                    <tr>
-                                        <td><?php echo $title->Title_Name; ?></td>
-                                        <td><?php echo $title->Title_Type; ?></td>
-                                        <td><?php echo $title->Lecturer_Name; ?></td>
-                                        <td><?php echo $title->Lecturer_Email; ?></td>
-                                        <td><div class="menu effect-12" style="height: 10px; width:100px;">        
-                                        <ul>
-                                        <li><a href="{{url('book')}}">Book</a></li>
-                                        </ul>
-                                        </div></td>
-                                        
-                                    </tr>
-                   
+                    @if ($title->Title_Status != "NOT AVAILABLE")
+                    <tr>
+                        <td><?php echo $title->Title_Name; ?></td>
+                        <td><?php echo $title->Title_Type; ?></td>
+                        <td><?php echo $title->Lecturer_Name; ?></td>
+                        <td><?php echo $title->Lecturer_Email; ?></td>
+                        <td><div class="menu effect-12" style="width:100px;">        
+                        <ul>
+                        <li><a href="{{url('book')}}">Book</a></li>
+                        </ul>
+                        </div></td>
+                        
+                    </tr>
+                    @endif
+               
                     </div>
                 </div>
             </div>

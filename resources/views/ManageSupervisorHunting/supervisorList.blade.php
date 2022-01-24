@@ -146,7 +146,7 @@
                                 </div>
                                 <div class="menu effect-12">
                                     <ul>
-                                        <li><button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#bookModal">Book</button> </li>
+                                        <li><button type="button" class="btn btn-primary m-2" onclick="location.href='{{"ProposalForm"}}'">Book</button> </li>
                                         &nbsp;
                                         <li><button type="button" class="btn btn-primary m-2" onclick="location.href='{{"supervisorDetail/".$supervisor->Lecturer_ID }}'">Detail</button></li>
 

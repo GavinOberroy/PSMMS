@@ -27,6 +27,8 @@
 */
 
 html {
+  background-image: url("/assets/background.jpg");
+
   line-height: 1.5; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   -moz-tab-size: 4; /* 3 */
@@ -1685,6 +1687,14 @@ select {
           text-decoration-line: underline;
 }
 .antialiased {
+  width: 50%;
+  margin: auto;
+  margin-top: 10%;
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+  padding: 20px;
+  z-index: 100;
+  
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

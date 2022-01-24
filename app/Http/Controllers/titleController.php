@@ -29,15 +29,14 @@ class titleController extends Controller
 
     function edit($id)
     {
-        $titles = Title::where('Title_ID', $id)->first();
-         //dd($titles);
+        $titles = DB::table('titles')->where('Title_ID', $Title_ID)->get();
         return view('ManageTitle.editTitle', compact('titles'));
     }
 
-    function view($id)
+    function view($Title_ID)
     {
         //$lecturers = DB::table('lecturers')->where('Lecturer_ID', $id)->get();
-        $titles = DB::table('titles')->where('Title_ID', $id)->get();
+        $titles = DB::table('titles')->where('Title_ID', $Title_ID)->get();
         return view('ManageTitle.viewTitle',['titles' => $titles]);
         
     }
@@ -84,8 +83,28 @@ class titleController extends Controller
         $titles->Required_Skill=$request->input ('Required_Skill');
         $titles->Title_Status='AVAILABLE';
         $titles->save();
-        return Redirect::to('/viewTitle')->with('status', 'Succefully Updated');
+        return Redirect::to('/viewUpdatedTitle')->with('status', 'Succefully Updated');
 
     }
+
+    public function destroy($Title_ID)
+    {
+        $titles=Title::findOrFail($Title_ID);
+        $titles->delete();
+        return back()->with('message','Title has been delete sucessfully');
+    }
+
+    // function bookTitle(Request $request, $id)
+    // {
+    //     $titles = Title::where('Title_ID', $id)->first();
+    //     $titles->Title_Name=$request->input ('Title_Name');
+    //     $titles->Title_Type=$request->input ('Title_Type');
+    //     $titles->Title_Description=$request->input ('Title_Description');
+    //     $titles->Required_Skill=$request->input ('Required_Skill');
+    //     $titles->Title_Status='AVAILABLE';
+    //     $titles->save();
+    //     return Redirect::to('/viewUpdatedTitle')->with('status', 'Succefully Updated');
+    
+    // }
 
 }

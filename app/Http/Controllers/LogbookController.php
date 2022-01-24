@@ -62,6 +62,24 @@ class LogbookController extends Controller
         return view('ManageLogbook.ApproveLogbook', compact('logbooks'));
         
     }
+
+    public function updateStatusApprove(Request $request,$Logbook_ID)
+    {
+        $logbooks = Logbook::find($Logbook_ID);
+        $logbooks->Status_Approval = "Approve";
+        $logbooks->save();
+        //Logbook::where('Logbook_ID',$Logbook_ID)->update(['Status_Approval','Approved']);
+        return back();
+    }
+
+    public function updateStatusReject(Request $request,$Logbook_ID)
+    {
+        $logbooks = Logbook::find($Logbook_ID);
+        $logbooks->Status_Approval = "Rejected";
+        $logbooks->save();
+        //Logbook::where('Logbook_ID',$Logbook_ID)->update(['Status_Approval','Approved']);
+        return back();
+    }
     
     //    function detail($id)
     // {
