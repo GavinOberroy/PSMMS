@@ -100,12 +100,18 @@ Route::get('logbook', [LogbookController::class,'showUpdatedLog']);
 Route::get('/ApproveLogbook/{Logbook_ID}', [LogbookController::class,'showLogbook']);
 
 Route::get('superviseeLogbook',  [LogbookController::class, 'displayLogbook']);
+
+Route::get('approveLogbook/{Logbook_ID}',  [LogbookController::class, 'updateStatusApprove']);
+
+Route::get('rejectLogbook/{Logbook_ID}',  [LogbookController::class, 'updateStatusReject']);
+
 // Route::get('/AddProgress', function () {
 //     return view('ManageLogbook.AddProgress');
 // });
 
 // edit logbook
-Route::put('/updateProgress/{Logbook_ID}', [LogbookController::class,'update']);    
+Route::put('/updateProgress/{Logbook_ID}', [LogbookController::class,'update']); 
+
 Route::get('/editProgress/{Logbook_ID}', [LogbookController::class,'edit']); 
 
 Route::get('lecturerDashboard', function () {
@@ -113,32 +119,33 @@ Route::get('lecturerDashboard', function () {
 });
 Route::get('lecturerDashboard',[ProfileController::class,'showLecturer']);
 
-
-
+Route::get('lecturerDashboard',[ProfileController::class,'showLecturer']);
 //Title List
 Route::get('titleList',[titleController::class,'show']);
-
 //add Title
 Route::get('addTitle', function () {
     return view('ManageTitle.addTitle');
 });
 
 Route::get('/insert', [titleController::class,'insert']);
-
 //Insert title
 Route::post('/addTitle', [titleController::class,'store']);
-Route::get('/insert', [titleController::class,'insert']);
 
+Route::get('/insert', [titleController::class,'insert']);
 //display lecturer project title
 Route::get('/lecturerProjectTitle', [titleController::class,'title']);
-
 //display Title by ID
 Route::get('/viewTitle/{Title_ID}', [titleController::class,'view']);
-
 //edit Title by ID
 Route::get('/editTitle/{Title_ID}', [titleController::class,'edit']);
-Route::put('/updateTitle/{Title_ID}', [titleController::class,'update']); 
 
+Route::put('/updateTitle/{Title_ID}', [titleController::class,'update']);
+
+Route::put('book', [titleController::class,'bookTitle']);
+
+Route::get('/viewUpdatedTitle', [titleController::class,'title']);  
+
+Route::get('/deleteTitle/{Title_ID}', [titleController::class,'destroy']);
 //Route::delete('/lecturerProjectTitle/{Title_ID}', [titleController::class,'delete']);
 
 // Route::get('/insert', [titleController::class,'insert']);
@@ -206,8 +213,7 @@ Route::put('/updateExpertise/{expertise_id}', [LecturerExpertiseController::clas
 
 Route::get('/editExpertise/{expertise_id}', [LecturerExpertiseController::class,'edit']); 
 
-
-
+  
 
 
 

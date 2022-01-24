@@ -203,7 +203,7 @@
                                     <th scope="col">PROJECT TITLE</th>
                                     <th scope="col">PROJECT TYPE</th>
                                     <th scope="col">SKILL REQUIRED </th>
-                                    <th scope="col">ACTION </th>
+                                    <th scope="col" >ACTION </th>
                                 </tr>
 
                                 <tbody>
@@ -225,7 +225,7 @@
                                             </div></td>
                                         <td><div class="menu effect-12" style="width:100px;">        
                                             <ul>
-                                            <li><a href="{{url('lecturerProjectTitle')}}">Delete</a></li>
+                                            <li><a href="/deleteTitle/{{$title->Title_ID}}">Delete</a></li>
                                             </ul>
                                             </div></td>
                                                             

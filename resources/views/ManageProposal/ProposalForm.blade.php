@@ -17,22 +17,27 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="name">Student Name</label>
-                                <input type="text" class="form-control" name="Student_Name" placeholder="student name">
+                                <input type="text" class="form-control" name="Student_Name" placeholder="Student Name">
                             </div>
 
                             <div class="form-group">
                                 <label for="name">NO. MATRIK (MATRIC ID)</label>
-                                <input type="text" class="form-control" name="Student_ID" placeholder="student Id">
+                                <input type="text" class="form-control" name="Student_ID" placeholder="Student Matric ID">
                             </div>
 
                             <div class="form-group">
                                 <label for="name">SUPERVISOR</label>
-                                <input type="text" class="form-control" name="SV_Name" placeholder="supervisor name for psm">
+                                <input type="text" class="form-control" name="SV_Name" placeholder="Supervisor Name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">SUPERVISOR EMAIL</label>
+                                <input type="text" class="form-control" name="lecturer_email" placeholder="Supervisor Email">
                             </div>
 
                             <div class="form-group">
                                 <label for="name">PROJECT TITLE</label>
-                                <input type="text" class="form-control" name="Proposal_Title" placeholder="project title">
+                                <input type="text" class="form-control" name="Proposal_Title" placeholder="Project Title">
                             </div>
 
                            

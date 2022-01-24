@@ -46,6 +46,7 @@ class ProposalController extends Controller
         $data->Student_ID=$request->Student_ID;
         $data->SV_Name=$request->SV_Name;
         $data->Proposal_Title=$request->Proposal_Title;
+        $data->lecturer_email=$request->lecturer_email;
         $data->Proposal_Type=$request->Proposal_Type;
         $data->save();
         return redirect()->route('ManageProposal.ProposalForm')->with('message',"Your Proposal has bee added sucessfully");
@@ -62,8 +63,7 @@ class ProposalController extends Controller
         {
             $proposal=Proposal::findOrFail($id);
             $proposal->delete();
-
-            return back()->with('message','Proposal has bee delete sucessfully');
+            return back()->with('message','Proposal has been delete sucessfully');
         }
 
     public function download(Request $request,$file)

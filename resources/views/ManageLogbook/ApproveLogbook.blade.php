@@ -209,6 +209,7 @@
 
                                 <tbody>
                                 @foreach($logbooks as $logbook)
+                                @if ($logbook->Status_Approval == "Not Approve")
                                     <tr>
                                         
                                         <td><?php echo $logbook->Student_Name; ?></td>
@@ -217,15 +218,15 @@
                                         <td><?php echo $logbook->Logbook_Date; ?></td>
                                         <td><div class="menu effect-12" style="width:100px;">        
                                             <ul>
-                                            <li><a href="">APPROVE</a></li>
+                                            <li><a href="approveLogbook/{{$logbook->Logbook_ID}}">APPROVE</a></li>
                                             </ul>
                                             </div></td>
                                         <td><div class="menu effect-12" style="width:100px;">        
                                             <ul>
-                                            <li><a href="">REJECT</a></li>
+                                            <li><a href="rejectLogbook/{{$logbook->Logbook_ID}}">REJECT</a></li>
                                             </ul>
                                             </div></td>
-                                        
+                                @endif        
                                                             
                                         
                                         
