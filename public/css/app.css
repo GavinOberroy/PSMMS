@@ -1687,12 +1687,7 @@ select {
           text-decoration-line: underline;
 }
 .antialiased {
-  width: 50%;
-  margin: auto;
-  margin-top: 10%;
-  box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
-  padding: 20px;
-  z-index: 100;
+  
   
 
   -webkit-font-smoothing: antialiased;

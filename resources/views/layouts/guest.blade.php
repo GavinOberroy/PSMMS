@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html style="background-image: url('/assets/background.jpg');" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,12 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
+        <div class="font-sans text-gray-900 antialiased" style="width: 50%;
+        margin: auto;
+        margin-top: 10%;
+        box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+        padding: 20px;
+        z-index: 100;">
             {{ $slot }}
         </div>
     </body>
