@@ -12,31 +12,14 @@ use App\Http\Controllers\Controller;
 
 class SupervisorController extends Controller
 {
-    //
+    //Function to show all the lecturer from the database
     function show()
     {
         $lecturers = DB::table('lecturer')->get();
         return view('ManageSupervisorHunting.supervisorList', compact('lecturers'));
     }
 
-    function detail($Lecturer_ID)
-    {
-        $lecturers = DB::select('select * from lecturer where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
-        $educations = DB::select('select * from lecturer_education where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
-        $supervisions = DB::select('select * from student where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
-        $expertises = DB::table('expertises')->where('lecturer_email',Auth::user()->email)->get();
-        return view('ManageProfile.lecturerProfile',['lecturers'=>$lecturers, 'educations'=>$educations, 'supervisions'=>$supervisions, 'expertises'=>$expertises]);
-    }
-
-    function lecturerDetail($Lecturer_ID)
-    {
-        $lecturers = DB::select('select * from lecturer where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
-        $educations = DB::select('select * from lecturer_education where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
-        $supervisions = DB::select('select * from student where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
-        $expertises = DB::select('select * from expertises where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
-        return view('ManageProfile.lecturerDetail',['lecturers'=>$lecturers, 'educations'=>$educations, 'supervisions'=>$supervisions, 'expertises'=>$expertises]);
-    }
-
+    //Function to search the lecturer based on keywords entered
     public function search()
     {
         $search_text = $_GET['query'];

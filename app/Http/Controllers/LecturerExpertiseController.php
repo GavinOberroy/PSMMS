@@ -14,8 +14,7 @@ use App\Http\Controllers\Controller;
 
 class LecturerExpertiseController extends Controller
 {
-    //
-
+    //retrieve lecturer info and expertise info to view to the lecturer expertise page
     function show($Lecturer_ID)
     {
         $lecturers = DB::select('select * from lecturer where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
@@ -23,12 +22,14 @@ class LecturerExpertiseController extends Controller
         return view('ManageLecturerExpertise.lecturerExpertise',['lecturers'=>$lecturers,'expertises'=>$expertises]);
     }
 
+    //display expertise info
     function showAdded()
     {
         $expertises = Expertise::all()->where('lecturer_email',Auth::user()->email);
         return view('ManageLecturerExpertise.lecturerExpertise',['expertises'=>$expertises]);
     }
 
+    //retrieve expertise info by id
     function edit($id)
     {
         $expertises =  Expertise::where('expertise_id', $id)->first();
@@ -41,6 +42,7 @@ class LecturerExpertiseController extends Controller
     //     $data = Expertise::find($id);
     // }
 
+    //retrieve lecturer info and expertise info to display to the student view expertise page
     function detail($id)
     {
         $lecturers = DB::table('lecturer')->where('Lecturer_ID', $id)->get();
@@ -49,6 +51,7 @@ class LecturerExpertiseController extends Controller
         return view('ManageLecturerExpertise.viewExpertise', compact('lecturers', 'expertises'));
     }
 
+    //----
     function updatedExpertise($Lecturer_ID)
     {
         $lecturers = DB::select('select * from lecturer where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
@@ -58,6 +61,7 @@ class LecturerExpertiseController extends Controller
         return view('ManageProfile.lecturerProfile',['lecturers'=>$lecturers, 'educations'=>$educations, 'supervisions'=>$supervisions, 'expertises'=>$expertises]);
     }
 
+    //store new expertise info into database
     function store(Request $request)
     {
         $expertises = new expertise;
@@ -72,6 +76,7 @@ class LecturerExpertiseController extends Controller
 
     }
 
+    //update expertise info in the database
     function update(Request $request, $id)
     {
         $expertises =  Expertise::where('expertise_id', $id)->first();
@@ -83,5 +88,4 @@ class LecturerExpertiseController extends Controller
         return Redirect::to('updatedExpertise')->with('status', 'Succefully Updated');
 
     }
-
-}   
+}

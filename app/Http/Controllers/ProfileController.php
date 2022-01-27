@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 
 class ProfileController extends Controller
 {
-    //
+    //testing
     public function index()
     {
         $students = DB::select('select * from student where User_ID = :id', ['id' => Auth::user()->id]);
@@ -28,6 +28,7 @@ class ProfileController extends Controller
         return view('ManageProfile.studentProfile',['students'=>$students]);
     }
 
+    //student view lecturer profile data
     function lecturerDetail($Lecturer_ID)
     {
         $lecturers = DB::select('select * from lecturer where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
@@ -48,11 +49,13 @@ class ProfileController extends Controller
         return view('ManageProfile.lecturerProfile',['lecturers'=>$lecturers, 'educations'=>$educations, 'supervisions'=>$supervisions, 'expertises'=>$expertises]);
     }
 
+    //not valid -tak jadi-
     public function viewSupervision(){
         $supervisions = DB::select('select * from student where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
         return view('ManageProfile.lecturerProfile',['supervisions'=>$supervisions]);
     }
 
+    //edit lecturer profile
     public function editProfile(Request $request){
         $lecturerID = $request->lecturerID;
         $lecturerName = $request->lecturerName;
@@ -60,7 +63,7 @@ class ProfileController extends Controller
         $lecturerOfficeNo = $request->lecturerOfficeNo;
         $lecturerBiography = $request->lecturerBiography;
 
-        //update to the lecturer table in database
+        //update to the lecturer table data 
         $updateLecturer = [
             'Lecturer_ID' => $lecturerID,
             'Lecturer_Name' => $lecturerName,
@@ -69,18 +72,21 @@ class ProfileController extends Controller
             'Lecturer_Biography' => $lecturerBiography,
         ];
 
+        //update to the lecturer table in database
         DB::table('lecturer')->where('Lecturer_ID', $request->lecturerID)->update($updateLecturer);
 
         return back();
         //redirect()->route('lecturerProfile')->with('editLecturer');
     }
 
+    //delete education in lecturer profile 
     public function deleteEducation($id){
         $delete = DB::table('lecturer_education')->where('Education_ID', $id)->delete();
 
         return back();
     }
 
+    //edit and update education in lecturer profile 
     public function editEducation(Request $eduLecturer){
         $eduID = $eduLecturer->eduID;
         $eduInfo = $eduLecturer->eduInfo;
@@ -90,6 +96,7 @@ class ProfileController extends Controller
         return back();
     }
 
+    //add new education in lecturer profile 
     public function addEducation(Request $newEducation){
         $lectID = $newEducation->lectID;
         $newEdu = $newEducation->newEdu;
@@ -99,18 +106,10 @@ class ProfileController extends Controller
             'Education_Info' => $newEdu,
         ];
 
+        //insert new education to lecturer education table
         DB::table('lecturer_education')->insert($addEducation);
 
         return back();
     }
 
-    function showStudent(){
-        $students = DB::table('student')->where('User_ID', Auth::user()->id)->get();
-        return view('studentDashboard', compact('students'));
-    }
-
-    function showLecturer(){
-        $lecturers = DB::table('lecturer')->where('User_ID', Auth::user()->id)->get();
-        return view('lecturerDashboard',compact('lecturers'));
-    }
 }

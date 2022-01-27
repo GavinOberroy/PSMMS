@@ -11,3 +11,5 @@ class LogbookModel extends Model
     public $timestamps = false;
     
 }
+
+//lama

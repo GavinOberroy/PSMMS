@@ -15,6 +15,7 @@ class HomeController extends Controller
 
         if($role=='1')
         {
+            //retrieve user data for lecturer 
             $lecturers = DB::table('lecturer')->where('User_ID', Auth::user()->id)->get();
             
             return view('lecturerDashboard',compact('lecturers'));
@@ -28,6 +29,7 @@ class HomeController extends Controller
             //dd($data);
             //return view('mana2',['supervisors' => $data]);
 
+             //retrieve user data for student
             $students = DB::table('student')->where('User_ID', Auth::user()->id)->get();
             return view('studentDashboard', compact('students'));
         }
@@ -56,10 +58,23 @@ class HomeController extends Controller
 
     }
 
+    //logout from psmms system
     public function logout()
     {        
         Auth::logout();
 
         return redirect('/');
+    }
+
+    //to return back data to student dashboard
+    function showStudent(){
+        $students = DB::table('student')->where('User_ID', Auth::user()->id)->get();
+        return view('studentDashboard', compact('students'));
+    }
+
+    //to return back data to lecturer dashboard
+    function showLecturer(){
+        $lecturers = DB::table('lecturer')->where('User_ID', Auth::user()->id)->get();
+        return view('lecturerDashboard',compact('lecturers'));
     }
 }

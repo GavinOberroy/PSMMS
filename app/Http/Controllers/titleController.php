@@ -14,25 +14,24 @@ use Redirect;
 class titleController extends Controller
 {
     //
-  
-    function showAllSubmittedTitle()
-    {
-        $title=titles::orderBy('id','DESC')->get();
-        return view('ManageTitle.lecturerProjectTitle',['titles'=>$titles]);
-    }
 
+
+    //retrieve lecturers’ title information list and display it at student page.
     function show()
     {
         $titles = DB::table('titles')->get();
         return view('ManageTitle.titleList',['titles'=>$titles]);
     }
 
+    //edit the lecturer’s title information
     function edit($Title_ID)
     {
         $titles = DB::table('titles')->where('Title_ID', $Title_ID)->get();
         return view('ManageTitle.editTitle', compact('titles'));
     }
 
+
+    //retrieve the lecturers’ title details information by Title_ID
     function view($Title_ID)
     {
         //$lecturers = DB::table('lecturers')->where('Lecturer_ID', $id)->get();
@@ -41,12 +40,14 @@ class titleController extends Controller
         
     }
 
+    //retrieve all the lecturers’ title information 
     function title()
     {
         $titles = Title::all()->where('Lecturer_Email',Auth::user()->email);
         return view('ManageTitle.lecturerProjectTitle',['titles'=>$titles]);
     }
 
+    //
     function delete($id)
     {
         //$lecturers = DB::table('lecturers')->where('Lecturer_ID', $id)->get();
@@ -55,6 +56,7 @@ class titleController extends Controller
         
     }
 
+    //Insert the title information 
     function store(Request $request)
     {
         $titles = new title;
@@ -74,6 +76,7 @@ class titleController extends Controller
 
     }
 
+    //update the lecturer’s title information
     function update(Request $request, $id)
     {
         $titles = Title::where('Title_ID', $id)->first();
@@ -87,11 +90,18 @@ class titleController extends Controller
 
     }
 
+    //delete the lecturer’s title information by Title_ID
     public function destroy($Title_ID)
     {
         $titles=Title::findOrFail($Title_ID);
         $titles->delete();
         return back()->with('message','Title has been delete sucessfully');
+    }
+
+    function showAllSubmittedTitle()
+    {
+        $title=titles::orderBy('id','DESC')->get();
+        return view('ManageTitle.lecturerProjectTitle',['titles'=>$titles]);
     }
 
     // function bookTitle(Request $request, $id)

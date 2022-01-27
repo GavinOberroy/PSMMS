@@ -18,18 +18,7 @@ class LogbookController extends Controller
         return view(logbook.create);
     }
 
-    // public function store(Request $request)
-    // {
-    //     $logbook = new Logbook;
-    //     $logbook->Logbook_Week = $request->input('Logbook_Week');
-    //     $logbook->Logbook_Date = $request->input('Logbook_Date');
-    //     $logbook->Logbook_Time = $request->input('Logbook_Time');
-    //     $logbook->Current_Progress = $request->input('Current_Progress');
-    //     $logbook->Upcoming_Progress = $request->input('Upcoming_Progress');
-    //     $logbook->save();
-    //     return redirect()->back()->with('status','Logbook Added Successfully');
-    // }
-
+    //Method to save the logbook progress details into database.
     function store(Request $request)
     {
         $logbooks = new Logbook;
@@ -45,82 +34,65 @@ class LogbookController extends Controller
         $logbooks->Status_Approval='Not Approve';
 
         $logbooks->save();
-
-        // $post->save();
-        // return redirect()->route('ManageTitle.lecturerProjectTitle',['titles'=>$titles]);
         
         $logbooks = Logbook::all()->where('Student_Email',Auth::user()->email);
         return Redirect::to('/viewAdded')->with(['logbooks' => $logbooks]);
        
-        // return Redirect::to('/lecturerProjectTitle')->with(['titles'=>$titles]);
     }
     
+    //Method to retrieve the students’s logbook progress details and display it at lecturer page
     function showLogbook($id)
     {
-        //$lecturers = DB::table('lecturers')->where('Lecturer_ID', $id)->get();
+        
         $logbooks = DB::table('logbooks')->where('Student_Email',Auth::user()->email)->get();
         return view('ManageLogbook.ApproveLogbook', compact('logbooks'));
         
     }
 
+    //Method to retrieve student logbook status approval 
     public function updateStatusApprove(Request $request,$Logbook_ID)
     {
         $logbooks = Logbook::find($Logbook_ID);
         $logbooks->Status_Approval = "Approve";
         $logbooks->save();
-        //Logbook::where('Logbook_ID',$Logbook_ID)->update(['Status_Approval','Approved']);
+        
         return back();
     }
 
+    //Method to retrieve student logbook status approval 
     public function updateStatusReject(Request $request,$Logbook_ID)
     {
         $logbooks = Logbook::find($Logbook_ID);
         $logbooks->Status_Approval = "Rejected";
         $logbooks->save();
-        //Logbook::where('Logbook_ID',$Logbook_ID)->update(['Status_Approval','Approved']);
+        
         return back();
     }
     
-    //    function detail($id)
-    // {
-    //     $lecturers = DB::table('lecturer')->where('Lecturer_ID', $id)->get();
-    //     $expertises = DB::table('expertises')->where('lecturer_email',Auth::user()->email)->get();
-    //     //return view('ManageLecturerExpertise.viewExpertise',['lecturers' => $lecturers]);
-    //     return view('ManageLecturerExpertise.viewExpertise', compact('lecturers', 'expertises'));
-    // }
-
-
-    // function show()
-    // {
-    //     $logbooks = DB::table('logbooks')->get();
-    //     return view('ManageLogbook.ViewProgress',['logbooks' => $logbooks]);
-    // }
+    //Method to retrieve the students’s logbook progress details and display at student page. 
     function showUpdatedLog()
     {
-        //$lecturers = DB::table('lecturers')->where('Lecturer_ID', $id)->get();
+        
         $logbooks = DB::table('logbooks')->where('Student_Email',Auth::user()->email)->get();
         return view('ManageLogbook.ViewProgress', compact('logbooks'));
         
     }
 
+    //Method to retrieve the students’s logbook progress details and display at lecturer page. 
     function displayLogbook()
     {
         $logbooks = Logbook::all()->where('Lecturer_Email',Auth::user()->email);
         return view('ManageLogbook.ApproveLogbook',['logbooks' => $logbooks]);
     }
 
-    // function generate()
-    // {
-    //     $logbooks = DB::table('logbooks')->get();
-    //     return view('ManageLogbook.ViewProgress',['logbooks' => $logbooks]);
-    // }
-
+    //Method to edit the logbook progress details into database
     function edit($id)
     {
         $logbooks =  Logbook::where('Logbook_ID', $id)->first();
         return view('ManageLogbook.EditProgress', compact('logbooks'));
     }
 
+    //Method to update the logbook progress details into database 
     function update(Request $request, $id)
     {
         $logbooks =  Logbook::where('Logbook_ID', $id)->first();

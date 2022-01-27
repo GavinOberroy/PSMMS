@@ -9,16 +9,6 @@ use App\Http\Controllers\titleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProposalController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 //Auth::routes();
 
@@ -41,18 +31,16 @@ Route::group(['middleware' => ['auth']], function() {
 
 Route::get('/redirects',[HomeController::class,"index"]);
 
-//Manage Supervisor Hunting ------------------------------------------------------------------------------
 
-Route::GET('Supervisor.edit/{id}', [SupervisorController::class,'edit']);
+
+//Manage Supervisor Hunting Route - Afif-----------------------------------------------------------------------------
 
 Route::group(['middleware' => ['web']], function () {
     Route::resource('/supervisor','SupervisorController');
 
     Route::get('supervisorList',[SupervisorController::class,'show']);
 
-    Route::get('supervisorDetail/{Lecturer_ID}',[SupervisorController::class,'detail']);//akan masuk ke profile lecturer (alia punya module)
-
-    Route::get('projectTitleList','SupervisorController@title');
+    Route::get('/search',[SupervisorController::class,'search']);
 
     Route::get('viewLectDetail/{Lecturer_ID}',[ProfileController::class,'lecturerDetail']);
 
@@ -63,37 +51,31 @@ Route::group(['middleware' => ['web']], function () {
 //---------------------------------------------------------------------------------------------
 
 //GET STUDENT PROFILE IMAGE ON DASHBOARD
-Route::get('studentDashboard',[ProfileController::class,'showStudent']);
+Route::get('studentDashboard',[HomeController::class,'showStudent']);
+
+Route::get('lecturerDashboard',[HomeController::class,'showLecturer']);
 
 Route::get('lecturerDashboard', function () {
     return view('lecturerDashboard');
 
 });
 
-//LOGBOOK-pergi ke page mana
+//Manage Logbook Route - Nureen -----------------------------------------------------------------------------
 
 Route::get('/AddProgress', function () {
     return view('ManageLogbook.AddProgress');
 });
 
 Route::post('/AddProgress', [LogbookController::class, 'store']);
-
-Route::get('ViewProgress',  [LogbookController::class, 'show']);
-
-
-// Route::get('ViewProgress', function () {
-//     return view('ManageLogbook.ViewProgress');
-// });
-
 Route::get('GenerateLogbook', function () {
     return view('ManageLogbook.GenerateLogbook');
 });
-
-Route::get('/showUpdated',  [LogbookController::class, 'showUpdatedLog']);
+//////
+Route::get('/showUpdated',  [LogbookController::class, 'showUpdatedLog']); //ok
 
 Route::get('/viewAdded',  [LogbookController::class, 'showUpdatedLog']);
-//Insert Logbook
 // Route::put('/AddProgress', 'LogbookController@store');
+
 
 //Display logbook based on lecturer_ID
 Route::get('logbook', [LogbookController::class,'showUpdatedLog']);
@@ -103,10 +85,6 @@ Route::get('/ApproveLogbook/{Logbook_ID}', [LogbookController::class,'showLogboo
 Route::get('superviseeLogbook',  [LogbookController::class, 'displayLogbook']);
 
 Route::get('approveLogbook/{Logbook_ID}',  [LogbookController::class, 'updateStatusApprove']);
-
-Route::get('rejectLogbook/{Logbook_ID}',  [LogbookController::class, 'updateStatusReject']);
-
-// Route::get('/AddProgress', function () {
 //     return view('ManageLogbook.AddProgress');
 // });
 
@@ -118,10 +96,10 @@ Route::get('/editProgress/{Logbook_ID}', [LogbookController::class,'edit']);
 Route::get('lecturerDashboard', function () {
     return view('lecturerDashboard');
 });
-Route::get('lecturerDashboard',[ProfileController::class,'showLecturer']);
 
-Route::get('lecturerDashboard',[ProfileController::class,'showLecturer']);
-//Title List
+//Manage Title Route - Nabilah -----------------------------------------------------------
+
+//Title List for display at student page
 Route::get('titleList',[titleController::class,'show']);
 //add Title
 Route::get('addTitle', function () {
@@ -140,26 +118,30 @@ Route::get('/viewTitle/{Title_ID}', [titleController::class,'view']);
 //edit Title by ID
 Route::get('/editTitle/{Title_ID}', [titleController::class,'edit']);
 
+//update Title by ID
 Route::put('/updateTitle/{Title_ID}', [titleController::class,'update']);
-
-Route::put('book', [titleController::class,'bookTitle']);
 
 Route::get('/viewUpdatedTitle', [titleController::class,'title']);  
 
+//delete Title by ID
 Route::get('/deleteTitle/{Title_ID}', [titleController::class,'destroy']);
+
+Route::put('book', [titleController::class,'bookTitle']);
 
 Route::get('book', function () {
     return view('ManageProposal.ProposalForm');
 });
+
 //Route::delete('/lecturerProjectTitle/{Title_ID}', [titleController::class,'delete']);
 
 // Route::get('/insert', [titleController::class,'insert']);
 // Route::get('ManageTitle.lecturerProjectTitle',[ titleController::class,'showAllSubmittedTitle'])->name('ManageTitle.lecturerProjectTitle');
 // Route::get('/title/{id}/detail', [titleController::class,'show'])->name("ManageTitle.show");
 
-Route::get('/search',[SupervisorController::class,'search']);
+//------------------------------------------------------------------------------------
 
-//Manage Profile ------------------------------------------------------------------------------
+
+//Manage Profile Route - Alia -----------------------------------------------------------
 
 //Route::get('/studentProfile','ProfileController@viewStudent'); - version lama x jadi -_-
 
@@ -179,59 +161,65 @@ Route::post('editEducation',[ProfileController::class, 'editEducation'])->name('
 //add new lecturer education route
 Route::post('addEducation',[ProfileController::class, 'addEducation'])->name('addEducation');
 
+//End of manage profile route--------------------------------------------------------------------
 
 
 
-/*
-Route::get('/studentProfile', function () {
-    return view('ManageProfile.studentProfile');
-}); */
-
-//Manage Lecturer Expertise//
+//Manage Lecturer Expertise Route - Asma' -----------------------------------------------------------
 
 //VIEW
 Route::group(['middleware' => ['web']], function () {
     Route::resource('/expertise','lecturerExpertiseController');
 
+    //show expertise by lecturer id route
     Route::get('lecturerExpertise/{Lecturer_ID}',[LecturerExpertiseController::class,'show']); 
+    //show lecturer expertise by lecturer id route
     Route::get('viewExpertise/{Lecturer_ID}',[LecturerExpertiseController::class,'detail']); 
+    //show add expertise route
     Route::get('addedExpertise',[LecturerExpertiseController::class,'showAdded']);
+    //show update expertise route
     Route::get('updatedExpertise',[LecturerExpertiseController::class,'showAdded']); 
  
-
 });
 
 //ADD
+//go to expertise add page route
 Route::get('add', function () {
     return view('ManageLecturerExpertise.add');
 });
-
+//store expertise into database route
 Route::post('/addExpertise',[LecturerExpertiseController::class,'store']);
 
 //EDIT
+//update expertise by expertise id route
 Route::put('/updateExpertise/{expertise_id}', [LecturerExpertiseController::class,'update']); 
-
-Route::get('/editExpertise/{expertise_id}', [LecturerExpertiseController::class,'edit']); 
-
-  
+//get expertise id route
+Route::get('/editExpertise/{expertise_id}', [LecturerExpertiseController::class,'edit']);   
 
 
+//Manage Proposal Route - Ilman-----------------------------------------------------------------------------
 
+//show all proposal submitted
 Route::get('/proposal/lecturer',[ ProposalController::class,'showAllSubmittedProposal'])->name('ManageProposal.LecturerProposal');
 
+//get change proposal status request
 Route::post('/proposal/{id}/status', [ProposalController::class, 'changeStatus'])->name('ManageProposal.status');
 
+//show proposal information detail  
 Route::get('/proposal/{id}/detail', [ProposalController::class,'showDetail'])->name("ManageProposal.showDetail");
 
+//show proposal form submission
 Route::get('/proposal/create', [ProposalController::class, 'create'])->name('ManageProposal.ProposalForm');
 
+//save submitted proposal
 Route::post('/proposal/store', [ProposalController::class, 'store'])->name('proposal.store');
 
-Route::get('/proposal/Memo', [ProposalController::class, 'index'])->name('ManageProposal.Memo');
-
+//delete proposal
 Route::delete('/contacts/{id}', [ProposalController::class,'destroy'])->name("proposal.destroy");
 
+//download proposal doc
 Route::get('/download/{file}',[ProposalController::class,'download'])->name("proposalDoc.download");
 
+//view proposal doc
 Route::get('/view/{id}',[ProposalController::class,'view'])->name("proposalDoc.view");
 

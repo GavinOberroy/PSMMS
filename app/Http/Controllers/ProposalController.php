@@ -9,12 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class ProposalController extends Controller
 {
+    //Show all proposal submitted from student
     public function showAllSubmittedProposal()
     {
         $proposals=Proposal::where('lecturer_email',Auth::user()->email)->get();
         return view('ManageProposal.LecturerProposal',compact('proposals'));
     }
 
+    //change proposal status
     public function changeStatus(Request $request,$id)
     {
         $proposal = Proposal::find($id);
@@ -22,17 +24,20 @@ class ProposalController extends Controller
         return back();
     }
 
+    //show proposal detail
     public function showDetail($id)
     {
         $proposal=Proposal::find($id);
         return view('ManageProposal.ProposalDetail',compact('proposal'));
     }
 
+    //show proposal submit form
     public function create()
     {
         return view('ManageProposal.ProposalForm');
     }
 
+    //save proposal input form
     public function store(Request $request)
     {
  
@@ -53,24 +58,21 @@ class ProposalController extends Controller
  
     }
 
-    public function index()
-    {
-        $proposal = Proposal::latest()->where('Student_ID',auth()->user()->id)->get();
-        return view('ManageProposal.Memo',compact('proposal'));
-    }
-
+    //delete proposal
     public function destroy($id)
         {
             $proposal=Proposal::findOrFail($id);
             $proposal->delete();
             return back()->with('message','Proposal has been delete sucessfully');
         }
-
+    
+    //download proposal doc
     public function download(Request $request,$file)
         {   
             return response()->download(public_path('assets.file/'.$file));
         }
 
+    //view proposal doc
      public function view($id)
         {
             $data=Proposal::find($id);
