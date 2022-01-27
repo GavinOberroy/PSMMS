@@ -19,13 +19,6 @@ class SupervisorController extends Controller
         return view('ManageSupervisorHunting.supervisorList', compact('lecturers'));
     }
 
-    function edit()
-    {
-        $data = DB::table('supervisors')->where('id', Auth::user()->id)->first();
-        dd($data);
-        return view('mana2',['supervisors' => $data]);
-    }
-
     function detail($Lecturer_ID)
     {
         $lecturers = DB::select('select * from lecturer where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
@@ -35,10 +28,13 @@ class SupervisorController extends Controller
         return view('ManageProfile.lecturerProfile',['lecturers'=>$lecturers, 'educations'=>$educations, 'supervisions'=>$supervisions, 'expertises'=>$expertises]);
     }
 
-    function title()
+    function lecturerDetail($Lecturer_ID)
     {
-        $data = Supervisor::all();
-        return view('projectTitleList',['supervisors'=>$data]);
+        $lecturers = DB::select('select * from lecturer where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
+        $educations = DB::select('select * from lecturer_education where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
+        $supervisions = DB::select('select * from student where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
+        $expertises = DB::select('select * from expertises where Lecturer_ID = :id', ['id' => $Lecturer_ID]);
+        return view('ManageProfile.lecturerDetail',['lecturers'=>$lecturers, 'educations'=>$educations, 'supervisions'=>$supervisions, 'expertises'=>$expertises]);
     }
 
     public function search()

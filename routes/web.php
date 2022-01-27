@@ -54,6 +54,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('projectTitleList','SupervisorController@title');
 
+    Route::get('viewLectDetail/{Lecturer_ID}',[ProfileController::class,'lecturerDetail']);
 
     Route::get('ProposalForm', function () {
         return view('ManageProposal.ProposalForm');
@@ -146,6 +147,10 @@ Route::put('book', [titleController::class,'bookTitle']);
 Route::get('/viewUpdatedTitle', [titleController::class,'title']);  
 
 Route::get('/deleteTitle/{Title_ID}', [titleController::class,'destroy']);
+
+Route::get('book', function () {
+    return view('ManageProposal.ProposalForm');
+});
 //Route::delete('/lecturerProjectTitle/{Title_ID}', [titleController::class,'delete']);
 
 // Route::get('/insert', [titleController::class,'insert']);
@@ -181,11 +186,6 @@ Route::post('addEducation',[ProfileController::class, 'addEducation'])->name('ad
 Route::get('/studentProfile', function () {
     return view('ManageProfile.studentProfile');
 }); */
-
-
-Route::get('abc', function () {
-    return view('ManageTitle.AddTitle');
-});
 
 //Manage Lecturer Expertise//
 
