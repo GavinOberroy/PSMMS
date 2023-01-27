@@ -320,10 +320,11 @@
                     <a style="text-decoration: none;" href="{{ url('logout') }}">Logout</a>
                     <img src="/assets/logout.png" height="30" width="30">
                 </button>
-                @foreach($lecturers as $lecturer)
-                <a class="profile-btn" href="/lecturerProfile/{{$lecturer->Lecturer_ID}}">
-                    <img src="data:image/jpg;base64,{{ chunk_split(base64_encode($lecturer->Lecturer_Image)) }}" /> &nbsp
+                @foreach ($lecturers as $lecturer)
+                <a style="text-decoration:none;" class="profile-btn" href="/lecturerProfile/{{$lecturer->Lecturer_ID}}">
+                    <img src="{{ asset('/assets/img/avatars/'.$lecturer->Student_Image) }}" /> &nbsp
                     <span>{{ Auth::user()->name }}</span>
+                </button>
                 </a>
                 @endforeach
             </div>
@@ -392,16 +393,7 @@
                         </div>
                         <form>
                             
-                            <table>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>{{$lecturer->Lecturer_Name}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td>{{$lecturer->Lecturer_Email}}</td>
-                                </tr>
-                                
+                            <table> 
                                 <tr>
                                     <td>Office Number</td>
                                     <td>{{$lecturer->Lecturer_OfficeNo}}</td>

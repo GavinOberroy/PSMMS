@@ -27,7 +27,27 @@ class ProfileController extends Controller
         $students = DB::select('select * from student where Student_ID = :id', ['id' => $Student_ID]);
         return view('ManageProfile.studentProfile',['students'=>$students]);
     }
+ //edit student profile
+ public function editStudentProfile(Request $request){
+    $studentID = $request->studentID;
+    $studentName = $request->studentName;
+    $studentEmail = $request->studentEmail;
+    $studentPhoneNo = $request->studentPhoneNo;
 
+    //update to the student table data 
+    $updateStudent = [
+        'Student_ID' => $studentID,
+        'Student_Name' => $studentName,
+        'Student_Email' => $studentEmail,
+        'Student_PhoneNo' => $studentPhoneNo,
+    ];
+
+    //update to the student table in database
+    DB::table('student')->where('Student_ID', $request->studentID)->update($updateStudent);
+
+    return back();
+    //redirect()->route('studentProfile')->with('editStudentProfile');
+}
     //student view lecturer profile data
     function lecturerDetail($Lecturer_ID)
     {

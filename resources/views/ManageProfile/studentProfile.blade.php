@@ -211,10 +211,6 @@
                     <div class="item4">
                             <table>
                                 <tr>
-                                    <td>Name</td>
-                                    <td>{{$student->Student_Name}}</td>
-                                </tr>
-                                <tr>
                                     <td>Email</td>
                                     <td>{{$student->Student_Email}}</td>
                                 </tr>
@@ -233,6 +229,10 @@
                                 <tr>
                                     <td>PSM Level</td>
                                     <td>{{$student->PSM_Level}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Lecturer ID</td>
+                                    <td>{{$student->Lecturer_ID}}</td>
                                 </tr>
                              @endforeach 
                              
